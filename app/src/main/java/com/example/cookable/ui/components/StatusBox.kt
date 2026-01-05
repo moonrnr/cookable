@@ -1,6 +1,5 @@
 package com.example.cookable.ui.components
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,19 +17,20 @@ import androidx.compose.ui.unit.sp
 fun StatusBox(
     background: Color,
     textColor: Color,
-    text: String
+    text: String,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(background, RoundedCornerShape(14.dp))
-            .padding(12.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(background, RoundedCornerShape(14.dp))
+                .padding(12.dp),
     ) {
         Text(
             text = text,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = textColor
+            color = textColor,
         )
     }
 }

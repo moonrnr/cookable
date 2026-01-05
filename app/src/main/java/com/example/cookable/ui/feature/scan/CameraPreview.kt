@@ -8,12 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun CameraPreview(
-    modifier: Modifier = Modifier
-) {
+fun CameraPreview(modifier: Modifier = Modifier) {
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color.DarkGray)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(Color.DarkGray),
     )
 }

@@ -3,9 +3,8 @@ package com.example.cookable.ui.feature.start
 import com.example.cookable.domain.model.Ingredient
 
 data class StartState(
-    val ingredients: List<Ingredient> = emptyList()
+    val ingredients: List<Ingredient> = emptyList(),
 ) {
-
     val canFindRecipes: Boolean
         get() = ingredients.isNotEmpty()
 

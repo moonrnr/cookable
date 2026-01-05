@@ -11,7 +11,6 @@ import com.example.cookable.ui.navigation.CookableNavHost
 import com.example.cookable.ui.theme.CookableTheme
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
             CookableTheme {
                 Scaffold { innerPadding ->
                     CookableNavHost(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
                     )
                 }
             }

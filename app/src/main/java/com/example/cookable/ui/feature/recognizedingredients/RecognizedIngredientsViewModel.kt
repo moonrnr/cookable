@@ -8,42 +8,45 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class RecognizedIngredientsViewModel : ViewModel() {
-
-    private val _ingredients = MutableStateFlow(
-        listOf(
-            Ingredient(
-                name = "Tomato",
-                amount = null,
-                unit = null,
-                amountSuggestion = 2.0,
-                unitSuggestion = UnitType.PIECE,
-                isRecognized = true,
-                hasError = true
+    private val _ingredients =
+        MutableStateFlow(
+            listOf(
+                Ingredient(
+                    name = "Tomato",
+                    amount = null,
+                    unit = null,
+                    amountSuggestion = 2.0,
+                    unitSuggestion = UnitType.PIECE,
+                    isRecognized = true,
+                    hasError = true,
+                ),
+                Ingredient(
+                    name = "Cheese",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
             ),
-            Ingredient(
-                name = "Cheese",
-                amount = 100.0,
-                unit = UnitType.GRAM,
-                isRecognized = true
-            )
         )
-    )
 
     val ingredients: StateFlow<List<Ingredient>> = _ingredients.asStateFlow()
 
     fun remove(index: Int) {
-        _ingredients.value = _ingredients.value.toMutableList().also {
-            it.removeAt(index)
-        }
+        _ingredients.value =
+            _ingredients.value.toMutableList().also {
+                it.removeAt(index)
+            }
     }
 
-    fun isValid(): Boolean =
-        _ingredients.value.none { it.amount == null || it.unit == null }
+    fun isValid(): Boolean = _ingredients.value.none { it.amount == null || it.unit == null }
 
-    fun update(index: Int, updated: Ingredient) {
-        _ingredients.value = _ingredients.value.mapIndexed { i, ingredient ->
-            if (i == index) updated else ingredient
-        }
+    fun update(
+        index: Int,
+        updated: Ingredient,
+    ) {
+        _ingredients.value =
+            _ingredients.value.mapIndexed { i, ingredient ->
+                if (i == index) updated else ingredient
+            }
     }
-
 }

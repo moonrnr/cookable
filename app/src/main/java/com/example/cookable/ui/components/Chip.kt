@@ -1,6 +1,5 @@
 package com.example.cookable.ui.components
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -13,22 +12,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-
 @Composable
 fun Chip(text: String) {
     Box(
-        modifier = Modifier
-            .background(
-                Color(0xFF66BB6A).copy(alpha = 0.14f),
-                RoundedCornerShape(999.dp)
-            )
-            .padding(horizontal = 10.dp, vertical = 4.dp)
+        modifier =
+            Modifier
+                .background(
+                    Color(0xFF66BB6A).copy(alpha = 0.14f),
+                    RoundedCornerShape(999.dp),
+                ).padding(horizontal = 10.dp, vertical = 4.dp),
     ) {
         Text(
             text = text,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF2E7D32)
+            color = Color(0xFF2E7D32),
         )
     }
 }

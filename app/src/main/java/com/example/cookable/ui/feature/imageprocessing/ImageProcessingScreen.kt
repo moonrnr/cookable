@@ -19,28 +19,27 @@ import com.example.cookable.ui.theme.Primary
 import kotlinx.coroutines.delay
 
 @Composable
-fun ImageProcessingScreen(
-    onFinished: () -> Unit
-) {
+fun ImageProcessingScreen(onFinished: () -> Unit) {
     LaunchedEffect(Unit) {
         delay(2000)
         onFinished()
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Background),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Background),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CircularProgressIndicator(
-            color = Primary
+            color = Primary,
         )
         Spacer(Modifier.height(16.dp))
         Text(
             text = "Recognizing ingredients",
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
         )
     }
 }

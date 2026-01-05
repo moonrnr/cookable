@@ -6,16 +6,16 @@ import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.delay
 
 class RecipesMockApi(
-    private val context: Context
+    private val context: Context,
 ) {
-
     suspend fun getRecipes(): List<RecipeDto> {
         delay(1500)
 
-        val json = context.assets
-            .open("recipes.json")
-            .bufferedReader()
-            .use { it.readText() }
+        val json =
+            context.assets
+                .open("recipes.json")
+                .bufferedReader()
+                .use { it.readText() }
 
         val type = object : TypeToken<List<RecipeDto>>() {}.type
         return Gson().fromJson(json, type)

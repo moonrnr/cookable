@@ -5,21 +5,22 @@ import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.Recipe
 import java.util.UUID
 
-fun RecipeDto.toDomain(): Recipe {
-    return Recipe(
+fun RecipeDto.toDomain(): Recipe =
+    Recipe(
         id = UUID.randomUUID().toString(),
         name = recipe_name,
-        ingredients = ingredients
-            .split(",")
-            .map { it.trim() }
-            .filter { it.isNotEmpty() }
-            .map { ingredientName ->
-                Ingredient(
-                    name = ingredientName,
-                    amount = null,
-                    unit = null
-                )
-            },
+        ingredients =
+            ingredients
+                .split(",")
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+                .map { ingredientName ->
+                    Ingredient(
+                        name = ingredientName,
+                        amount = null,
+                        unit = null,
+                    )
+                },
         directions = directions,
         isFavorite = false,
         cuisineCategories = cuisine_path,
@@ -32,4 +33,3 @@ fun RecipeDto.toDomain(): Recipe {
         hasAllIngredients = has_all_ingredients,
         tags = tags,
     )
-}

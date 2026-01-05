@@ -16,5 +16,5 @@ data class RecipeDto(
     val missing_ingredients: List<String>,
     val missing_ingredients_count: Int,
     val has_all_ingredients: Boolean,
-    val tags: List<String>
+    val tags: List<String>,
 )

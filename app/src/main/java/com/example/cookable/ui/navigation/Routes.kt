@@ -6,5 +6,6 @@ object Routes {
     const val PROCESSING = "processing"
     const val RESULT = "scan_result"
     const val RECIPES_LIST = "recipes_list"
+    const val FAVORITE_RECIPES_LIST = "favorite_recipes_list"
     const val RECIPE_DETAILS = "recipe_details"
 }

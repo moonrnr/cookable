@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class IngredientViewModel : ViewModel() {
-
     private val _state = MutableStateFlow(IngredientState())
     val state: StateFlow<IngredientState> = _state.asStateFlow()
 
@@ -25,12 +24,13 @@ class IngredientViewModel : ViewModel() {
 
     fun setSuggestions(
         amountSuggestion: String?,
-        unitSuggestion: UnitType?
+        unitSuggestion: UnitType?,
     ) {
-        _state.value = _state.value.copy(
-            amountSuggestion = amountSuggestion,
-            unitSuggestion = unitSuggestion
-        )
+        _state.value =
+            _state.value.copy(
+                amountSuggestion = amountSuggestion,
+                unitSuggestion = unitSuggestion,
+            )
     }
 
     fun reset() {

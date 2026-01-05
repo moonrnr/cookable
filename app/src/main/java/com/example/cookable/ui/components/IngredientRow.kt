@@ -2,7 +2,10 @@ package com.example.cookable.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -23,40 +26,41 @@ fun IngredientRow(
     quantity: String,
     unit: String,
     onClick: () -> Unit,
-    onRemove: () -> Unit
+    onRemove: () -> Unit,
 ) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 14.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-
         Row(
-            modifier = Modifier
-                .weight(1f)
-                .clickable { onClick() },
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .clickable { onClick() },
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = name,
                 fontSize = 14.sp,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
 
             if (quantity.isNotBlank()) {
                 Box(
-                    modifier = Modifier
-                        .background(
-                            color = Color(0xFFF1F5F1),
-                            shape = RoundedCornerShape(999.dp)
-                        )
-                        .padding(horizontal = 12.dp, vertical = 6.dp)
+                    modifier =
+                        Modifier
+                            .background(
+                                color = Color(0xFFF1F5F1),
+                                shape = RoundedCornerShape(999.dp),
+                            ).padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
                     Text(
                         text = "$quantity $unit",
                         fontSize = 13.sp,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                 }
             }
@@ -66,7 +70,7 @@ fun IngredientRow(
             Icon(
                 imageVector = Icons.Filled.Close,
                 contentDescription = null,
-                tint = Color(0xFFD32F2F)
+                tint = Color(0xFFD32F2F),
             )
         }
     }

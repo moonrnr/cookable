@@ -2,18 +2,36 @@ package com.example.cookable.ui.feature.recognizedingredients
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,30 +40,35 @@ import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
-import com.example.cookable.ui.theme.*
+import com.example.cookable.ui.theme.Background
+import com.example.cookable.ui.theme.Card
+import com.example.cookable.ui.theme.Line
+import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.White
 
 @Composable
 fun RecognizedIngredients(
     onConfirm: (List<Ingredient>) -> Unit,
     onBack: () -> Unit,
     onRescan: () -> Unit,
-    viewModel: RecognizedIngredientsViewModel = viewModel()
+    viewModel: RecognizedIngredientsViewModel = viewModel(),
 ) {
     val ingredients by viewModel.ingredients.collectAsState()
     var showErrorDialog by remember { mutableStateOf(false) }
     var editedIngredientIndex by remember { mutableStateOf<Int?>(null) }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Background)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Background),
     ) {
-
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             IconButton(onClick = onBack) {
                 Icon(Icons.Filled.ArrowBack, contentDescription = null)
@@ -53,29 +76,30 @@ fun RecognizedIngredients(
             Text(
                 text = "Recognized ingredients",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
         }
 
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .shadow(10.dp, RoundedCornerShape(18.dp))
-                    .background(Card, RoundedCornerShape(18.dp))
-            ) {
-
-                Box(
-                    modifier = Modifier
+                modifier =
+                    Modifier
                         .fillMaxWidth()
-                        .height(140.dp)
-                        .background(Line)
+                        .shadow(10.dp, RoundedCornerShape(18.dp))
+                        .background(Card, RoundedCornerShape(18.dp)),
+            ) {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(140.dp)
+                            .background(Line),
                 )
 
                 LazyColumn {
@@ -89,9 +113,8 @@ fun RecognizedIngredients(
                             },
                             onRemove = {
                                 viewModel.remove(index)
-                            }
+                            },
                         )
-
                     }
                 }
             }
@@ -99,15 +122,19 @@ fun RecognizedIngredients(
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Button(
                     onClick = {
-                        if (viewModel.isValid()) onConfirm(ingredients)
-                        else showErrorDialog = true
+                        if (viewModel.isValid()) {
+                            onConfirm(ingredients)
+                        } else {
+                            showErrorDialog = true
+                        }
                     },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Primary,
-                        contentColor = Color.White
-                    ),
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor = Primary,
+                            contentColor = White,
+                        ),
                     shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.fillMaxWidth().height(50.dp)
+                    modifier = Modifier.fillMaxWidth().height(50.dp),
                 ) {
                     Text("Confirm", fontWeight = FontWeight.Bold)
                 }
@@ -116,15 +143,17 @@ fun RecognizedIngredients(
                     onClick = onRescan,
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth().height(50.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Primary
-                    ),
-                    border = BorderStroke(1.dp, Line)
+                    colors =
+                        ButtonDefaults.outlinedButtonColors(
+                            contentColor = Primary,
+                        ),
+                    border = BorderStroke(1.dp, Line),
                 ) {
-                    Text(text="Rescan",
+                    Text(
+                        text = "Rescan",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold
-                        )
+                        fontWeight = FontWeight.Bold,
+                    )
                 }
             }
         }
@@ -133,43 +162,41 @@ fun RecognizedIngredients(
     if (showErrorDialog) {
         AlertDialog(
             onDismissRequest = { showErrorDialog = false },
-
             containerColor = Background,
             shape = RoundedCornerShape(24.dp),
-
             title = {
                 Text(
                     text = "Missing data",
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             },
-
             text = {
                 Text(
                     text = "Some ingredients are missing amount or unit. Please complete them.",
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             },
-
             confirmButton = {
                 OutlinedButton(
                     onClick = { showErrorDialog = false },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(48.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
                     shape = RoundedCornerShape(18.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = Primary
-                    ),
-                    border = BorderStroke(1.dp, Line)
+                    colors =
+                        ButtonDefaults.outlinedButtonColors(
+                            contentColor = Primary,
+                        ),
+                    border = BorderStroke(1.dp, Line),
                 ) {
                     Text(
                         text = "OK",
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
-            }
+            },
         )
     }
 
@@ -185,9 +212,7 @@ fun RecognizedIngredients(
             },
             onDismiss = {
                 editedIngredientIndex = null
-            }
+            },
         )
     }
-
-
 }

@@ -7,13 +7,14 @@ data class Ingredient(
     val amountSuggestion: Double? = null,
     val unitSuggestion: UnitType? = null,
     val isRecognized: Boolean = false,
-    val hasError: Boolean = false
+    val hasError: Boolean = false,
 ) {
     companion object {
-        fun empty() = Ingredient(
-            name = "",
-            amount = null,
-            unit = null
-        )
+        fun empty() =
+            Ingredient(
+                name = "",
+                amount = null,
+                unit = null,
+            )
     }
 }

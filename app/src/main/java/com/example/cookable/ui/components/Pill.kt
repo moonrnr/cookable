@@ -14,18 +14,20 @@ fun Pill(
     modifier: Modifier = Modifier,
     backgroundColor: Color,
     onClick: (() -> Unit)? = null,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val clickableModifier = if (onClick != null) {
-        modifier.clickable { onClick() }
-    } else {
-        modifier
-    }
+    val clickableModifier =
+        if (onClick != null) {
+            modifier.clickable { onClick() }
+        } else {
+            modifier
+        }
 
     androidx.compose.foundation.layout.Box(
-        modifier = clickableModifier
-            .background(backgroundColor, RoundedCornerShape(999.dp))
-            .padding(horizontal = 10.dp, vertical = 4.dp)
+        modifier =
+            clickableModifier
+                .background(backgroundColor, RoundedCornerShape(999.dp))
+                .padding(horizontal = 10.dp, vertical = 4.dp),
     ) {
         content()
     }
