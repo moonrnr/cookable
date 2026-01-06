@@ -28,6 +28,7 @@ import com.example.cookable.domain.model.SortState
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
 import com.example.cookable.ui.components.emptyfiltersstate.EmptyFiltersState
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
+import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.screentitle.ScreenTitle
 import com.example.cookable.ui.components.sortbottomsheet.SortBottomSheet
@@ -45,6 +46,7 @@ fun RecipesListScreen(
     val state by viewModel.state.collectAsState()
     var showSortSheet by remember { mutableStateOf(false) }
     var showFilterSheet by remember { mutableStateOf(false) }
+    var draftFilters by remember { mutableStateOf(FilterBottomSheetState()) }
 
     Column(
         modifier =
@@ -70,7 +72,10 @@ fun RecipesListScreen(
             Spacer(modifier = Modifier.width(30.dp))
             SortFilterContainer(
                 onSortClick = { showSortSheet = true },
-                onFilterClick = { showFilterSheet = true },
+                onFilterClick = {
+                    draftFilters = state.filters
+                    showFilterSheet = true
+                },
             )
         }
 
@@ -128,9 +133,10 @@ fun RecipesListScreen(
 
         if (showFilterSheet) {
             FilterBottomSheet(
-                state = state.filters,
-                onStateChange = { viewModel.setFilters(it) },
+                state = draftFilters,
+                onStateChange = { draftFilters = it },
                 onApply = {
+                    viewModel.setFilters(draftFilters)
                     showFilterSheet = false
                 },
                 onDismiss = {
