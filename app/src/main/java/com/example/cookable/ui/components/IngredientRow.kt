@@ -17,16 +17,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.UnitType
+import com.example.cookable.ui.theme.PrimaryGreen
+import com.example.cookable.ui.theme.PrimaryGreenLight
 import com.example.cookable.ui.theme.Red
 
 @Composable
 fun IngredientRow(
     name: String,
-    quantity: String,
+    amount: String,
     unit: UnitType?,
+    suggestedAmount: String? = null,
+    suggestedUnit: UnitType? = null,
     onClick: () -> Unit,
     onRemove: () -> Unit,
 ) {
@@ -50,7 +55,7 @@ fun IngredientRow(
                 modifier = Modifier.weight(1f),
             )
 
-            if (quantity.isNotBlank()) {
+            if (amount.isNotBlank()) {
                 Box(
                     modifier =
                         Modifier
@@ -60,9 +65,25 @@ fun IngredientRow(
                             ).padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
                     Text(
-                        text = "$quantity ${unit?.shortLabel}",
+                        text = "$amount ${unit?.shortLabel}",
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+            } else if (suggestedAmount != null && suggestedUnit != null) {
+                Box(
+                    modifier =
+                        Modifier
+                            .background(
+                                color = PrimaryGreenLight,
+                                shape = RoundedCornerShape(999.dp),
+                            ).padding(horizontal = 12.dp, vertical = 6.dp),
+                ) {
+                    Text(
+                        text = "suggested: $suggestedAmount ${suggestedUnit.shortLabel}",
+                        fontSize = 12.sp,
+                        fontStyle = FontStyle.Italic,
+                        color = PrimaryGreen,
                     )
                 }
             }

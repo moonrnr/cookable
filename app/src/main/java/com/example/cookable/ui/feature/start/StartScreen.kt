@@ -36,9 +36,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.AppLogo
-import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
+import com.example.cookable.ui.feature.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Muted
@@ -150,7 +151,7 @@ fun StartScreen(
                         itemsIndexed(state.ingredients) { index, ingredient ->
                             IngredientRow(
                                 name = ingredient.name,
-                                quantity = ingredient.amount?.formatAmount() ?: "",
+                                amount = ingredient.amount?.formatAmount() ?: "",
                                 unit = ingredient.unit,
                                 onClick = {
                                     sheetIngredient = ingredient
@@ -239,6 +240,7 @@ fun StartScreen(
                     sheetIngredient = null
                     editedIndex = null
                 },
+                ingredientBottomSheetType = IngredientBottomSheetType.ADD,
             )
         }
     }

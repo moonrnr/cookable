@@ -34,10 +34,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.ArrowBackIconButton
-import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
 import com.example.cookable.ui.components.ScreenTitle
+import com.example.cookable.ui.feature.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Card
@@ -111,7 +112,7 @@ fun RecognizedIngredients(
                     itemsIndexed(ingredients) { index, ingredient ->
                         IngredientRow(
                             name = ingredient.name,
-                            quantity = ingredient.amount?.formatAmount() ?: "",
+                            amount = ingredient.amount?.formatAmount() ?: "",
                             unit = ingredient.unit,
                             onClick = {
                                 editedIngredientIndex = index
@@ -119,6 +120,8 @@ fun RecognizedIngredients(
                             onRemove = {
                                 viewModel.remove(index)
                             },
+                            suggestedUnit = ingredient.unitSuggestion,
+                            suggestedAmount = ingredient.amountSuggestion?.toString(),
                         )
                     }
                 }
@@ -218,6 +221,7 @@ fun RecognizedIngredients(
             onDismiss = {
                 editedIngredientIndex = null
             },
+            ingredientBottomSheetType = IngredientBottomSheetType.EDIT,
         )
     }
 }

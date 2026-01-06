@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.feature.ingredientbottomsheet
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -46,7 +46,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.model.UnitType
+import com.example.cookable.ui.components.Pill
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Grey
 import com.example.cookable.ui.theme.Line
@@ -56,11 +58,10 @@ import com.example.cookable.ui.theme.PrimaryGreen
 @Composable
 fun IngredientBottomSheet(
     initialIngredient: Ingredient = Ingredient(name = "", amount = null, unit = null),
-    suggestedAmount: Double? = null,
-    suggestedUnit: UnitType? = null,
     onSave: (Ingredient) -> Unit,
     onCancel: () -> Unit,
     onDismiss: () -> Unit,
+    ingredientBottomSheetType: IngredientBottomSheetType,
 ) {
     var name by remember { mutableStateOf(initialIngredient.name) }
     var amount by remember { mutableStateOf(initialIngredient.amount?.toString().orEmpty()) }
@@ -77,9 +78,8 @@ fun IngredientBottomSheet(
 
     val canSave =
         name.isNotBlank() &&
-                isAmountValid &&
-                unit != null
-
+            isAmountValid &&
+            unit != null
 
     ModalBottomSheet(
         sheetState = sheetState,
@@ -100,21 +100,26 @@ fun IngredientBottomSheet(
         Column(
             modifier =
                 Modifier
-                    .padding(16.dp)
+                    .padding(0.dp)
                     .navigationBarsPadding(),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(start = 18.dp, top = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "Add ingredient",
+                    text =
+                        when (ingredientBottomSheetType) {
+                            IngredientBottomSheetType.ADD -> "Add ingredient"
+                            IngredientBottomSheetType.EDIT -> "Edit ingredient"
+                        },
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                 )
                 IconButton(
                     onClick = onDismiss,
+                    modifier = Modifier.padding(end = 8.dp),
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,
@@ -123,107 +128,17 @@ fun IngredientBottomSheet(
                 }
             }
 
-            Spacer(Modifier.height(16.dp))
-
-            Text("Ingredient name", fontSize = 13.sp)
-            Spacer(Modifier.height(6.dp))
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("e.g., milk", fontStyle = FontStyle.Italic) },
-                singleLine = true,
-                shape = RoundedCornerShape(14.dp),
-                colors =
-                    OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = PrimaryGreen,
-                        unfocusedBorderColor = Line,
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White,
-                        cursorColor = PrimaryGreen,
-                        focusedPlaceholderColor = Grey,
-                        unfocusedPlaceholderColor = Grey,
-                    ),
-            )
-
             Spacer(Modifier.height(12.dp))
 
-            Text("Amount", fontSize = 13.sp)
-            Spacer(Modifier.height(6.dp))
-            OutlinedTextField(
-                value = amount,
-                onValueChange = { newValue ->
-                    if (
-                        newValue.isEmpty() ||
-                        newValue.matches(Regex("""\d*\.?\d*"""))
-                    ) {
-                        amount = newValue
-                    }
-                },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number
-                ),
-                isError = amount.isNotBlank() && !isAmountValid,
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text("e.g., 2", fontStyle = FontStyle.Italic) },
-                singleLine = true,
-                shape = RoundedCornerShape(14.dp),
-                colors =
-                    OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = PrimaryGreen,
-                        unfocusedBorderColor = Line,
-                        focusedContainerColor = Color.White,
-                        unfocusedContainerColor = Color.White,
-                        cursorColor = PrimaryGreen,
-                        focusedPlaceholderColor = Grey,
-                        unfocusedPlaceholderColor = Grey,
-                    ),
-            )
-
-            if (amount.isNotBlank() && !isAmountValid) {
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    text = "Enter a valid number (e.g. 2 or 2.5)",
-                    color = MaterialTheme.colorScheme.error,
-                    fontSize = 12.sp,
-                )
-            }
-
-
-            suggestedAmount?.let {
+            Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 18.dp)) {
+                Text("Ingredient name", fontSize = 13.sp)
                 Spacer(Modifier.height(6.dp))
-                Pill(
-                    backgroundColor = Color(0x3366BB6A),
-                    onClick = { amount = it.toString() },
-                ) {
-                    Text(
-                        text = "Suggested: $it",
-                        fontSize = 12.sp,
-                        color = PrimaryGreen,
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(12.dp))
-
-            Text("Unit", fontSize = 13.sp)
-            Spacer(Modifier.height(6.dp))
-
-            ExposedDropdownMenuBox(
-                expanded = unitExpanded,
-                onExpandedChange = { unitExpanded = !unitExpanded },
-            ) {
                 OutlinedTextField(
-                    value = unit?.name?.lowercase() ?: "",
-                    onValueChange = {},
-                    readOnly = true,
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .menuAnchor(),
-                    trailingIcon = {
-                        ExposedDropdownMenuDefaults.TrailingIcon(expanded = unitExpanded)
-                    },
+                    value = name,
+                    onValueChange = { name = it },
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text("e.g., milk", fontStyle = FontStyle.Italic) },
+                    singleLine = true,
                     shape = RoundedCornerShape(14.dp),
                     colors =
                         OutlinedTextFieldDefaults.colors(
@@ -232,115 +147,209 @@ fun IngredientBottomSheet(
                             focusedContainerColor = Color.White,
                             unfocusedContainerColor = Color.White,
                             cursorColor = PrimaryGreen,
+                            focusedPlaceholderColor = Grey,
+                            unfocusedPlaceholderColor = Grey,
                         ),
                 )
 
-                ExposedDropdownMenu(
-                    expanded = unitExpanded,
-                    onDismissRequest = { unitExpanded = false },
-                    modifier =
-                        Modifier
-                            .background(Background, RoundedCornerShape(14.dp)),
-                ) {
-                    UnitType.values().forEach {
-                        DropdownMenuItem(
-                            text = {
-                                Text(
-                                    text = it.fullLabel.lowercase(),
-                                    color = MaterialTheme.colorScheme.onBackground,
-                                )
-                            },
-                            onClick = {
-                                unit = it
-                                unitExpanded = false
-                            },
-                            colors =
-                                MenuDefaults.itemColors(
-                                    textColor = MaterialTheme.colorScheme.onBackground,
-                                ),
+                Spacer(Modifier.height(12.dp))
+
+                Text("Amount", fontSize = 13.sp)
+                Spacer(Modifier.height(6.dp))
+                OutlinedTextField(
+                    value = amount,
+                    onValueChange = { newValue ->
+                        if (
+                            newValue.isEmpty() ||
+                            newValue.matches(Regex("""\d*\.?\d*"""))
+                        ) {
+                            amount = newValue
+                        }
+                    },
+                    keyboardOptions =
+                        KeyboardOptions(
+                            keyboardType = KeyboardType.Number,
+                        ),
+                    isError = amount.isNotBlank() && !isAmountValid,
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = { Text("e.g., 2", fontStyle = FontStyle.Italic) },
+                    singleLine = true,
+                    shape = RoundedCornerShape(14.dp),
+                    colors =
+                        OutlinedTextFieldDefaults.colors(
+                            focusedBorderColor = PrimaryGreen,
+                            unfocusedBorderColor = Line,
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            cursorColor = PrimaryGreen,
+                            focusedPlaceholderColor = Grey,
+                            unfocusedPlaceholderColor = Grey,
+                        ),
+                )
+
+                if (amount.isNotBlank() && !isAmountValid) {
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = "Enter a valid number (e.g. 2 or 2.5)",
+                        color = MaterialTheme.colorScheme.error,
+                        fontSize = 12.sp,
+                    )
+                }
+
+                initialIngredient.amountSuggestion?.let {
+                    Spacer(Modifier.height(6.dp))
+                    Pill(
+                        backgroundColor = Color(0x3366BB6A),
+                        onClick = { amount = it.toString() },
+                    ) {
+                        Text(
+                            text = "Suggested: $it",
+                            fontSize = 12.sp,
+                            fontStyle = FontStyle.Italic,
+                            color = PrimaryGreen,
                         )
                     }
                 }
-            }
 
-            suggestedUnit?.let {
+                Spacer(Modifier.height(12.dp))
+
+                Text("Unit", fontSize = 13.sp)
                 Spacer(Modifier.height(6.dp))
-                Pill(
-                    backgroundColor = Color(0x3366BB6A),
-                    onClick = { unit = it },
+
+                ExposedDropdownMenuBox(
+                    expanded = unitExpanded,
+                    onExpandedChange = { unitExpanded = !unitExpanded },
                 ) {
-                    Text(
-                        text = "Suggested: ${it.name.lowercase()}",
-                        fontSize = 12.sp,
-                        color = PrimaryGreen,
-                    )
-                }
-            }
-
-            Spacer(Modifier.height(20.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                OutlinedButton(
-                    onClick = onCancel,
-                    modifier =
-                        Modifier
-                            .weight(1f)
-                            .height(52.dp),
-                    shape = RoundedCornerShape(18.dp),
-                    colors =
-                        ButtonDefaults.outlinedButtonColors(
-                            contentColor = PrimaryGreen,
-                        ),
-                    border = BorderStroke(1.dp, Line),
-                ) {
-                    Text(
-                        text = "Cancel",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-
-                Button(
-                    onClick = {
-                        onSave(
-                            Ingredient(
-                                name = name,
-                                amount = amount.toDoubleOrNull(),
-                                unit = unit,
+                    OutlinedTextField(
+                        value = unit?.name?.lowercase() ?: "",
+                        onValueChange = {},
+                        readOnly = true,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .menuAnchor(),
+                        trailingIcon = {
+                            ExposedDropdownMenuDefaults.TrailingIcon(expanded = unitExpanded)
+                        },
+                        shape = RoundedCornerShape(14.dp),
+                        colors =
+                            OutlinedTextFieldDefaults.colors(
+                                focusedBorderColor = PrimaryGreen,
+                                unfocusedBorderColor = Line,
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                cursorColor = PrimaryGreen,
                             ),
-                        )
-                    },
-                    modifier =
-                        Modifier
-                            .weight(1f)
-                            .height(52.dp),
-                    enabled = canSave,
-                    shape = RoundedCornerShape(18.dp),
-                    colors =
-                        ButtonDefaults.buttonColors(
-                            containerColor = PrimaryGreen,
-                            disabledContainerColor = Color(0xFFDADCE0),
-                            contentColor = Color.White,
-                            disabledContentColor = Color(0xFF9AA0A6),
-                        ),
-                    elevation =
-                        ButtonDefaults.buttonElevation(
-                            defaultElevation = 0.dp,
-                            pressedElevation = 0.dp,
-                        ),
-                ) {
-                    Text(
-                        text = "Save",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.ExtraBold,
                     )
-                }
-            }
 
-            Spacer(Modifier.height(8.dp))
+                    ExposedDropdownMenu(
+                        expanded = unitExpanded,
+                        onDismissRequest = { unitExpanded = false },
+                        modifier =
+                            Modifier
+                                .background(Background, RoundedCornerShape(14.dp)),
+                    ) {
+                        UnitType.values().forEach {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(
+                                        text = it.fullLabel.lowercase(),
+                                        color = MaterialTheme.colorScheme.onBackground,
+                                    )
+                                },
+                                onClick = {
+                                    unit = it
+                                    unitExpanded = false
+                                },
+                                colors =
+                                    MenuDefaults.itemColors(
+                                        textColor = MaterialTheme.colorScheme.onBackground,
+                                    ),
+                            )
+                        }
+                    }
+                }
+
+                initialIngredient.unitSuggestion?.let {
+                    Spacer(Modifier.height(6.dp))
+                    Pill(
+                        backgroundColor = Color(0x3366BB6A),
+                        onClick = { unit = it },
+                    ) {
+                        Text(
+                            text = "Suggested: ${it.name.lowercase()}",
+                            fontSize = 12.sp,
+                            fontStyle = FontStyle.Italic,
+                            color = PrimaryGreen,
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(20.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    OutlinedButton(
+                        onClick = onCancel,
+                        modifier =
+                            Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                        shape = RoundedCornerShape(18.dp),
+                        colors =
+                            ButtonDefaults.outlinedButtonColors(
+                                contentColor = PrimaryGreen,
+                            ),
+                        border = BorderStroke(1.dp, Line),
+                    ) {
+                        Text(
+                            text = "Cancel",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+
+                    Button(
+                        onClick = {
+                            onSave(
+                                Ingredient(
+                                    name = name,
+                                    amount = amount.toDoubleOrNull(),
+                                    unit = unit,
+                                ),
+                            )
+                        },
+                        modifier =
+                            Modifier
+                                .weight(1f)
+                                .height(52.dp),
+                        enabled = canSave,
+                        shape = RoundedCornerShape(18.dp),
+                        colors =
+                            ButtonDefaults.buttonColors(
+                                containerColor = PrimaryGreen,
+                                disabledContainerColor = Color(0xFFDADCE0),
+                                contentColor = Color.White,
+                                disabledContentColor = Color(0xFF9AA0A6),
+                            ),
+                        elevation =
+                            ButtonDefaults.buttonElevation(
+                                defaultElevation = 0.dp,
+                                pressedElevation = 0.dp,
+                            ),
+                    ) {
+                        Text(
+                            text = "Save",
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.ExtraBold,
+                        )
+                    }
+                }
+
+                Spacer(Modifier.height(8.dp))
+            }
         }
     }
 }
