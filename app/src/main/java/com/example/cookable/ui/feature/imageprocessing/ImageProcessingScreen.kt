@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 import kotlinx.coroutines.delay
 
 @Composable
@@ -44,7 +44,7 @@ fun ImageProcessingScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         CircularProgressIndicator(
-            color = Primary,
+            color = PrimaryGreen,
         )
         Spacer(Modifier.height(16.dp))
         Text(

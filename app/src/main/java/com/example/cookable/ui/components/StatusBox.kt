@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Status
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 import com.example.cookable.ui.theme.PrimaryOrange
 
 @Composable
@@ -35,8 +35,8 @@ fun StatusBox(
         when (status) {
             Status.SUCCESS ->
                 Triple(
-                    Primary.copy(alpha = 0.12f),
-                    Primary,
+                    PrimaryGreen.copy(alpha = 0.12f),
+                    PrimaryGreen,
                     Icons.Filled.Done,
                 )
 

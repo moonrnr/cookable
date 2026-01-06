@@ -42,7 +42,8 @@ import com.example.cookable.ui.components.IngredientRow
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Muted
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
+import com.example.cookable.ui.theme.PrimaryGreenLight
 import com.example.cookable.ui.theme.PrimaryOrange
 
 @Composable
@@ -115,13 +116,13 @@ fun StartScreen(
                     Box(
                         modifier =
                             Modifier
-                                .background(Color(0x3366BB6A), RoundedCornerShape(999.dp))
+                                .background(PrimaryGreenLight, RoundedCornerShape(999.dp))
                                 .padding(horizontal = 10.dp, vertical = 2.dp),
                     ) {
                         Text(
                             text = state.ingredients.size.toString(),
                             fontSize = 12.sp,
-                            color = Primary,
+                            color = PrimaryGreen,
                         )
                     }
                 }
@@ -136,7 +137,7 @@ fun StartScreen(
                     ) {
                         Text(
                             text = "Nothing here yet",
-                            fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                            fontWeight = FontWeight.Bold,
                         )
                         Text(
                             text = "Start by adding some ingredients",
@@ -167,7 +168,7 @@ fun StartScreen(
                     onClick = { navController.navigate(Routes.SCAN) },
                     colors =
                         ButtonDefaults.buttonColors(
-                            containerColor = Primary,
+                            containerColor = PrimaryGreen,
                             contentColor = Color.White,
                         ),
                     shape = RoundedCornerShape(16.dp),
@@ -182,8 +183,8 @@ fun StartScreen(
                     },
                     colors =
                         ButtonDefaults.buttonColors(
-                            containerColor = Color(0x3366BB6A),
-                            contentColor = Primary,
+                            containerColor = PrimaryGreenLight,
+                            contentColor = PrimaryGreen,
                         ),
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth().height(50.dp),

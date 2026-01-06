@@ -18,7 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.ui.theme.Grey
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 
 @Composable
 fun EmptyFavoritesState(modifier: Modifier = Modifier) {
@@ -35,7 +35,7 @@ fun EmptyFavoritesState(modifier: Modifier = Modifier) {
             Icon(
                 imageVector = Icons.Outlined.FavoriteBorder,
                 contentDescription = null,
-                tint = Primary,
+                tint = PrimaryGreen,
                 modifier = Modifier.size(48.dp),
             )
 

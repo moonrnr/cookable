@@ -40,7 +40,7 @@ import androidx.core.content.ContextCompat
 import com.example.cookable.ui.scan.CameraPreview
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Line
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 import java.io.File
 
 @Composable
@@ -121,7 +121,7 @@ fun ScanScreen(
                 shape = RoundedCornerShape(18.dp),
                 colors =
                     ButtonDefaults.outlinedButtonColors(
-                        contentColor = Primary,
+                        contentColor = PrimaryGreen,
                     ),
                 border = BorderStroke(1.dp, Line),
             ) {
@@ -149,7 +149,7 @@ fun ScanScreen(
                 shape = RoundedCornerShape(18.dp),
                 colors =
                     ButtonDefaults.buttonColors(
-                        containerColor = Primary,
+                        containerColor = PrimaryGreen,
                         contentColor = Color.White,
                     ),
                 elevation =

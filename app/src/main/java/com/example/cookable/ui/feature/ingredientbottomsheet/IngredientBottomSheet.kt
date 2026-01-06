@@ -48,7 +48,7 @@ import com.example.cookable.domain.model.UnitType
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Grey
 import com.example.cookable.ui.theme.Line
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -130,11 +130,11 @@ fun IngredientBottomSheet(
                 shape = RoundedCornerShape(14.dp),
                 colors =
                     OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Primary,
+                        focusedBorderColor = PrimaryGreen,
                         unfocusedBorderColor = Line,
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
-                        cursorColor = Primary,
+                        cursorColor = PrimaryGreen,
                         focusedPlaceholderColor = Grey,
                         unfocusedPlaceholderColor = Grey,
                     ),
@@ -153,11 +153,11 @@ fun IngredientBottomSheet(
                 shape = RoundedCornerShape(14.dp),
                 colors =
                     OutlinedTextFieldDefaults.colors(
-                        focusedBorderColor = Primary,
+                        focusedBorderColor = PrimaryGreen,
                         unfocusedBorderColor = Line,
                         focusedContainerColor = Color.White,
                         unfocusedContainerColor = Color.White,
-                        cursorColor = Primary,
+                        cursorColor = PrimaryGreen,
                         focusedPlaceholderColor = Grey,
                         unfocusedPlaceholderColor = Grey,
                     ),
@@ -172,7 +172,7 @@ fun IngredientBottomSheet(
                     Text(
                         text = "Suggested: $it",
                         fontSize = 12.sp,
-                        color = Primary,
+                        color = PrimaryGreen,
                     )
                 }
             }
@@ -200,11 +200,11 @@ fun IngredientBottomSheet(
                     shape = RoundedCornerShape(14.dp),
                     colors =
                         OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Primary,
+                            focusedBorderColor = PrimaryGreen,
                             unfocusedBorderColor = Line,
                             focusedContainerColor = Color.White,
                             unfocusedContainerColor = Color.White,
-                            cursorColor = Primary,
+                            cursorColor = PrimaryGreen,
                         ),
                 )
 
@@ -245,7 +245,7 @@ fun IngredientBottomSheet(
                     Text(
                         text = "Suggested: ${it.name.lowercase()}",
                         fontSize = 12.sp,
-                        color = Primary,
+                        color = PrimaryGreen,
                     )
                 }
             }
@@ -265,7 +265,7 @@ fun IngredientBottomSheet(
                     shape = RoundedCornerShape(18.dp),
                     colors =
                         ButtonDefaults.outlinedButtonColors(
-                            contentColor = Primary,
+                            contentColor = PrimaryGreen,
                         ),
                     border = BorderStroke(1.dp, Line),
                 ) {
@@ -294,7 +294,7 @@ fun IngredientBottomSheet(
                     shape = RoundedCornerShape(18.dp),
                     colors =
                         ButtonDefaults.buttonColors(
-                            containerColor = Primary,
+                            containerColor = PrimaryGreen,
                             disabledContainerColor = Color(0xFFDADCE0),
                             contentColor = Color.White,
                             disabledContentColor = Color(0xFF9AA0A6),

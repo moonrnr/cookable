@@ -24,7 +24,7 @@ import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.components.ScreenTitle
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 
 @Composable
 fun RecipesListScreen(
@@ -61,7 +61,7 @@ fun RecipesListScreen(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center,
             ) {
-                CircularProgressIndicator(color = Primary)
+                CircularProgressIndicator(color = PrimaryGreen)
             }
         } else {
             Column(

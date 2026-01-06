@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.unit.dp
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 
 @Composable
 fun FavoriteIconButton(
@@ -45,7 +45,7 @@ fun FavoriteIconButton(
                     Icons.Outlined.FavoriteBorder
                 },
             contentDescription = "Add to favorites",
-            tint = Primary,
+            tint = PrimaryGreen,
         )
     }
 }

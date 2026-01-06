@@ -42,7 +42,7 @@ import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Card
 import com.example.cookable.ui.theme.Line
-import com.example.cookable.ui.theme.Primary
+import com.example.cookable.ui.theme.PrimaryGreen
 import com.example.cookable.ui.theme.White
 
 @Composable
@@ -135,7 +135,7 @@ fun RecognizedIngredients(
                     },
                     colors =
                         ButtonDefaults.buttonColors(
-                            containerColor = Primary,
+                            containerColor = PrimaryGreen,
                             contentColor = White,
                         ),
                     shape = RoundedCornerShape(16.dp),
@@ -150,7 +150,7 @@ fun RecognizedIngredients(
                     modifier = Modifier.fillMaxWidth().height(50.dp),
                     colors =
                         ButtonDefaults.outlinedButtonColors(
-                            contentColor = Primary,
+                            contentColor = PrimaryGreen,
                         ),
                     border = BorderStroke(1.dp, Line),
                 ) {
@@ -192,7 +192,7 @@ fun RecognizedIngredients(
                     shape = RoundedCornerShape(18.dp),
                     colors =
                         ButtonDefaults.outlinedButtonColors(
-                            contentColor = Primary,
+                            contentColor = PrimaryGreen,
                         ),
                     border = BorderStroke(1.dp, Line),
                 ) {
