@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
@@ -41,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
@@ -65,15 +67,19 @@ fun IngredientBottomSheet(
     var unit by remember { mutableStateOf(initialIngredient.unit) }
     var unitExpanded by remember { mutableStateOf(false) }
 
-    val canSave =
-        name.isNotBlank() &&
-            amount.isNotBlank() &&
-            unit != null
-
     val sheetState =
         rememberModalBottomSheetState(
             skipPartiallyExpanded = true,
         )
+
+    val isAmountValid =
+        amount.matches(Regex("""\d+(\.\d+)?"""))
+
+    val canSave =
+        name.isNotBlank() &&
+                isAmountValid &&
+                unit != null
+
 
     ModalBottomSheet(
         sheetState = sheetState,
@@ -146,7 +152,18 @@ fun IngredientBottomSheet(
             Spacer(Modifier.height(6.dp))
             OutlinedTextField(
                 value = amount,
-                onValueChange = { amount = it },
+                onValueChange = { newValue ->
+                    if (
+                        newValue.isEmpty() ||
+                        newValue.matches(Regex("""\d*\.?\d*"""))
+                    ) {
+                        amount = newValue
+                    }
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number
+                ),
+                isError = amount.isNotBlank() && !isAmountValid,
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("e.g., 2", fontStyle = FontStyle.Italic) },
                 singleLine = true,
@@ -162,6 +179,16 @@ fun IngredientBottomSheet(
                         unfocusedPlaceholderColor = Grey,
                     ),
             )
+
+            if (amount.isNotBlank() && !isAmountValid) {
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    text = "Enter a valid number (e.g. 2 or 2.5)",
+                    color = MaterialTheme.colorScheme.error,
+                    fontSize = 12.sp,
+                )
+            }
+
 
             suggestedAmount?.let {
                 Spacer(Modifier.height(6.dp))
