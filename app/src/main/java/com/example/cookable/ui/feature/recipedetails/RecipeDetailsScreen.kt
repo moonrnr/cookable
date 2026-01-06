@@ -13,21 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,9 +27,11 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
+import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.components.Chip
+import com.example.cookable.ui.components.FavoriteIconButton
 import com.example.cookable.ui.components.MatchBadge
-import com.example.cookable.ui.components.StatusBox
+import com.example.cookable.ui.components.MissingIngredientsBox
 import com.example.cookable.ui.components.TotalTimeBadge
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Line
@@ -77,42 +71,17 @@ fun RecipeDetailsScreen(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                IconButton(
+                ArrowBackIconButton(
                     onClick = { navController.popBackStack() },
                     modifier =
                         Modifier
                             .background(
-                                color = Black.copy(alpha = 0.4f),
+                                color = White.copy(alpha = 0.85f),
                                 shape = RoundedCornerShape(50),
                             ),
-                ) {
-                    Icon(
-                        Icons.Default.ArrowBack,
-                        contentDescription = null,
-                        tint = Color.White,
-                    )
-                }
+                )
 
-                IconButton(
-                    onClick = { favoritesRepository.toggleFavorite(recipe) },
-                    modifier =
-                        Modifier
-                            .background(
-                                color = Black.copy(alpha = 0.4f),
-                                shape = RoundedCornerShape(50),
-                            ),
-                ) {
-                    Icon(
-                        imageVector =
-                            if (isFavorite) {
-                                Icons.Filled.Favorite
-                            } else {
-                                Icons.Outlined.FavoriteBorder
-                            },
-                        contentDescription = "Add to favorites",
-                        tint = White,
-                    )
-                }
+                FavoriteIconButton(isFavorite = isFavorite, isSmall = false, onClick = { favoritesRepository.toggleFavorite(recipe) })
             }
 
             Row(
@@ -151,30 +120,14 @@ fun RecipeDetailsScreen(
                 }
             }
 
-            Divider(color = Line)
+            HorizontalDivider(color = Line)
 
-            if (recipe.hasAllIngredients) {
-                StatusBox(
-                    background = Color(0xFF2E7D32).copy(alpha = 0.12f),
-                    textColor = Color(0xFF2E7D32),
-                    text = "✓ You have all ingredients",
-                )
-            } else {
-                val missingText =
-                    if (recipe.missingIngredients.size > 4) {
-                        recipe.missingIngredients.take(4).joinToString(", ") + ", and more..."
-                    } else {
-                        recipe.missingIngredients.joinToString(", ")
-                    }
+            MissingIngredientsBox(
+                hasAllIngredients = recipe.hasAllIngredients,
+                missingIngredients = recipe.missingIngredients,
+            )
 
-                StatusBox(
-                    background = Color(0xFFC65A00).copy(alpha = 0.14f),
-                    textColor = Color(0xFFC65A00),
-                    text = "⚠ Missing: $missingText",
-                )
-            }
-
-            Divider(color = Line)
+            HorizontalDivider(color = Line)
 
             SectionTitle("Ingredients")
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -186,7 +139,7 @@ fun RecipeDetailsScreen(
                 }
             }
 
-            Divider(color = Line)
+            HorizontalDivider(color = Line)
 
             SectionTitle("Directions")
             Text(

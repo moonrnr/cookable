@@ -26,8 +26,8 @@ fun EmptyFavoritesState(modifier: Modifier = Modifier) {
         modifier =
             modifier
                 .fillMaxSize()
-                .padding(32.dp),
-        contentAlignment = Alignment.Center,
+                .padding(top = 200.dp),
+        contentAlignment = Alignment.TopCenter,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

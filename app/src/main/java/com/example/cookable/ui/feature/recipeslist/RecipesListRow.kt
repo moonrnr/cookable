@@ -11,21 +11,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,8 +24,9 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.ui.components.Chip
+import com.example.cookable.ui.components.FavoriteIconButton
 import com.example.cookable.ui.components.MatchBadge
-import com.example.cookable.ui.components.StatusBox
+import com.example.cookable.ui.components.MissingIngredientsBox
 import com.example.cookable.ui.components.TotalTimeBadge
 import com.example.cookable.ui.theme.Card
 import com.example.cookable.ui.theme.Line
@@ -102,26 +94,7 @@ fun RecipesListItemRow(
 
                 Spacer(Modifier.weight(1f))
 
-                IconButton(
-                    onClick = onToggleFavorite,
-                    modifier =
-                        Modifier
-                            .background(
-                                color = Black.copy(alpha = 0.4f),
-                                shape = RoundedCornerShape(50),
-                            ),
-                ) {
-                    Icon(
-                        imageVector =
-                            if (recipe.isFavorite) {
-                                Icons.Filled.Favorite
-                            } else {
-                                Icons.Outlined.FavoriteBorder
-                            },
-                        contentDescription = "Add to favorites",
-                        tint = White,
-                    )
-                }
+                FavoriteIconButton(isFavorite = recipe.isFavorite, isSmall = true, onClick = onToggleFavorite)
             }
         }
 
@@ -145,32 +118,10 @@ fun RecipesListItemRow(
                 }
             }
 
-            if (recipesListType == RecipesListType.ALL_RECIPES) {
-                Divider(color = Line)
-
-                if (recipe.hasAllIngredients) {
-                    StatusBox(
-                        background = Color(0xFF2E7D32).copy(alpha = 0.12f),
-                        textColor = Color(0xFF2E7D32),
-                        text = "✓ All ingredients available",
-                    )
-                } else {
-                    val missingText =
-                        if (recipe.missingIngredients.size > 4) {
-                            recipe.missingIngredients
-                                .take(3)
-                                .joinToString(", ") + ", and more..."
-                        } else {
-                            recipe.missingIngredients.joinToString(", ")
-                        }
-
-                    StatusBox(
-                        background = Color(0xFFF57C00).copy(alpha = 0.14f),
-                        textColor = Color(0xFFF57C00),
-                        text = "⚠ Missing: $missingText",
-                    )
-                }
-            }
+            MissingIngredientsBox(
+                hasAllIngredients = recipe.hasAllIngredients,
+                missingIngredients = recipe.missingIngredients,
+            )
         }
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cookable.ui.theme.Red
 
 @Composable
 fun IngredientRow(
@@ -70,7 +71,7 @@ fun IngredientRow(
             Icon(
                 imageVector = Icons.Filled.Close,
                 contentDescription = null,
-                tint = Color(0xFFD32F2F),
+                tint = Red,
             )
         }
     }

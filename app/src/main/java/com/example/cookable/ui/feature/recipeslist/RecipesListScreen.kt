@@ -10,11 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -27,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
+import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Primary
@@ -57,11 +54,8 @@ fun RecipesListScreen(
                     ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            IconButton(
-                onClick = { navController.popBackStack(Routes.START, false) },
-            ) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = null)
-            }
+            ArrowBackIconButton({ navController.popBackStack(Routes.START, false) })
+
             Text(
                 text = "Recipes",
                 fontSize = 20.sp,

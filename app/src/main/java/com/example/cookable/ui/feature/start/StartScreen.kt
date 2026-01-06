@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.ui.components.AppLogo
 import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
 import com.example.cookable.ui.navigation.Routes
@@ -65,24 +66,11 @@ fun StartScreen(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
+                    .padding(start=16.dp, top=20.dp, bottom=20.dp, end=20.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {
-            Column(
-                modifier = Modifier.weight(1f).padding(start = 10.dp),
-            ) {
-                Text(
-                    text = "Cookable",
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                )
-                Text(
-                    text = "Cook with what you have",
-                    fontSize = 13.sp,
-                    color = Muted,
-                )
-            }
+            AppLogo()
 
             Row {
                 IconButton(onClick = { /* help */ }) {
@@ -121,7 +109,7 @@ fun StartScreen(
                     Text(
                         text = "Your ingredients",
                         fontSize = 16.sp,
-                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        fontWeight = FontWeight.Bold,
                     )
 
                     Box(

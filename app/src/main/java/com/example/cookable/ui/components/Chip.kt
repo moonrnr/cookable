@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cookable.ui.theme.Primary
 
 @Composable
 fun Chip(text: String) {
@@ -26,7 +27,7 @@ fun Chip(text: String) {
             text = text,
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF2E7D32),
+            color = Primary,
         )
     }
 }

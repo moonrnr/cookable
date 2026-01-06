@@ -21,3 +21,7 @@ val InputBg = Color(0xFFF6F7F6)
 val Grey = Color(0xFFB0B0B0)
 val LightGrey = Color(0xFFF2F2F2)
 val DarkGrey = Color(0xFF212121)
+
+val Black = Color(0xFF1c1b1f)
+
+val Red = Color(0xFFD32F2F)
