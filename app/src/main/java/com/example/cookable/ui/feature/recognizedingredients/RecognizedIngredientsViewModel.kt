@@ -30,6 +30,8 @@ class RecognizedIngredientsViewModel : ViewModel() {
         )
 
     val ingredients: StateFlow<List<Ingredient>> = _ingredients.asStateFlow()
+    private val _showErrors = MutableStateFlow(false)
+    val showErrors = _showErrors.asStateFlow()
 
     fun remove(index: Int) {
         _ingredients.value =
@@ -39,6 +41,21 @@ class RecognizedIngredientsViewModel : ViewModel() {
     }
 
     fun isValid(): Boolean = _ingredients.value.none { it.amount == null || it.unit == null }
+
+    fun validateAndMarkErrors(): Boolean {
+        _showErrors.value = true
+
+        val updated =
+            _ingredients.value.map { ingredient ->
+                val hasError = ingredient.amount == null || ingredient.unit == null
+                ingredient.copy(hasError = hasError)
+            }
+
+        _ingredients.value = updated
+
+        return updated.none { it.hasError }
+    }
+
 
     fun update(
         index: Int,

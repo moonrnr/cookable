@@ -58,7 +58,7 @@ fun RecognizedIngredients(
     var showErrorDialog by remember { mutableStateOf(false) }
     var editedIngredientIndex by remember { mutableStateOf<Int?>(null) }
     val photoUri by scanViewModel.photoUri.collectAsState()
-
+    val showErrors by viewModel.showErrors.collectAsState()
     Column(
         modifier =
             Modifier
@@ -122,6 +122,7 @@ fun RecognizedIngredients(
                             },
                             suggestedUnit = ingredient.unitSuggestion,
                             suggestedAmount = ingredient.amountSuggestion?.toString(),
+                            hasError = showErrors && ingredient.hasError,
                         )
                     }
                 }
@@ -130,7 +131,7 @@ fun RecognizedIngredients(
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Button(
                     onClick = {
-                        if (viewModel.isValid()) {
+                        if (viewModel.validateAndMarkErrors()) {
                             onConfirm(ingredients)
                         } else {
                             showErrorDialog = true

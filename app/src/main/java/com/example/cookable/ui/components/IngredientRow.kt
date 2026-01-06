@@ -1,6 +1,7 @@
 package com.example.cookable.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,7 @@ import com.example.cookable.ui.theme.Red
 fun IngredientRow(
     name: String,
     amount: String,
+    hasError: Boolean = false,
     unit: UnitType?,
     suggestedAmount: String? = null,
     suggestedUnit: UnitType? = null,
@@ -39,8 +41,18 @@ fun IngredientRow(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 14.dp),
+                .padding(horizontal = 16.dp, vertical = 14.dp)
+                .then(
+                    if (hasError) {
+                        Modifier.border(
+                            width = 1.dp,
+                            color = Red,
+                            shape = RoundedCornerShape(12.dp)
+                        )
+                    } else Modifier
+                ),
         verticalAlignment = Alignment.CenterVertically,
+
     ) {
         Row(
             modifier =
