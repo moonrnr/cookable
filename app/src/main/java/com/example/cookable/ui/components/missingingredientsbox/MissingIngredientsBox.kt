@@ -1,8 +1,9 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.missingingredientsbox
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.cookable.domain.model.Status
+import com.example.cookable.ui.components.statusbox.StatusBox
 
 @Composable
 fun MissingIngredientsBox(

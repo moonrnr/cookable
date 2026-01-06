@@ -1,7 +1,8 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.pill
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -23,7 +24,7 @@ fun Pill(
             modifier
         }
 
-    androidx.compose.foundation.layout.Box(
+    Box(
         modifier =
             clickableModifier
                 .background(backgroundColor, RoundedCornerShape(999.dp))

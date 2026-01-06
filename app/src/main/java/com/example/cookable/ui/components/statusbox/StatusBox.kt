@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.statusbox
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row

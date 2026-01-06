@@ -20,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
-import com.example.cookable.ui.components.ArrowBackIconButton
-import com.example.cookable.ui.components.EmptyFavoritesState
-import com.example.cookable.ui.components.ScreenTitle
+import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
+import com.example.cookable.ui.components.emptyfavoritesstate.EmptyFavoritesState
+import com.example.cookable.ui.components.screentitle.ScreenTitle
 import com.example.cookable.ui.feature.recipeslist.RecipesListItemRow
 import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.navigation.Routes

@@ -23,11 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
-import com.example.cookable.ui.components.Chip
-import com.example.cookable.ui.components.FavoriteIconButton
-import com.example.cookable.ui.components.MatchBadge
-import com.example.cookable.ui.components.MissingIngredientsBox
-import com.example.cookable.ui.components.TotalTimeBadge
+import com.example.cookable.ui.components.chip.Chip
+import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
+import com.example.cookable.ui.components.matchbadge.MatchBadge
+import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
+import com.example.cookable.ui.components.totaltimebadge.TotalTimeBadge
 import com.example.cookable.ui.theme.Card
 import com.example.cookable.ui.theme.Line
 

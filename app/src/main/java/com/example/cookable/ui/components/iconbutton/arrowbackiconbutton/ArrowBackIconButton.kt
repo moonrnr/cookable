@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.iconbutton.arrowbackiconbutton
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack

@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
-import com.example.cookable.ui.components.ArrowBackIconButton
-import com.example.cookable.ui.components.ScreenTitle
+import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
+import com.example.cookable.ui.components.screentitle.ScreenTitle
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.PrimaryGreen

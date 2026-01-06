@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.iconbutton.favoriteiconbutton
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size

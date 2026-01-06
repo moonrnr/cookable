@@ -1,4 +1,4 @@
-package com.example.cookable.ui.feature.ingredientbottomsheet
+package com.example.cookable.ui.components.ingredientbottomsheet
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -48,7 +48,7 @@ import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.model.UnitType
-import com.example.cookable.ui.components.Pill
+import com.example.cookable.ui.components.pill.Pill
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Grey
 import com.example.cookable.ui.theme.Line

@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components
+package com.example.cookable.ui.components.emptyfavoritesstate
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.example.cookable.ui.feature.ingredientbottomsheet
+package com.example.cookable.ui.components.ingredientbottomsheet
 
 import com.example.cookable.domain.model.UnitType
 
