@@ -18,21 +18,18 @@ import com.example.cookable.R
 import com.example.cookable.ui.theme.Muted
 
 @Composable
-fun AppLogo(
-    modifier: Modifier = Modifier,
-) {
-
+fun AppLogo(modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
                 painter = painterResource(R.drawable.cookable_logo),
                 contentDescription = "Cookable logo",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(32.dp)
+                modifier = Modifier.size(32.dp),
             )
             Text(
                 text = "Cookable",
@@ -44,11 +41,7 @@ fun AppLogo(
             text = "Cook with what you have",
             fontSize = 13.sp,
             color = Muted,
-            modifier = Modifier.padding(start = 32.dp)
+            modifier = Modifier.padding(start = 32.dp),
         )
-
-
     }
-
-
 }

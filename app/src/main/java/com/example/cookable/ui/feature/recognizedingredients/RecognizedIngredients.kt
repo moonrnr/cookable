@@ -13,13 +13,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -38,8 +34,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
+import com.example.cookable.ui.components.ScreenTitle
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Card
 import com.example.cookable.ui.theme.Line
@@ -70,14 +68,8 @@ fun RecognizedIngredients(
                     .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            IconButton(onClick = onBack) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = null)
-            }
-            Text(
-                text = "Recognized ingredients",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-            )
+            ArrowBackIconButton(onBack)
+            ScreenTitle(text = "Recognized ingredients")
         }
 
         Column(

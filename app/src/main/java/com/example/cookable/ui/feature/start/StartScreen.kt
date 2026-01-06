@@ -66,7 +66,7 @@ fun StartScreen(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(start=16.dp, top=0.dp, bottom=20.dp, end=20.dp),
+                    .padding(start = 16.dp, top = 0.dp, bottom = 20.dp, end = 20.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {
@@ -164,6 +164,18 @@ fun StartScreen(
 
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Button(
+                    onClick = { navController.navigate(Routes.SCAN) },
+                    colors =
+                        ButtonDefaults.buttonColors(
+                            containerColor = Primary,
+                            contentColor = Color.White,
+                        ),
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                ) {
+                    Text("Scan ingredients", fontWeight = FontWeight.Bold)
+                }
+                Button(
                     onClick = {
                         sheetIngredient = Ingredient.empty()
                         editedIndex = null
@@ -176,20 +188,7 @@ fun StartScreen(
                     shape = RoundedCornerShape(16.dp),
                     modifier = Modifier.fillMaxWidth().height(50.dp),
                 ) {
-                    Text("Add manually", fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
-                }
-
-                Button(
-                    onClick = { navController.navigate(Routes.SCAN) },
-                    colors =
-                        ButtonDefaults.buttonColors(
-                            containerColor = Primary,
-                            contentColor = Color.White,
-                        ),
-                    shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
-                ) {
-                    Text("Scan ingredients", fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+                    Text("Add manually", fontWeight = FontWeight.Bold)
                 }
             }
         }
