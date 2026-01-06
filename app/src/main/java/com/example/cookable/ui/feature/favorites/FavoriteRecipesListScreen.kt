@@ -25,7 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
+import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.components.EmptyFavoritesState
+import com.example.cookable.ui.components.ScreenTitle
 import com.example.cookable.ui.feature.recipeslist.RecipesListItemRow
 import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.navigation.Routes
@@ -51,22 +53,13 @@ fun FavoriteRecipesScreen(
                     .padding(
                         start = 20.dp,
                         end = 20.dp,
-                        top = 20.dp,
+                        top = 12.dp,
                         bottom = 10.dp,
                     ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            IconButton(
-                onClick = { navController.popBackStack() },
-            ) {
-                Icon(Icons.Filled.ArrowBack, contentDescription = null)
-            }
-
-            Text(
-                text = "Favorites",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-            )
+            ArrowBackIconButton({ navController.popBackStack()})
+            ScreenTitle(text="Favorites")
         }
 
         if (favorites.isEmpty()) {

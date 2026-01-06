@@ -66,7 +66,7 @@ fun StartScreen(
             modifier =
                 Modifier
                     .fillMaxWidth()
-                    .padding(start=16.dp, top=20.dp, bottom=20.dp, end=20.dp),
+                    .padding(start=16.dp, top=0.dp, bottom=20.dp, end=20.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Top,
         ) {

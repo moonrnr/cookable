@@ -24,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
 import com.example.cookable.ui.components.ArrowBackIconButton
+import com.example.cookable.ui.components.ScreenTitle
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Primary
@@ -49,18 +50,13 @@ fun RecipesListScreen(
                     .padding(
                         start = 20.dp,
                         end = 20.dp,
-                        top = 20.dp,
+                        top = 12.dp,
                         bottom = 10.dp,
                     ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             ArrowBackIconButton({ navController.popBackStack(Routes.START, false) })
-
-            Text(
-                text = "Recipes",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-            )
+            ScreenTitle(text="Recipes",)
         }
 
         if (state.isLoading) {
