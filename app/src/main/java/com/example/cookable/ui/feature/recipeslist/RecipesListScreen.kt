@@ -16,14 +16,22 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.cookable.domain.model.SortState
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
+import com.example.cookable.ui.components.emptyfiltersstate.EmptyFiltersState
+import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.screentitle.ScreenTitle
+import com.example.cookable.ui.components.sortbottomsheet.SortBottomSheet
+import com.example.cookable.ui.components.sortfiltercontainer.SortFilterContainer
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.PrimaryGreen
@@ -35,6 +43,8 @@ fun RecipesListScreen(
     viewModel: RecipesListViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsState()
+    var showSortSheet by remember { mutableStateOf(false) }
+    var showFilterSheet by remember { mutableStateOf(false) }
 
     Column(
         modifier =
@@ -57,6 +67,11 @@ fun RecipesListScreen(
             ArrowBackIconButton({ navController.popBackStack(Routes.START, false) })
             Spacer(modifier = Modifier.width(8.dp))
             ScreenTitle(text = "Recipes")
+            Spacer(modifier = Modifier.width(30.dp))
+            SortFilterContainer(
+                onSortClick = { showSortSheet = true },
+                onFilterClick = { showFilterSheet = true },
+            )
         }
 
         if (state.isLoading) {
@@ -66,6 +81,8 @@ fun RecipesListScreen(
             ) {
                 CircularProgressIndicator(color = PrimaryGreen)
             }
+        } else if (state.recipes.isEmpty()) {
+            EmptyFiltersState()
         } else {
             Column(
                 modifier =
@@ -96,6 +113,30 @@ fun RecipesListScreen(
                     }
                 }
             }
+        }
+
+        if (showSortSheet) {
+            SortBottomSheet(
+                state = SortState(selected = state.sortOption),
+                onSelect = {
+                    viewModel.setSortOption(it)
+                    showSortSheet = false
+                },
+                onDismiss = { showSortSheet = false },
+            )
+        }
+
+        if (showFilterSheet) {
+            FilterBottomSheet(
+                state = state.filters,
+                onStateChange = { viewModel.setFilters(it) },
+                onApply = {
+                    showFilterSheet = false
+                },
+                onDismiss = {
+                    showFilterSheet = false
+                },
+            )
         }
     }
 }

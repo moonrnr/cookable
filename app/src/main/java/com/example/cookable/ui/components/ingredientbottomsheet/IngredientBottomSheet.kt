@@ -119,7 +119,7 @@ fun IngredientBottomSheet(
                 )
                 IconButton(
                     onClick = onDismiss,
-                    modifier = Modifier.padding(end = 8.dp),
+                    modifier = Modifier.padding(end = 10.dp),
                 ) {
                     Icon(
                         imageVector = Icons.Default.Close,

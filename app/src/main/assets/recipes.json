@@ -15,7 +15,17 @@
       "Comfort Food",
       "Japanese",
       "Pasta"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": false,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 10
   },
   {
     "recipe_name": "Coconut-Lime Cheesecake with Mango Coulis",
@@ -32,7 +42,17 @@
     "tags": [
       "Rice",
       "Mexican"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": false,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 570
   },
   {
     "recipe_name": "Perfect Summer Fruit Salad",
@@ -51,7 +71,17 @@
       "American",
       "Brunch",
       "Japanese"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 210
   },
   {
     "recipe_name": "Butterflied Roast Chicken with Lemon and Rosemary",
@@ -70,7 +100,17 @@
       "Gluten-Free",
       "Vegan",
       "American"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": false,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 60
   },
   {
     "recipe_name": "Brown Sugar Banana Bread",
@@ -89,7 +129,17 @@
       "Savory",
       "Baked",
       "Pasta"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": false,
+    "isGlutenFree": false,
+    "isKeto": false,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": true,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 55
   },
   {
     "recipe_name": "White Peachy Sangria",
@@ -109,7 +159,17 @@
       "Pasta",
       "Mediterranean",
       "Grilled"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 510
   },
   {
     "recipe_name": "Easy Apple Cinnamon Muffins",
@@ -128,7 +188,17 @@
     "tags": [
       "Mexican",
       "Spicy"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": false,
+    "isBreakfast": false,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 45
   },
   {
     "recipe_name": "Southern Fried Apples",
@@ -147,7 +217,17 @@
     "tags": [
       "Italian",
       "Thai"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": false,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "MEDIUM",
+    "timeMinutes": 20
   },
   {
     "recipe_name": "Turkey Avocado Panini",
@@ -167,7 +247,17 @@
       "Dessert",
       "Spicy",
       "Vegetable"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": false,
+    "isSupper": true,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 25
   },
   {
     "recipe_name": "Mango Topping",
@@ -187,7 +277,17 @@
     "tags": [
       "Fried",
       "Mexican"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": false,
+    "preparationDifficulty": "MEDIUM",
+    "timeMinutes": 25
   },
   {
     "recipe_name": "Pomegranate Vinaigrette Dressing",
@@ -208,7 +308,17 @@
     "tags": [
       "Vegetable",
       "Chinese"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": true,
+    "isKeto": false,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 15
   },
   {
     "recipe_name": "Coconut-Cream Cheese Frosting",
@@ -229,7 +339,17 @@
     "tags": [
       "Low Carb",
       "Spicy"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": false,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "MEDIUM",
+    "timeMinutes": 15
   },
   {
     "recipe_name": "Old-Fashioned Apple Dumplings",
@@ -253,7 +373,17 @@
       "French",
       "Fried",
       "Vegetable"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 90
   },
   {
     "recipe_name": "Porridge",
@@ -275,7 +405,17 @@
     "tags": [
       "Lunch",
       "Dinner"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 15
   },
   {
     "recipe_name": "Blackened Salmon Tacos with Chunky Mango Avocado Salsa",
@@ -299,7 +439,17 @@
       "Vegan",
       "Pasta",
       "Fried"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": false,
+    "isBreakfast": false,
+    "isLunch": true,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "MEDIUM",
+    "timeMinutes": 49
   },
   {
     "recipe_name": "Cranberry Pomegranate Sauce",
@@ -324,7 +474,17 @@
     "tags": [
       "Polish",
       "Thai"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": true,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 75
   },
   {
     "recipe_name": "Fresh Peach Cobbler I",
@@ -349,7 +509,17 @@
     "tags": [
       "Vegetarian",
       "One Pot"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": true,
+    "isDinner": false,
+    "isSupper": true,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 55
   },
   {
     "recipe_name": "Nonnie's Persimmon Pudding",
@@ -375,7 +545,17 @@
       "Asian",
       "Spicy",
       "Gluten-Free"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": true,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": false,
+    "preparationDifficulty": "HARD",
+    "timeMinutes": 120
   },
   {
     "recipe_name": "Fresh Apricot Crisp",
@@ -401,7 +581,17 @@
     "tags": [
       "Spicy",
       "Pasta"
-    ]
+    ],
+    "isVegetarian": false,
+    "isVegan": true,
+    "isGlutenFree": false,
+    "isKeto": true,
+    "isBreakfast": true,
+    "isLunch": false,
+    "isDinner": true,
+    "isSupper": false,
+    "preparationDifficulty": "MEDIUM",
+    "timeMinutes": 50
   },
   {
     "recipe_name": "Precious Pineapple Cake",
@@ -427,6 +617,16 @@
     "tags": [
       "Polish",
       "Mexican"
-    ]
+    ],
+    "isVegetarian": true,
+    "isVegan": false,
+    "isGlutenFree": true,
+    "isKeto": true,
+    "isBreakfast": false,
+    "isLunch": true,
+    "isDinner": true,
+    "isSupper": false,
+    "preparationDifficulty": "EASY",
+    "timeMinutes": 95
   }
 ]

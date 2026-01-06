@@ -27,8 +27,8 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.repository.FavoritesRecipesRepository
-import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.chip.Chip
+import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox

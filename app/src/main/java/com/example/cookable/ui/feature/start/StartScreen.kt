@@ -38,8 +38,8 @@ import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.applogo.AppLogo
-import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
+import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Muted
@@ -195,8 +195,7 @@ fun StartScreen(
             }
         }
 
-        if (true) {
-//        if (state.canFindRecipes) {
+        if (state.canFindRecipes) {
             Button(
                 onClick = { navController.navigate(Routes.RECIPES_LIST) },
                 colors =
@@ -214,7 +213,7 @@ fun StartScreen(
                 Text(
                     text = "Find recipes",
                     fontSize = 16.sp,
-                    fontWeight = androidx.compose.ui.text.font.FontWeight.ExtraBold,
+                    fontWeight = FontWeight.ExtraBold,
                 )
             }
         }
