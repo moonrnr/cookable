@@ -15,6 +15,6 @@ local.properties
 # OS
 .DS_Store
 
-app/src/main/res/font/
+src/main/res/font/
 
-app/src/main/res/drawable/cookable_logo.png
+src/main/res/drawable/cookable_logo.png
