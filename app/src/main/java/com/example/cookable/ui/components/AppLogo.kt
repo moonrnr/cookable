@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,12 +30,13 @@ fun AppLogo(modifier: Modifier = Modifier) {
                 painter = painterResource(R.drawable.cookable_logo),
                 contentDescription = "Cookable logo",
                 tint = Color.Unspecified,
-                modifier = Modifier.size(32.dp),
+                modifier = Modifier.size(32.dp).padding(bottom = 4.dp),
             )
             Text(
                 text = "Cookable",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.ExtraBold,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Black,
+                fontStyle = FontStyle.Italic,
             )
         }
         Text(
