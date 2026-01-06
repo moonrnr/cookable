@@ -38,6 +38,7 @@ import com.example.cookable.ui.components.ArrowBackIconButton
 import com.example.cookable.ui.components.IngredientBottomSheet
 import com.example.cookable.ui.components.IngredientRow
 import com.example.cookable.ui.components.ScreenTitle
+import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Card
 import com.example.cookable.ui.theme.Line
@@ -49,11 +50,13 @@ fun RecognizedIngredients(
     onConfirm: (List<Ingredient>) -> Unit,
     onBack: () -> Unit,
     onRescan: () -> Unit,
+    scanViewModel: ScanViewModel,
     viewModel: RecognizedIngredientsViewModel = viewModel(),
 ) {
     val ingredients by viewModel.ingredients.collectAsState()
     var showErrorDialog by remember { mutableStateOf(false) }
     var editedIngredientIndex by remember { mutableStateOf<Int?>(null) }
+    val photoUri by scanViewModel.photoUri.collectAsState()
 
     Column(
         modifier =
@@ -92,7 +95,17 @@ fun RecognizedIngredients(
                             .fillMaxWidth()
                             .height(140.dp)
                             .background(Line),
-                )
+                    contentAlignment = Alignment.Center,
+                ) {
+                    photoUri?.let { uri ->
+                        coil.compose.AsyncImage(
+                            model = uri,
+                            contentDescription = "Scanned image",
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = androidx.compose.ui.layout.ContentScale.Crop,
+                        )
+                    }
+                }
 
                 LazyColumn {
                     itemsIndexed(ingredients) { index, ingredient ->

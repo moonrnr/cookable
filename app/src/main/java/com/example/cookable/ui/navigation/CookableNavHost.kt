@@ -16,9 +16,10 @@ import com.example.cookable.ui.feature.recipedetails.RecipeDetailsScreen
 import com.example.cookable.ui.feature.recipeslist.RecipesListScreen
 import com.example.cookable.ui.feature.recipeslist.RecipesListViewModel
 import com.example.cookable.ui.feature.recognizedingredients.RecognizedIngredients
+import com.example.cookable.ui.feature.scan.ScanScreen
 import com.example.cookable.ui.feature.start.StartScreen
 import com.example.cookable.ui.feature.start.StartViewModel
-import com.example.cookable.ui.scan.ScanScreen
+import com.example.cookable.ui.scan.ScanViewModel
 
 @Composable
 fun CookableNavHost(modifier: Modifier = Modifier) {
@@ -44,18 +45,28 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         }
 
         composable(Routes.SCAN) {
+            val scanViewModel: ScanViewModel = viewModel()
             ScanScreen(
                 onCancel = { navController.popBackStack() },
                 onScan = { navController.navigate(Routes.PROCESSING) },
+                scanViewModel = scanViewModel,
             )
         }
 
-        composable(Routes.PROCESSING) {
+        composable(Routes.PROCESSING) { backStackEntry ->
+
+            val parentEntry =
+                remember(backStackEntry) {
+                    navController.getBackStackEntry(Routes.SCAN)
+                }
+
+            val scanViewModel: ScanViewModel =
+                viewModel(parentEntry)
+
             ImageProcessingScreen(
+                scanViewModel = scanViewModel,
                 onFinished = {
-                    navController.navigate(Routes.RESULT) {
-                        popUpTo(Routes.SCAN) { inclusive = true }
-                    }
+                    navController.navigate(Routes.RESULT)
                 },
             )
         }
@@ -65,18 +76,31 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
                 remember(navController) {
                     navController.getBackStackEntry(Routes.START)
                 }
+            val startViewModel: StartViewModel =
+                viewModel(startBackStackEntry)
 
-            val startViewModel: StartViewModel = viewModel(startBackStackEntry)
+            val scanBackStackEntry =
+                remember(navController) {
+                    navController.getBackStackEntry(Routes.SCAN)
+                }
+            val scanViewModel: ScanViewModel =
+                viewModel(scanBackStackEntry)
 
             RecognizedIngredients(
                 onConfirm = { recognizedIngredients ->
-
                     startViewModel.addIngredients(recognizedIngredients)
 
                     navController.popBackStack(Routes.START, false)
                 },
-                onBack = { navController.popBackStack(Routes.START, false) },
-                onRescan = { navController.navigate(Routes.SCAN) },
+                onBack = {
+                    navController.popBackStack(Routes.START, false)
+                },
+                onRescan = {
+                    scanViewModel.clearPhoto()
+
+                    navController.popBackStack(Routes.SCAN, false)
+                },
+                scanViewModel = scanViewModel,
             )
         }
 
