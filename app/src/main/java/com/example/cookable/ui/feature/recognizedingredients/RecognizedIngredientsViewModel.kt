@@ -56,7 +56,6 @@ class RecognizedIngredientsViewModel : ViewModel() {
         return updated.none { it.hasError }
     }
 
-
     fun update(
         index: Int,
         updated: Ingredient,

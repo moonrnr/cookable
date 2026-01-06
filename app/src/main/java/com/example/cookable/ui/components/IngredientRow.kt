@@ -1,7 +1,6 @@
 package com.example.cookable.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -52,12 +51,11 @@ fun IngredientRow(
                             drawLine(Red, Offset(0f, 0f), Offset(0f, h), stroke)
                             drawLine(Red, Offset(size.width, 0f), Offset(size.width, h), stroke)
                         }
-                    } else Modifier
-                )
-                .padding(horizontal = 16.dp, vertical = 14.dp),
-
+                    } else {
+                        Modifier
+                    },
+                ).padding(horizontal = 16.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
-
     ) {
         Row(
             modifier =
