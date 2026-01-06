@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -76,7 +75,7 @@ fun FilterBottomSheet(
                     Modifier
                         .fillMaxSize()
                         .verticalScroll(rememberScrollState())
-                        .statusBarsPadding()
+                        .navigationBarsPadding()
                         .padding(
                             start = 0.dp,
                             end = 0.dp,
@@ -85,24 +84,27 @@ fun FilterBottomSheet(
                         ),
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(start = 18.dp, top = 10.dp),
+                    modifier = Modifier.fillMaxWidth().padding(start = 18.dp, top = 16.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "Filters",
-                        fontSize = 20.sp,
+                        fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )
-                    IconButton(
-                        onClick = onDismiss,
-                        modifier = Modifier.padding(end = 10.dp),
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Close,
-                            contentDescription = "Close",
-                        )
+                    Box() {
+                        IconButton(
+                            onClick = onDismiss,
+                            modifier = Modifier.padding(end = 0.dp).height(40.dp),
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Close,
+                                contentDescription = "Close",
+                            )
+                        }
                     }
+
                 }
 
                 Spacer(Modifier.height(12.dp))

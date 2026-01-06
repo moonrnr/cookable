@@ -22,6 +22,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -129,6 +130,9 @@ fun IngredientBottomSheet(
             }
 
             Spacer(Modifier.height(12.dp))
+            HorizontalDivider(color = Line)
+            Spacer(Modifier.height(12.dp))
+
 
             Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 18.dp)) {
                 Text("Ingredient name", fontSize = 13.sp)
