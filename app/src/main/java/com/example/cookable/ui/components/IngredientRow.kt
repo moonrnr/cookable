@@ -17,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
@@ -41,16 +43,19 @@ fun IngredientRow(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 14.dp)
                 .then(
                     if (hasError) {
-                        Modifier.border(
-                            width = 1.dp,
-                            color = Red,
-                            shape = RoundedCornerShape(12.dp)
-                        )
+                        Modifier.drawBehind {
+                            val stroke = 12.dp.toPx()
+                            val h = size.height
+
+                            drawLine(Red, Offset(0f, 0f), Offset(0f, h), stroke)
+                            drawLine(Red, Offset(size.width, 0f), Offset(size.width, h), stroke)
+                        }
                     } else Modifier
-                ),
+                )
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+
         verticalAlignment = Alignment.CenterVertically,
 
     ) {
