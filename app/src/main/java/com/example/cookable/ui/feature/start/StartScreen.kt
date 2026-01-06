@@ -151,7 +151,7 @@ fun StartScreen(
                             IngredientRow(
                                 name = ingredient.name,
                                 quantity = ingredient.amount?.formatAmount() ?: "",
-                                unit = ingredient.unit?.toString() ?: "",
+                                unit = ingredient.unit,
                                 onClick = {
                                     sheetIngredient = ingredient
                                     editedIndex = index

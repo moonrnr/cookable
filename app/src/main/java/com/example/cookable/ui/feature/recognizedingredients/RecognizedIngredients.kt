@@ -112,7 +112,7 @@ fun RecognizedIngredients(
                         IngredientRow(
                             name = ingredient.name,
                             quantity = ingredient.amount?.formatAmount() ?: "",
-                            unit = ingredient.unit?.name ?: "",
+                            unit = ingredient.unit,
                             onClick = {
                                 editedIngredientIndex = index
                             },

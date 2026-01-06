@@ -219,7 +219,7 @@ fun IngredientBottomSheet(
                         DropdownMenuItem(
                             text = {
                                 Text(
-                                    text = it.name.lowercase(),
+                                    text = it.fullLabel.lowercase(),
                                     color = MaterialTheme.colorScheme.onBackground,
                                 )
                             },

@@ -19,13 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cookable.domain.model.UnitType
 import com.example.cookable.ui.theme.Red
 
 @Composable
 fun IngredientRow(
     name: String,
     quantity: String,
-    unit: String,
+    unit: UnitType?,
     onClick: () -> Unit,
     onRemove: () -> Unit,
 ) {
@@ -59,7 +60,7 @@ fun IngredientRow(
                             ).padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
                     Text(
-                        text = "$quantity $unit",
+                        text = "$quantity ${unit?.shortLabel}",
                         fontSize = 13.sp,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
