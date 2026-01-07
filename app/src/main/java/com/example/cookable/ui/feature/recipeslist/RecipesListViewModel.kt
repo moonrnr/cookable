@@ -2,6 +2,7 @@ package com.example.cookable.ui.feature.recipeslist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cookable.domain.model.MatchLevel
 import com.example.cookable.domain.model.PreparationDifficulty
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
@@ -77,6 +78,18 @@ class RecipesListViewModel : ViewModel() {
 
         filters.maxTime.toIntOrNull()?.let { max ->
             result = result.filter { it.timeMinutes <= max }
+        }
+
+        val matchLevels =
+            buildSet {
+                if (filters.matchPerfect) add(MatchLevel.PERFECT)
+                if (filters.matchHigh) add(MatchLevel.HIGH)
+                if (filters.matchMedium) add(MatchLevel.MEDIUM)
+                if (filters.matchLow) add(MatchLevel.LOW)
+            }
+
+        if (matchLevels.isNotEmpty()) {
+            result = result.filter { it.matchLevel in matchLevels }
         }
 
         return when (sort) {

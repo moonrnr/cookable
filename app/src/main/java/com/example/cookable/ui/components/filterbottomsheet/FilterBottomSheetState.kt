@@ -14,6 +14,10 @@ data class FilterBottomSheetState(
     val difficultyHard: Boolean = false,
     val minTime: String = "",
     val maxTime: String = "",
+    val matchPerfect: Boolean = false,
+    val matchHigh: Boolean = false,
+    val matchMedium: Boolean = false,
+    val matchLow: Boolean = false,
 ) {
     val isEmpty: Boolean
         get() =
@@ -29,7 +33,11 @@ data class FilterBottomSheetState(
                 !difficultyMedium &&
                 !difficultyHard &&
                 minTime.isBlank() &&
-                maxTime.isBlank()
+                maxTime.isBlank() &&
+                !matchPerfect &&
+                !matchHigh &&
+                !matchMedium &&
+                !matchLow
 
     companion object {
         fun empty(): FilterBottomSheetState = FilterBottomSheetState()

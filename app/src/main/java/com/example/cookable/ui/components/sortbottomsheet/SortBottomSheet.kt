@@ -113,7 +113,7 @@ fun SortBottomSheet(
                         text =
                             when (option) {
                                 SortOption.MATCH -> "Best match"
-                                SortOption.ALPHABETICAL -> "Alphabetical"
+                                SortOption.ALPHABETICAL -> "Alphabetical A-Z"
                             },
                     )
                 }

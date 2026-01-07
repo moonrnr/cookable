@@ -130,6 +130,23 @@ fun FilterBottomSheet(
                     modifier = Modifier.padding(start = 18.dp, end = 18.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
+                    FilterSection("Match level") {
+                        CheckboxItem("Perfect", state.matchPerfect) {
+                            onStateChange(state.copy(matchPerfect = it))
+                        }
+                        CheckboxItem("High", state.matchHigh) {
+                            onStateChange(state.copy(matchHigh = it))
+                        }
+                        CheckboxItem("Medium", state.matchMedium) {
+                            onStateChange(state.copy(matchMedium = it))
+                        }
+                        CheckboxItem("Low", state.matchLow) {
+                            onStateChange(state.copy(matchLow = it))
+                        }
+                    }
+
+                    HorizontalDivider(color = Line)
+
                     FilterSection(title = "Diet") {
                         CheckboxItem("Vegetarian", state.vegetarian) {
                             onStateChange(state.copy(vegetarian = it))
