@@ -148,8 +148,6 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         }
 
         composable(Routes.FAVORITE_RECIPES_LIST) {
-            println("RECIPES repo: ${RecipesRepositoryProvider.instance.recipes.value}\n")
-            println("FAVORITES repo: ${favoritesRepository.favorites.value}")
             FavoriteRecipesScreen(
                 navController = navController,
                 favoritesRepository = favoritesRepository,
