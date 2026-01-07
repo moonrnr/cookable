@@ -44,6 +44,21 @@ class RecipesListViewModel : ViewModel() {
         }
     }
 
+    private fun sortRecipesList(
+        result: List<Recipe>,
+        sort: SortOption,
+    ): List<Recipe> =
+        when (sort) {
+            SortOption.MATCH ->
+                result.sortedByDescending { it.matchPercentage }
+
+            SortOption.ALPHABETICAL_ASC ->
+                result.sortedBy { it.name.lowercase() }
+
+            SortOption.TIME_ASC ->
+                result.sortedBy { it.timeMinutes }
+        }
+
     private fun applyFiltersAndSort(
         recipes: List<Recipe>,
         filters: FilterBottomSheetState,
@@ -92,13 +107,7 @@ class RecipesListViewModel : ViewModel() {
             result = result.filter { it.matchLevel in matchLevels }
         }
 
-        return when (sort) {
-            SortOption.MATCH ->
-                result.sortedByDescending { it.matchPercentage }
-
-            SortOption.ALPHABETICAL ->
-                result.sortedBy { it.name.lowercase() }
-        }
+        return sortRecipesList(result, sort)
     }
 
     fun setSortOption(option: SortOption) {
