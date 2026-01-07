@@ -4,12 +4,14 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -40,6 +42,7 @@ import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
+import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.components.screentitle.ScreenTitle
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
@@ -72,7 +75,7 @@ fun RecognizedIngredients(
                 Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = 8.dp,
+                        start = 12.dp,
                         end = 20.dp,
                         top = 12.dp,
                         bottom = 10.dp,
@@ -81,8 +84,15 @@ fun RecognizedIngredients(
         ) {
             ArrowBackIconButton(onBack)
             Spacer(modifier = Modifier.width(8.dp))
-
             ScreenTitle(text = "Recognized ingredients")
+            Spacer(modifier = Modifier.width(16.dp))
+            IngredientsCountBadge(
+                ingredientsCount = ingredients.size,
+                backgroundColor = PrimaryGreen,
+                textColor = White,
+                isTextBold = true,
+                fontSize = 14.sp,
+            )
         }
 
         Column(
@@ -116,23 +126,28 @@ fun RecognizedIngredients(
                         )
                     }
                 }
-
-                LazyColumn {
-                    itemsIndexed(ingredients) { index, ingredient ->
-                        IngredientRow(
-                            name = ingredient.name,
-                            amount = ingredient.amount?.formatAmount() ?: "",
-                            unit = ingredient.unit,
-                            onClick = {
-                                editedIngredientIndex = index
-                            },
-                            onRemove = {
-                                viewModel.remove(index)
-                            },
-                            suggestedUnit = ingredient.unitSuggestion,
-                            suggestedAmount = ingredient.amountSuggestion?.toString(),
-                            hasError = showErrors && ingredient.hasError,
-                        )
+                BoxWithConstraints {
+                    LazyColumn(
+                        modifier =
+                            Modifier
+                                .heightIn(max = maxHeight * 0.8f),
+                    ) {
+                        itemsIndexed(ingredients) { index, ingredient ->
+                            IngredientRow(
+                                name = ingredient.name,
+                                amount = ingredient.amount?.formatAmount() ?: "",
+                                unit = ingredient.unit,
+                                onClick = {
+                                    editedIngredientIndex = index
+                                },
+                                onRemove = {
+                                    viewModel.remove(index)
+                                },
+                                suggestedUnit = ingredient.unitSuggestion,
+                                suggestedAmount = ingredient.amountSuggestion?.toString(),
+                                hasError = showErrors && ingredient.hasError,
+                            )
+                        }
                     }
                 }
             }

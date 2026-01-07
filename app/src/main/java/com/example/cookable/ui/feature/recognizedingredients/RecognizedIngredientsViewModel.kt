@@ -26,6 +26,48 @@ class RecognizedIngredientsViewModel : ViewModel() {
                     unit = UnitType.GRAM,
                     isRecognized = true,
                 ),
+                Ingredient(
+                    name = "Cheese2",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese2",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese2",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese3",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese4",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese5",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
+                Ingredient(
+                    name = "Cheese6",
+                    amount = 100.0,
+                    unit = UnitType.GRAM,
+                    isRecognized = true,
+                ),
             ),
         )
 

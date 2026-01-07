@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -67,7 +67,7 @@ fun RecipeDetailsScreen(
             )
 
             Row(
-                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                modifier = Modifier.fillMaxWidth().padding(12.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -99,56 +99,80 @@ fun RecipeDetailsScreen(
             }
         }
 
-        Column(
-            modifier =
-                Modifier
-                    .verticalScroll(scrollState)
-                    .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            Text(
-                text = recipe.name,
-                fontSize = 22.sp,
-                fontWeight = FontWeight.ExtraBold,
-            )
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                recipe.tags.forEach { tag ->
-                    Chip(text = tag)
-                }
-            }
-
-            HorizontalDivider(color = Line)
-
-            MissingIngredientsBox(
-                hasAllIngredients = recipe.hasAllIngredients,
-                missingIngredients = recipe.missingIngredients,
-            )
-
-            HorizontalDivider(color = Line)
-
-            SectionTitle("Ingredients")
-            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                recipe.ingredients.forEach { ingredient ->
+            stickyHeader {
+                Column(
+                    modifier =
+                        Modifier
+                            .background(Background)
+                            .fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
+                ) {
                     Text(
-                        text = "• ${ingredient.name}",
-                        fontSize = 14.sp,
+                        text = recipe.name,
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.ExtraBold,
                     )
+
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
+                        recipe.tags.forEach { tag ->
+                            Chip(text = tag)
+                        }
+                    }
+
+                    HorizontalDivider(color = Line)
                 }
             }
 
-            HorizontalDivider(color = Line)
+            item {
+                MissingIngredientsBox(
+                    hasAllIngredients = recipe.hasAllIngredients,
+                    missingIngredients = recipe.missingIngredients,
+                )
+            }
 
-            SectionTitle("Directions")
-            Text(
-                text = recipe.directions,
-                fontSize = 14.sp,
-                lineHeight = 20.sp,
-            )
+            item {
+                HorizontalDivider(color = Line)
+            }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            item {
+                SectionTitle("Ingredients")
+            }
+
+            item {
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    recipe.ingredients.forEach { ingredient ->
+                        Text(
+                            text = "• ${ingredient.name}",
+                            fontSize = 14.sp,
+                        )
+                    }
+                }
+            }
+
+            item {
+                HorizontalDivider(color = Line)
+            }
+
+            item {
+                SectionTitle("Directions")
+            }
+            item {
+                Text(
+                    text = recipe.directions,
+                    fontSize = 14.sp,
+                    lineHeight = 20.sp,
+                )
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(24.dp))
+            }
         }
     }
 }

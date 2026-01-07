@@ -1,13 +1,15 @@
 package com.example.cookable.ui.feature.start
 
+import android.R.attr.maxHeight
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -41,6 +43,7 @@ import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
+import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Muted
@@ -116,18 +119,11 @@ fun StartScreen(
                         fontWeight = FontWeight.Bold,
                     )
 
-                    Box(
-                        modifier =
-                            Modifier
-                                .background(PrimaryGreenLight, RoundedCornerShape(999.dp))
-                                .padding(horizontal = 10.dp, vertical = 2.dp),
-                    ) {
-                        Text(
-                            text = state.ingredients.size.toString(),
-                            fontSize = 12.sp,
-                            color = PrimaryGreen,
-                        )
-                    }
+                    IngredientsCountBadge(
+                        ingredientsCount = state.ingredients.size,
+                        backgroundColor = PrimaryGreenLight,
+                        textColor = PrimaryGreen,
+                    )
                 }
 
                 if (state.ingredients.isEmpty()) {
@@ -149,18 +145,25 @@ fun StartScreen(
                         )
                     }
                 } else {
-                    LazyColumn {
-                        itemsIndexed(state.ingredients) { index, ingredient ->
-                            IngredientRow(
-                                name = ingredient.name,
-                                amount = ingredient.amount?.formatAmount() ?: "",
-                                unit = ingredient.unit,
-                                onClick = {
-                                    sheetIngredient = ingredient
-                                    editedIndex = index
-                                },
-                                onRemove = { viewModel.onRemoveIngredient(index) },
-                            )
+                    BoxWithConstraints {
+//                    val maxHeight = maxHeight * 0.7f
+                        LazyColumn(
+                            modifier =
+                                Modifier
+                                    .heightIn(max = maxHeight * 0.8f),
+                        ) {
+                            itemsIndexed(state.ingredients) { index, ingredient ->
+                                IngredientRow(
+                                    name = ingredient.name,
+                                    amount = ingredient.amount?.formatAmount() ?: "",
+                                    unit = ingredient.unit,
+                                    onClick = {
+                                        sheetIngredient = ingredient
+                                        editedIndex = index
+                                    },
+                                    onRemove = { viewModel.onRemoveIngredient(index) },
+                                )
+                            }
                         }
                     }
                 }

@@ -46,7 +46,7 @@ fun FavoriteRecipesScreen(
                 Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = 8.dp,
+                        start = 12.dp,
                         end = 20.dp,
                         top = 12.dp,
                         bottom = 10.dp,
