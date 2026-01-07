@@ -130,7 +130,7 @@ fun RecognizedIngredients(
                     LazyColumn(
                         modifier =
                             Modifier
-                                .heightIn(max = maxHeight * 0.8f),
+                                .heightIn(max = maxHeight * 0.75f),
                     ) {
                         itemsIndexed(ingredients) { index, ingredient ->
                             IngredientRow(

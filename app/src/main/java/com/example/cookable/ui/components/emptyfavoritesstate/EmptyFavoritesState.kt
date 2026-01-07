@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.FavoriteBorder
@@ -25,36 +24,42 @@ fun EmptyFavoritesState(modifier: Modifier = Modifier) {
     Box(
         modifier =
             modifier
-                .fillMaxSize()
-                .padding(top = 200.dp),
-        contentAlignment = Alignment.TopCenter,
+                .fillMaxSize(),
+        contentAlignment = Alignment.Center,
     ) {
         Column(
+            modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Icon(
-                imageVector = Icons.Outlined.FavoriteBorder,
-                contentDescription = null,
-                tint = PrimaryGreen,
-                modifier = Modifier.size(48.dp),
-            )
+            Spacer(modifier = Modifier.weight(1f))
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.FavoriteBorder,
+                    contentDescription = null,
+                    tint = PrimaryGreen,
+                    modifier = Modifier.size(48.dp),
+                )
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Text(
-                text = "No favorite recipes yet",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-            )
+                Text(
+                    text = "No favorite recipes yet",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                )
 
-            Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-            Text(
-                text = "Tap the heart icon on a recipe\nto add it to your favorites",
-                fontSize = 14.sp,
-                color = Grey,
-                lineHeight = 18.sp,
-            )
+                Text(
+                    text = "Tap the heart icon on a recipe\nto add it to your favorites",
+                    fontSize = 14.sp,
+                    color = Grey,
+                    lineHeight = 18.sp,
+                )
+            }
+            Spacer(modifier = Modifier.weight(2f))
         }
     }
 }

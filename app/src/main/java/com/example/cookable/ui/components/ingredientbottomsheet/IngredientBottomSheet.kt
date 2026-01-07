@@ -133,7 +133,7 @@ fun IngredientBottomSheet(
             HorizontalDivider(color = Line)
             Spacer(Modifier.height(12.dp))
 
-            Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 18.dp)) {
+            Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 24.dp)) {
                 Text("Ingredient name", fontSize = 13.sp)
                 Spacer(Modifier.height(6.dp))
                 OutlinedTextField(
@@ -206,7 +206,7 @@ fun IngredientBottomSheet(
                         onClick = { amount = it.toString() },
                     ) {
                         Text(
-                            text = "Suggested: $it",
+                            text = "suggested: $it",
                             fontSize = 12.sp,
                             fontStyle = FontStyle.Italic,
                             color = PrimaryGreen,
@@ -280,7 +280,7 @@ fun IngredientBottomSheet(
                         onClick = { unit = it },
                     ) {
                         Text(
-                            text = "Suggested: ${it.name.lowercase()}",
+                            text = "suggested: ${it.name.lowercase()}",
                             fontSize = 12.sp,
                             fontStyle = FontStyle.Italic,
                             color = PrimaryGreen,
@@ -350,8 +350,6 @@ fun IngredientBottomSheet(
                         )
                     }
                 }
-
-                Spacer(Modifier.height(8.dp))
             }
         }
     }

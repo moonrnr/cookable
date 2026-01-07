@@ -149,7 +149,7 @@ fun StartScreen(
                         LazyColumn(
                             modifier =
                                 Modifier
-                                    .heightIn(max = maxHeight * 0.8f),
+                                    .heightIn(max = maxHeight * 0.7f),
                         ) {
                             itemsIndexed(state.ingredients) { index, ingredient ->
                                 IngredientRow(
@@ -210,7 +210,7 @@ fun StartScreen(
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 24.dp)
                         .height(54.dp),
             ) {
                 Text(
