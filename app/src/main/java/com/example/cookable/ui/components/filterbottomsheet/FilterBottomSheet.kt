@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -30,6 +32,7 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,6 +54,7 @@ fun FilterBottomSheet(
     onStateChange: (FilterBottomSheetState) -> Unit,
     onApply: () -> Unit,
     onDismiss: () -> Unit,
+    onReset: () -> Unit,
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -93,7 +97,24 @@ fun FilterBottomSheet(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )
-                    Box() {
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        if (!state.isEmpty) {
+                            TextButton(
+                                onClick = onReset,
+                                contentPadding = PaddingValues(0.dp),
+                                modifier = Modifier.height(26.dp).width(120.dp),
+                            ) {
+                                Text(
+                                    text = "Reset filters",
+                                    fontSize = 18.sp,
+                                    color = PrimaryGreen,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                        }
                         IconButton(
                             onClick = onDismiss,
                             modifier = Modifier.padding(end = 0.dp).height(40.dp),
@@ -104,7 +125,6 @@ fun FilterBottomSheet(
                             )
                         }
                     }
-
                 }
 
                 Spacer(Modifier.height(12.dp))

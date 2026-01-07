@@ -30,4 +30,8 @@ data class FilterBottomSheetState(
                 !difficultyHard &&
                 minTime.isBlank() &&
                 maxTime.isBlank()
+
+    companion object {
+        fun empty(): FilterBottomSheetState = FilterBottomSheetState()
+    }
 }

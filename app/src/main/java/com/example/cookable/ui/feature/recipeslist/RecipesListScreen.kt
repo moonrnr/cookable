@@ -142,6 +142,9 @@ fun RecipesListScreen(
                 onDismiss = {
                     showFilterSheet = false
                 },
+                onReset = {
+                    draftFilters = FilterBottomSheetState.empty()
+                },
             )
         }
     }

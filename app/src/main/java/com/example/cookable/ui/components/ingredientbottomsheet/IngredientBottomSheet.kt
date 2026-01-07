@@ -133,7 +133,6 @@ fun IngredientBottomSheet(
             HorizontalDivider(color = Line)
             Spacer(Modifier.height(12.dp))
 
-
             Column(modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, bottom = 18.dp)) {
                 Text("Ingredient name", fontSize = 13.sp)
                 Spacer(Modifier.height(6.dp))
