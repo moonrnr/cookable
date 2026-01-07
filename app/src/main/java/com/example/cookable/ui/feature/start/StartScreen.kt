@@ -146,7 +146,6 @@ fun StartScreen(
                     }
                 } else {
                     BoxWithConstraints {
-//                    val maxHeight = maxHeight * 0.7f
                         LazyColumn(
                             modifier =
                                 Modifier
@@ -199,8 +198,7 @@ fun StartScreen(
                 }
             }
         }
-        if (true) {
-//        if (state.canFindRecipes) {
+        if (state.canFindRecipes) {
             Button(
                 onClick = { navController.navigate(Routes.RECIPES_LIST) },
                 colors =

@@ -100,12 +100,12 @@ fun RecipeDetailsScreen(
             }
         }
 
-        Column(
-        ) {
+        Column {
             Column(
                 modifier =
                     Modifier
-                        .background(Background).padding(start=16.dp, end=16.dp, top=16.dp)
+                        .background(Background)
+                        .padding(start = 16.dp, end = 16.dp, top = 16.dp)
                         .fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
@@ -126,59 +126,55 @@ fun RecipeDetailsScreen(
                 HorizontalDivider(color = Line)
             }
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(start=16.dp, end=16.dp, top=10.dp, bottom=16.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                item {
+                    MissingIngredientsBox(
+                        hasAllIngredients = recipe.hasAllIngredients,
+                        missingIngredients = recipe.missingIngredients,
+                    )
+                }
 
-            item {
-                MissingIngredientsBox(
-                    hasAllIngredients = recipe.hasAllIngredients,
-                    missingIngredients = recipe.missingIngredients,
-                )
-            }
+                item {
+                    HorizontalDivider(color = Line)
+                }
 
-            item {
-                HorizontalDivider(color = Line)
-            }
+                stickyHeader {
+                    SectionTitle("Ingredients", modifier = Modifier.background(Background).fillMaxWidth())
+                }
 
-            stickyHeader {
-                SectionTitle("Ingredients", modifier = Modifier.background(Background).fillMaxWidth())
-            }
-
-            item {
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    recipe.ingredients.forEach { ingredient ->
-                        Text(
-                            text = "• ${ingredient.name}",
-                            fontSize = 14.sp,
-                        )
+                item {
+                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        recipe.ingredients.forEach { ingredient ->
+                            Text(
+                                text = "• ${ingredient.name}",
+                                fontSize = 14.sp,
+                            )
+                        }
                     }
                 }
-            }
 
-            item {
-                HorizontalDivider(color = Line)
-            }
+                item {
+                    HorizontalDivider(color = Line)
+                }
 
-            stickyHeader {
-                SectionTitle("Directions", modifier = Modifier.background(Background).fillMaxWidth())
-            }
-            item {
-                Text(
-                    text = recipe.directions,
-                    fontSize = 14.sp,
-                    lineHeight = 20.sp,
-                )
-            }
+                stickyHeader {
+                    SectionTitle("Directions", modifier = Modifier.background(Background).fillMaxWidth())
+                }
+                item {
+                    Text(
+                        text = recipe.directions,
+                        fontSize = 14.sp,
+                        lineHeight = 20.sp,
+                    )
+                }
 
-            item {
-                Spacer(modifier = Modifier.height(24.dp))
+                item {
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
             }
         }
-        }
-
     }
 }
-
-
