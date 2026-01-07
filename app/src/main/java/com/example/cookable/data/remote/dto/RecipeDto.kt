@@ -6,6 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RecipeDto(
+    val id: Int,
     val recipe_name: String,
     val total_time: String,
     val ingredients: String,

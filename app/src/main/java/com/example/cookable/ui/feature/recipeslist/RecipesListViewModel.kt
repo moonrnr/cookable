@@ -1,25 +1,19 @@
 package com.example.cookable.ui.feature.recipeslist
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cookable.data.remote.api.RecipesMockApi
 import com.example.cookable.domain.model.PreparationDifficulty
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
-import com.example.cookable.domain.repository.RecipesRepositoryImpl
+import com.example.cookable.domain.repository.RecipesRepositoryProvider
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class RecipesListViewModel(
-    app: Application,
-) : AndroidViewModel(app) {
+class RecipesListViewModel : ViewModel() {
     private val repository =
-        RecipesRepositoryImpl(
-            RecipesMockApi(app),
-        )
+        RecipesRepositoryProvider.instance
 
     private val _state = MutableStateFlow(RecipesListState())
     val state = _state.asStateFlow()

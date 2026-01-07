@@ -3,11 +3,10 @@ package com.example.cookable.data.mapper
 import com.example.cookable.data.remote.dto.RecipeDto
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.Recipe
-import java.util.UUID
 
 fun RecipeDto.toDomain(): Recipe =
     Recipe(
-        id = UUID.randomUUID().toString(),
+        id = id.toString(),
         name = recipe_name,
         ingredients =
             ingredients

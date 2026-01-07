@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "recipe_name": "Watermelon Milkshake",
     "total_time": "10 mins",
     "ingredients": "1 ½ cups diced watermelon, 2 ¼ cups milk, 2 teaspoons white sugar",
@@ -28,6 +29,7 @@
     "timeMinutes": 10
   },
   {
+    "id": 2,
     "recipe_name": "Coconut-Lime Cheesecake with Mango Coulis",
     "total_time": "9 hrs 30 mins",
     "ingredients": "¾ cup sweetened flaked coconut, ¾ cup crushed gingersnap cookies, 3 tablespoons melted butter, 2 (8 ounce) packages cream cheese, softened, 1 (10 ounce) can sweetened condensed milk, 2  eggs, 1 tablespoon lime zest, 2 tablespoons lime juice, 1 tablespoon coconut extract, 2 cups cubed fresh mango, 1 teaspoon white sugar, or more to taste",
@@ -55,6 +57,7 @@
     "timeMinutes": 570
   },
   {
+    "id": 3,
     "recipe_name": "Perfect Summer Fruit Salad",
     "total_time": "3 hrs 30 mins",
     "ingredients": "⅔ cup fresh orange juice, ⅓ cup fresh lemon juice, ⅓ cup packed brown sugar, ½ teaspoon grated orange zest, ½ teaspoon grated lemon zest, 1 teaspoon vanilla extract",
@@ -84,6 +87,7 @@
     "timeMinutes": 210
   },
   {
+    "id": 4,
     "recipe_name": "Butterflied Roast Chicken with Lemon and Rosemary",
     "total_time": "1 hrs",
     "ingredients": "1 tablespoon olive oil, or as needed, 1 (3 pound) whole chicken, backbone removed,   kosher salt and ground black pepper to taste, 1  lemon, sliced into rounds, 4 sprigs fresh rosemary, ½ cup white wine",
@@ -113,6 +117,7 @@
     "timeMinutes": 60
   },
   {
+    "id": 5,
     "recipe_name": "Brown Sugar Banana Bread",
     "total_time": "55 mins",
     "ingredients": "4  ripe bananas, cut into chunks, 1 ¼ cups light brown sugar, ½ cup butter, softened, 1  egg, 1 teaspoon cinnamon, 1 teaspoon vanilla extract, ¼ cup whole milk, 2 cups all-purpose flour, ½ teaspoon baking soda, 1 teaspoon baking powder, ½ teaspoon kosher salt",
@@ -142,6 +147,7 @@
     "timeMinutes": 55
   },
   {
+    "id": 6,
     "recipe_name": "White Peachy Sangria",
     "total_time": "8 hrs 30 mins",
     "ingredients": "4 (750 milliliter) bottles moscato wine, 4 (12 fluid ounce) cans or bottles lemon-lime soda (such as Sprite®), 1 cup brandy, 1 cup peach schnapps, 2  fresh peaches, pitted and sliced, 1 (16 ounce) package fresh strawberries, sliced, 2  mangos - peeled, seeded, and sliced, ½  fresh pineapple - peeled, cored, and cut into chunks, 1 (6 ounce) container fresh raspberries",
@@ -172,6 +178,7 @@
     "timeMinutes": 510
   },
   {
+    "id": 7,
     "recipe_name": "Easy Apple Cinnamon Muffins",
     "total_time": "45 mins",
     "ingredients": "1 ½ cups all-purpose flour, ¾ cup white sugar, 2 teaspoons baking powder, 1 teaspoon ground cinnamon, ½ teaspoon salt, 1  egg, ⅓ cup vegetable oil, ⅓ cup milk, 2  apples - peeled, cored and chopped",
@@ -201,6 +208,7 @@
     "timeMinutes": 45
   },
   {
+    "id": 8,
     "recipe_name": "Southern Fried Apples",
     "total_time": "20 mins",
     "ingredients": "½ cup butter, ½ cup white sugar, 2 tablespoons ground cinnamon, 4  Granny Smith apples - peeled, cored, and sliced",
@@ -230,6 +238,7 @@
     "timeMinutes": 20
   },
   {
+    "id": 9,
     "recipe_name": "Turkey Avocado Panini",
     "total_time": "25 mins",
     "ingredients": "½  ripe avocado, ¼ cup mayonnaise, 2  ciabatta rolls, 1 tablespoon olive oil, divided, 2 slices provolone cheese, 1 cup whole fresh spinach leaves, divided, ¼ pound thinly sliced mesquite smoked turkey breast, 2  roasted red peppers, sliced into strips",
@@ -260,6 +269,7 @@
     "timeMinutes": 25
   },
   {
+    "id": 10,
     "recipe_name": "Mango Topping",
     "total_time": "25 mins",
     "ingredients": "3 cups mangos, peeled, seeded and chopped, 1 tablespoon butter, 1 tablespoon brown sugar, 1 teaspoon lemon juice, 1 teaspoon orange juice, 3 tablespoons water",
@@ -290,6 +300,7 @@
     "timeMinutes": 25
   },
   {
+    "id": 11,
     "recipe_name": "Pomegranate Vinaigrette Dressing",
     "total_time": "15 mins",
     "ingredients": "1 cup olive oil, 1 cup pomegranate juice, 1 cup rice vinegar, ¼ cup white sugar, 2 tablespoons chopped shallots, 1 ¼ teaspoons chopped garlic, 1 teaspoon ground white pepper,   kosher salt to taste",
@@ -321,6 +332,7 @@
     "timeMinutes": 15
   },
   {
+    "id": 12,
     "recipe_name": "Coconut-Cream Cheese Frosting",
     "total_time": "15 mins",
     "ingredients": "1 (8 ounce) package cream cheese, softened, ½ cup unsalted butter, softened, 4 cups confectioners' sugar, 2 tablespoons heavy cream, ½ teaspoon salt, ½ teaspoon coconut flavoring, 1 teaspoon vanilla extract, ½ cup sweetened shredded coconut, 1 cup sweetened shredded coconut, toasted",
@@ -352,6 +364,7 @@
     "timeMinutes": 15
   },
   {
+    "id": 13,
     "recipe_name": "Old-Fashioned Apple Dumplings",
     "total_time": "1 hrs 30 mins",
     "ingredients": "1 recipe pastry for double-crust pie, 6 large Granny Smith apples, peeled and cored, ½ cup butter, ¾ cup brown sugar, 1 teaspoon ground cinnamon, ½ teaspoon ground nutmeg, 3 cups water, 2 cups white sugar, 1 teaspoon vanilla extract",
@@ -386,6 +399,7 @@
     "timeMinutes": 90
   },
   {
+    "id": 14,
     "recipe_name": "Porridge",
     "total_time": "15 mins",
     "ingredients": "2 ½ cups water, 1 cup rolled oats, 1 tablespoon white sugar, 1 teaspoon salt, 2  bananas, sliced, 1 pinch ground cinnamon, ½ cup cold milk (Optional)",
@@ -418,6 +432,7 @@
     "timeMinutes": 15
   },
   {
+    "id": 15,
     "recipe_name": "Blackened Salmon Tacos with Chunky Mango Avocado Salsa",
     "total_time": "49 mins",
     "ingredients": "3  ripe mangoes - peeled, pitted, and diced, 1  avocado - peeled, pitted, and diced, 1  orange bell pepper, diced, 1  jalapeno pepper, seeded and diced, 1  lime, juiced, 2 tablespoons chopped fresh cilantro, 1 pinch salt, 1 tablespoon sweet and spicy seafood rub, or to taste, ½ teaspoon chili powder, or to taste,   salt and ground black pepper to taste, 2  skin-on salmon fillets, 2 tablespoons olive oil, or as needed, divided, 6  corn tortillas, 3 large limes, cut into wedges",
@@ -452,6 +467,7 @@
     "timeMinutes": 49
   },
   {
+    "id": 16,
     "recipe_name": "Cranberry Pomegranate Sauce",
     "total_time": "1 hrs 15 mins",
     "ingredients": "2 large tart apples, 2  pomegranates, peeled and seeds separated, 1 (16 fl oz) bottle pomegranate juice, 2 cups white sugar, 2 large  oranges, 2 (12 ounce) bags fresh cranberries, rinsed and sorted, 1 cup pecans, chopped",
@@ -487,6 +503,7 @@
     "timeMinutes": 75
   },
   {
+    "id": 17,
     "recipe_name": "Fresh Peach Cobbler I",
     "total_time": "55 mins",
     "ingredients": "½ cup white sugar, 1 tablespoon cornstarch, ¼ teaspoon ground cinnamon, 4 cups sliced fresh peaches, 1 teaspoon lemon juice",
@@ -522,6 +539,7 @@
     "timeMinutes": 55
   },
   {
+    "id": 18,
     "recipe_name": "Nonnie's Persimmon Pudding",
     "total_time": "2 hrs",
     "ingredients": "2 cups persimmon pulp, 2 cups white sugar, 2  eggs, beaten, 1 teaspoon baking soda, 1 cup all-purpose flour, 1 pinch salt, 1 teaspoon baking powder, 1 teaspoon ground cinnamon, 1 ½ cups buttermilk, ¼ cup heavy cream, 1 tablespoon honey, 4 tablespoons butter, melted",
@@ -558,6 +576,7 @@
     "timeMinutes": 120
   },
   {
+    "id": 19,
     "recipe_name": "Fresh Apricot Crisp",
     "total_time": "50 mins",
     "ingredients": "4 cups apricot halves, ¼ cup white sugar, ¾ cup brown sugar, ½ cup all-purpose flour, ½ cup butter, ¾ cup rolled oats",
@@ -594,6 +613,7 @@
     "timeMinutes": 50
   },
   {
+    "id": 20,
     "recipe_name": "Precious Pineapple Cake",
     "total_time": "1 hrs 35 mins",
     "ingredients": "½ cup margarine, softened, 3 large eggs, 1 (18.25 ounce) package yellow cake mix, 1 (20 ounce) can crushed pineapple with juice, ½ cup chopped pecans",

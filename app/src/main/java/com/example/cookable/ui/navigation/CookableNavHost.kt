@@ -1,8 +1,10 @@
 package com.example.cookable.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -10,11 +12,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
+import com.example.cookable.domain.repository.RecipesRepositoryProvider
 import com.example.cookable.ui.feature.favorites.FavoriteRecipesScreen
 import com.example.cookable.ui.feature.imageprocessing.ImageProcessingScreen
 import com.example.cookable.ui.feature.recipedetails.RecipeDetailsScreen
 import com.example.cookable.ui.feature.recipeslist.RecipesListScreen
-import com.example.cookable.ui.feature.recipeslist.RecipesListViewModel
 import com.example.cookable.ui.feature.recognizedingredients.RecognizedIngredients
 import com.example.cookable.ui.feature.scan.ScanScreen
 import com.example.cookable.ui.feature.start.StartScreen
@@ -24,6 +26,11 @@ import com.example.cookable.ui.scan.ScanViewModel
 @Composable
 fun CookableNavHost(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
+    val context = LocalContext.current
+
+    SideEffect {
+        RecipesRepositoryProvider.init(context.applicationContext)
+    }
 
     val favoritesRepository =
         remember {
@@ -118,21 +125,18 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
                     navArgument("recipeId") { type = NavType.StringType },
                 ),
         ) { backStackEntry ->
+            println("RECIPES repo: ${RecipesRepositoryProvider.instance.recipes.value}")
+            println("FAVORITES repo: ${favoritesRepository.favorites.value}")
 
             val recipeId =
                 backStackEntry.arguments?.getString("recipeId")
                     ?: return@composable
 
-            val parentEntry =
-                remember(backStackEntry) {
-                    navController.getBackStackEntry(Routes.RECIPES_LIST)
-                }
-
-            val recipesListViewModel: RecipesListViewModel =
-                viewModel(parentEntry)
+            val recipesRepository =
+                RecipesRepositoryProvider.instance
 
             val recipe =
-                recipesListViewModel.state.value.recipes
+                recipesRepository.recipes.value
                     .firstOrNull { it.id == recipeId }
                     ?: return@composable
 
@@ -144,6 +148,8 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         }
 
         composable(Routes.FAVORITE_RECIPES_LIST) {
+            println("RECIPES repo: ${RecipesRepositoryProvider.instance.recipes.value}\n")
+            println("FAVORITES repo: ${favoritesRepository.favorites.value}")
             FavoriteRecipesScreen(
                 navController = navController,
                 favoritesRepository = favoritesRepository,

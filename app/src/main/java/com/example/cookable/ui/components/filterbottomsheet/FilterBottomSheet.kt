@@ -97,33 +97,28 @@ fun FilterBottomSheet(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                     )
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        if (!state.isEmpty) {
-                            TextButton(
-                                onClick = onReset,
-                                contentPadding = PaddingValues(0.dp),
-                                modifier = Modifier.height(26.dp).width(120.dp),
-                            ) {
-                                Text(
-                                    text = "Reset filters",
-                                    fontSize = 18.sp,
-                                    color = PrimaryGreen,
-                                    fontWeight = FontWeight.Bold,
-                                )
-                            }
-                        }
-                        IconButton(
-                            onClick = onDismiss,
-                            modifier = Modifier.padding(end = 0.dp).height(40.dp),
+                    if (!state.isEmpty) {
+                        TextButton(
+                            onClick = onReset,
+                            contentPadding = PaddingValues(0.dp),
+                            modifier = Modifier.height(24.dp).width(120.dp).padding(bottom = 2.dp),
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = "Close",
+                            Text(
+                                text = "Reset filters",
+                                fontSize = 18.sp,
+                                color = PrimaryGreen,
+                                fontWeight = FontWeight.Bold,
                             )
                         }
+                    }
+                    IconButton(
+                        onClick = onDismiss,
+                        modifier = Modifier.padding(end = 0.dp).height(40.dp),
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close",
+                        )
                     }
                 }
 

@@ -154,7 +154,9 @@ fun RecipesListScreen(
                     showFilterSheet = false
                 },
                 onReset = {
-                    draftFilters = FilterBottomSheetState.empty()
+                    val empty = FilterBottomSheetState.empty()
+                    draftFilters = empty
+                    viewModel.setFilters(empty)
                 },
             )
         }
