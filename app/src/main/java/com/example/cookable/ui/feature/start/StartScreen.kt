@@ -37,6 +37,7 @@ import androidx.navigation.NavController
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
+import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
@@ -56,6 +57,7 @@ fun StartScreen(
 
     var sheetIngredient by remember { mutableStateOf<Ingredient?>(null) }
     var editedIndex by remember { mutableStateOf<Int?>(null) }
+    var showInfoDialog by remember { mutableStateOf(false) }
 
     Column(
         modifier =
@@ -75,7 +77,7 @@ fun StartScreen(
             AppLogo()
 
             Row {
-                IconButton(onClick = { /* help */ }) {
+                IconButton(onClick = { showInfoDialog = true }) {
                     Icon(Icons.Filled.Help, contentDescription = null, tint = Color(0xFF2E7D32))
                 }
                 IconButton(
@@ -244,4 +246,8 @@ fun StartScreen(
             )
         }
     }
+    AppHelp(
+        isVisible = showInfoDialog,
+        onDismiss = { showInfoDialog = false },
+    )
 }
