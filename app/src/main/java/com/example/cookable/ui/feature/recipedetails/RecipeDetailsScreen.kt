@@ -32,6 +32,7 @@ import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBa
 import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
+import com.example.cookable.ui.components.sectiontitle.SectionTitle
 import com.example.cookable.ui.components.totaltimebadge.TotalTimeBadge
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Line
@@ -99,35 +100,36 @@ fun RecipeDetailsScreen(
             }
         }
 
+        Column(
+        ) {
+            Column(
+                modifier =
+                    Modifier
+                        .background(Background).padding(start=16.dp, end=16.dp, top=16.dp)
+                        .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Text(
+                    text = recipe.name,
+                    fontSize = 22.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                )
+
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    recipe.tags.forEach { tag ->
+                        Chip(text = tag)
+                    }
+                }
+
+                HorizontalDivider(color = Line)
+            }
+
         LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
+            modifier = Modifier.fillMaxSize().padding(start=16.dp, end=16.dp, top=10.dp, bottom=16.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            stickyHeader {
-                Column(
-                    modifier =
-                        Modifier
-                            .background(Background)
-                            .fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    Text(
-                        text = recipe.name,
-                        fontSize = 22.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                    )
-
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        recipe.tags.forEach { tag ->
-                            Chip(text = tag)
-                        }
-                    }
-
-                    HorizontalDivider(color = Line)
-                }
-            }
 
             item {
                 MissingIngredientsBox(
@@ -140,8 +142,8 @@ fun RecipeDetailsScreen(
                 HorizontalDivider(color = Line)
             }
 
-            item {
-                SectionTitle("Ingredients")
+            stickyHeader {
+                SectionTitle("Ingredients", modifier = Modifier.background(Background).fillMaxWidth())
             }
 
             item {
@@ -159,8 +161,8 @@ fun RecipeDetailsScreen(
                 HorizontalDivider(color = Line)
             }
 
-            item {
-                SectionTitle("Directions")
+            stickyHeader {
+                SectionTitle("Directions", modifier = Modifier.background(Background).fillMaxWidth())
             }
             item {
                 Text(
@@ -174,14 +176,9 @@ fun RecipeDetailsScreen(
                 Spacer(modifier = Modifier.height(24.dp))
             }
         }
+        }
+
     }
 }
 
-@Composable
-private fun SectionTitle(text: String) {
-    Text(
-        text = text,
-        fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
-    )
-}
+
