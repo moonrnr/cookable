@@ -32,10 +32,9 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         RecipesRepositoryProvider.init(context.applicationContext)
     }
 
-    val favoritesRepository =
-        remember {
-            FavoritesRepositoryProvider.instance
-        }
+    SideEffect {
+        FavoritesRepositoryProvider.init(context.applicationContext)
+    }
 
     NavHost(
         navController,
@@ -114,7 +113,6 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         composable(Routes.RECIPES_LIST) {
             RecipesListScreen(
                 navController = navController,
-                favoritesRepository = favoritesRepository,
             )
         }
 
@@ -125,9 +123,6 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
                     navArgument("recipeId") { type = NavType.StringType },
                 ),
         ) { backStackEntry ->
-            println("RECIPES repo: ${RecipesRepositoryProvider.instance.recipes.value}")
-            println("FAVORITES repo: ${favoritesRepository.favorites.value}")
-
             val recipeId =
                 backStackEntry.arguments?.getString("recipeId")
                     ?: return@composable
@@ -143,14 +138,12 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
             RecipeDetailsScreen(
                 recipe = recipe,
                 navController = navController,
-                favoritesRepository = favoritesRepository,
             )
         }
 
         composable(Routes.FAVORITE_RECIPES_LIST) {
             FavoriteRecipesScreen(
                 navController = navController,
-                favoritesRepository = favoritesRepository,
             )
         }
     }

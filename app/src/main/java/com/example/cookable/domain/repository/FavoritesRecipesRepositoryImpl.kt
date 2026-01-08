@@ -1,12 +1,16 @@
 package com.example.cookable.domain.repository
 
+import com.example.cookable.data.mapper.toDomain
+import com.example.cookable.data.remote.api.RecipesMockApi
 import com.example.cookable.domain.model.Recipe
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 
-class FavoritesRecipesRepositoryImpl : FavoritesRecipesRepository {
+class FavoritesRecipesRepositoryImpl(
+    private val api: RecipesMockApi,
+) : FavoritesRecipesRepository {
     private val _favorites = MutableStateFlow<List<Recipe>>(emptyList())
     override val favorites: StateFlow<List<Recipe>> = _favorites
 
@@ -33,4 +37,16 @@ class FavoritesRecipesRepositoryImpl : FavoritesRecipesRepository {
         favorites.map { list ->
             list.any { it.id == recipeId }
         }
+
+    override suspend fun getFavoriteRecipes(): List<Recipe> {
+        val list = api.getFavoriteRecipes().map { it.toDomain() }
+        _favorites.value = list
+        return list
+    }
+
+    override suspend fun getFavoriteRecipesFiltered(): List<Recipe> {
+        val list = api.getFavoriteRecipesFiltered().map { it.toDomain() }
+        _favorites.value = list
+        return list
+    }
 }

@@ -23,10 +23,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
-import com.example.cookable.domain.repository.FavoritesRecipesRepository
 import com.example.cookable.ui.components.chip.Chip
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
@@ -42,11 +42,11 @@ import com.example.cookable.ui.theme.White
 fun RecipeDetailsScreen(
     recipe: Recipe,
     navController: NavController,
-    favoritesRepository: FavoritesRecipesRepository,
+    viewModel: RecipeDetailsViewModel = viewModel(),
 ) {
     val scrollState = rememberScrollState()
 
-    val isFavorite by favoritesRepository
+    val isFavorite by viewModel
         .isFavorite(recipe.id)
         .collectAsState(false)
 
@@ -82,7 +82,7 @@ fun RecipeDetailsScreen(
                             ),
                 )
 
-                FavoriteIconButton(isFavorite = isFavorite, isSmall = false, onClick = { favoritesRepository.toggleFavorite(recipe) })
+                FavoriteIconButton(isFavorite = isFavorite, isSmall = false, onClick = { viewModel.toggleFavorite(recipe) })
             }
 
             Row(

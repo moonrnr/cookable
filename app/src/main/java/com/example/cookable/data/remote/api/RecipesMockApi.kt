@@ -20,4 +20,30 @@ class RecipesMockApi(
         val type = object : TypeToken<List<RecipeDto>>() {}.type
         return Gson().fromJson(json, type)
     }
+
+    suspend fun getFavoriteRecipes(): List<RecipeDto> {
+        delay(1500)
+
+        val json =
+            context.assets
+                .open("recipes_favorite.json")
+                .bufferedReader()
+                .use { it.readText() }
+
+        val type = object : TypeToken<List<RecipeDto>>() {}.type
+        return Gson().fromJson(json, type)
+    }
+
+    suspend fun getFavoriteRecipesFiltered(): List<RecipeDto> {
+        delay(1500)
+
+        val json =
+            context.assets
+                .open("recipes_favorite_filtered.json")
+                .bufferedReader()
+                .use { it.readText() }
+
+        val type = object : TypeToken<List<RecipeDto>>() {}.type
+        return Gson().fromJson(json, type)
+    }
 }

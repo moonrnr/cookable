@@ -18,8 +18,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import com.example.cookable.domain.repository.FavoritesRecipesRepository
 import com.example.cookable.ui.components.emptyfavoritesstate.EmptyFavoritesState
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.screentitle.ScreenTitle
@@ -31,10 +31,9 @@ import com.example.cookable.ui.theme.Background
 @Composable
 fun FavoriteRecipesScreen(
     navController: NavController,
-    favoritesRepository: FavoritesRecipesRepository,
+    viewModel: FavoriteRecipesListViewModel = viewModel(),
 ) {
-    val favorites by favoritesRepository.favorites.collectAsState()
-
+    val favorites by viewModel.favorites.collectAsState()
     Column(
         modifier =
             Modifier
@@ -83,7 +82,7 @@ fun FavoriteRecipesScreen(
                             )
                         },
                         onToggleFavorite = {
-                            favoritesRepository.toggleFavorite(recipe)
+                            viewModel.toggleFavorite(recipe)
                         },
                     )
                 }

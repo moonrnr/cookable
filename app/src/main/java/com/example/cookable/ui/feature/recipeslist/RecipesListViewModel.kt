@@ -6,8 +6,10 @@ import com.example.cookable.domain.model.MatchLevel
 import com.example.cookable.domain.model.PreparationDifficulty
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
+import com.example.cookable.domain.repository.FavoritesRepositoryProvider
 import com.example.cookable.domain.repository.RecipesRepositoryProvider
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -16,6 +18,8 @@ class RecipesListViewModel : ViewModel() {
     private val repository =
         RecipesRepositoryProvider.instance
 
+    private val favoritesRepository =
+        FavoritesRepositoryProvider.instance
     private val _state = MutableStateFlow(RecipesListState())
     val state = _state.asStateFlow()
 
@@ -134,5 +138,11 @@ class RecipesListViewModel : ViewModel() {
                         _state.value.sortOption,
                     ),
             )
+    }
+
+    fun isFavorite(recipeId: String): Flow<Boolean> = favoritesRepository.isFavorite(recipeId)
+
+    fun toggleFavorite(recipe: Recipe) {
+        favoritesRepository.toggleFavorite(recipe)
     }
 }

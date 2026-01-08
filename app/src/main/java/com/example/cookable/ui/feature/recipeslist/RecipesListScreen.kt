@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cookable.domain.model.SortState
-import com.example.cookable.domain.repository.FavoritesRecipesRepository
 import com.example.cookable.ui.components.emptyfiltersstate.EmptyFiltersState
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
@@ -42,7 +41,6 @@ import com.example.cookable.ui.theme.PrimaryGreen
 @Composable
 fun RecipesListScreen(
     navController: NavController,
-    favoritesRepository: FavoritesRecipesRepository,
     viewModel: RecipesListViewModel = viewModel(),
 ) {
     val state by viewModel.state.collectAsState()
@@ -112,7 +110,7 @@ fun RecipesListScreen(
                     contentPadding = PaddingValues(top = 10.dp, bottom = 16.dp),
                 ) {
                     items(state.recipes) { recipe ->
-                        val isFavorite by favoritesRepository
+                        val isFavorite by viewModel
                             .isFavorite(recipe.id)
                             .collectAsState(false)
 
@@ -123,7 +121,7 @@ fun RecipesListScreen(
                                 navController.navigate("${Routes.RECIPE_DETAILS}/${recipe.id}")
                             },
                             onToggleFavorite = {
-                                favoritesRepository.toggleFavorite(recipe)
+                                viewModel.toggleFavorite(recipe)
                             },
                         )
                     }
