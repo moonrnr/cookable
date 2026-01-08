@@ -59,7 +59,7 @@ fun AppHelp(
                 Text(
                     text =
                         "Scan your ingredients with your camera or add them manually. " +
-                            "Our AI recognizes products and creates a smart ingredient list for you.",
+                            "Our app recognizes products and creates a smart list of recipes that match your ingredients.",
                 )
 
                 Text(
@@ -72,9 +72,9 @@ fun AppHelp(
                     text =
                         "Find recipes ranked by match level:\n" +
                             "• PERFECT – all ingredients match\n" +
-                            "• HIGH – missing one ingredient\n" +
-                            "• MEDIUM – missing a few ingredients\n" +
-                            "• LOW – missing several ingredients",
+                            "• HIGH – missing a few ingredient\n" +
+                            "• MEDIUM – missing several ingredients\n" +
+                            "• LOW – missing a lot ingredients",
                 )
 
                 Text(
