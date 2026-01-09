@@ -39,6 +39,7 @@ import androidx.navigation.NavController
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
+import com.example.cookable.domain.repository.FavoritesRepositoryProvider
 import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
@@ -84,7 +85,12 @@ fun StartScreen(
                     Icon(Icons.Filled.Help, contentDescription = null, tint = Color(0xFF2E7D32))
                 }
                 IconButton(
-                    onClick = { navController.navigate(Routes.FAVORITE_RECIPES_LIST) },
+                    onClick = {
+                        val hasIngredients = state.ingredients.isNotEmpty()
+                        FavoritesRepositoryProvider.instance
+                            .setFilterByIngredients(hasIngredients)
+                        navController.navigate(Routes.FAVORITE_RECIPES_LIST)
+                    },
                 ) {
                     Icon(Icons.Filled.Favorite, contentDescription = null, tint = Color(0xFF2E7D32))
                 }

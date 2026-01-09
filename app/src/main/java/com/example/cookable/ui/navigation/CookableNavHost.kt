@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.cookable.core.util.mergeRecipesLists
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
 import com.example.cookable.domain.repository.RecipesRepositoryProvider
 import com.example.cookable.ui.feature.favorites.FavoriteRecipesScreen
@@ -130,10 +131,15 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
             val recipesRepository =
                 RecipesRepositoryProvider.instance
 
+            val favoritesRepository =
+                FavoritesRepositoryProvider.instance
+
+            val mergedRecipesLists = mergeRecipesLists(recipesRepository.recipes.value, favoritesRepository.favorites.value)
+
             val recipe =
-                recipesRepository.recipes.value
-                    .firstOrNull { it.id == recipeId }
-                    ?: return@composable
+                remember(recipeId) {
+                    mergedRecipesLists.firstOrNull { it.id == recipeId }
+                } ?: return@composable
 
             RecipeDetailsScreen(
                 recipe = recipe,

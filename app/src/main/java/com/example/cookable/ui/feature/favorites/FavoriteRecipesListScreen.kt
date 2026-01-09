@@ -15,14 +15,23 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.cookable.domain.model.SortState
 import com.example.cookable.ui.components.emptyfavoritesstate.EmptyFavoritesState
+import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
+import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
+import com.example.cookable.ui.components.recipesloader.RecipesLoader
 import com.example.cookable.ui.components.screentitle.ScreenTitle
+import com.example.cookable.ui.components.sortbottomsheet.SortBottomSheet
+import com.example.cookable.ui.components.sortfiltercontainer.SortFilterContainer
 import com.example.cookable.ui.feature.recipeslist.RecipesListItemRow
 import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.navigation.Routes
@@ -33,7 +42,12 @@ fun FavoriteRecipesScreen(
     navController: NavController,
     viewModel: FavoriteRecipesListViewModel = viewModel(),
 ) {
-    val favorites by viewModel.favorites.collectAsState()
+    val state by viewModel.state.collectAsState()
+    val favorites = state.recipes
+    var showSortSheet by remember { mutableStateOf(false) }
+    var showFilterSheet by remember { mutableStateOf(false) }
+    var draftFilters by remember { mutableStateOf(FilterBottomSheetState()) }
+
     Column(
         modifier =
             Modifier
@@ -55,9 +69,19 @@ fun FavoriteRecipesScreen(
             ArrowBackIconButton({ navController.popBackStack() })
             Spacer(modifier = Modifier.width(8.dp))
             ScreenTitle(text = "Favorites")
+            Spacer(modifier = Modifier.width(30.dp))
+            SortFilterContainer(
+                onSortClick = { showSortSheet = true },
+                onFilterClick = {
+                    draftFilters = state.filters
+                    showFilterSheet = true
+                },
+            )
         }
 
-        if (favorites.isEmpty()) {
+        if (state.isLoading) {
+            RecipesLoader(loaderText = "Loading favorite recipes")
+        } else if (favorites.isEmpty()) {
             EmptyFavoritesState()
         } else {
             LazyColumn(
@@ -70,7 +94,6 @@ fun FavoriteRecipesScreen(
             ) {
                 items(
                     items = favorites,
-                    key = { it.id },
                 ) { recipe ->
 
                     RecipesListItemRow(
@@ -87,6 +110,35 @@ fun FavoriteRecipesScreen(
                     )
                 }
             }
+        }
+        if (showSortSheet) {
+            SortBottomSheet(
+                state = SortState(selected = state.sortOption),
+                onSelect = {
+                    viewModel.setSortOption(it)
+                    showSortSheet = false
+                },
+                onDismiss = { showSortSheet = false },
+            )
+        }
+
+        if (showFilterSheet) {
+            FilterBottomSheet(
+                state = draftFilters,
+                onStateChange = { draftFilters = it },
+                onApply = {
+                    viewModel.setFilters(draftFilters)
+                    showFilterSheet = false
+                },
+                onDismiss = {
+                    showFilterSheet = false
+                },
+                onReset = {
+                    val empty = FilterBottomSheetState.empty()
+                    draftFilters = empty
+                    viewModel.setFilters(empty)
+                },
+            )
         }
     }
 }

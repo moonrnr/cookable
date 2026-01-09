@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface FavoritesRecipesRepository {
     val favorites: StateFlow<List<Recipe>>
+    val favoritesFromFindRecipes: StateFlow<List<Recipe>>
 
     fun addToFavorites(recipe: Recipe)
 
@@ -17,5 +18,5 @@ interface FavoritesRecipesRepository {
 
     suspend fun getFavoriteRecipes(): List<Recipe>
 
-    suspend fun getFavoriteRecipesFiltered(): List<Recipe>
+    fun setFilterByIngredients(enabled: Boolean)
 }
