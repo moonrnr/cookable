@@ -9,4 +9,5 @@ data class RecipesListState(
     val recipes: List<Recipe> = emptyList(),
     val sortOption: SortOption = SortOption.MATCH,
     val filters: FilterBottomSheetState = FilterBottomSheetState(),
+    val availableTags: List<String> = emptyList(),
 )

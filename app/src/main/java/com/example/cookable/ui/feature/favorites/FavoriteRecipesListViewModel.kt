@@ -36,9 +36,16 @@ class FavoriteRecipesListViewModel : ViewModel() {
 
             allFavorites = repository.getFavoriteRecipes()
 
+            val allTags =
+                allFavorites
+                    .flatMap { it.tags }
+                    .distinct()
+                    .sorted()
+
             _state.value =
                 _state.value.copy(
                     isLoading = false,
+                    availableTags = allTags,
                     recipes =
                         filterAndSortRecipes(
                             allFavorites,

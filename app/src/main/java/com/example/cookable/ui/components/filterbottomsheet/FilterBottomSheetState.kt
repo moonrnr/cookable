@@ -18,6 +18,8 @@ data class FilterBottomSheetState(
     val matchHigh: Boolean = false,
     val matchMedium: Boolean = false,
     val matchLow: Boolean = false,
+    val tagQuery: String = "",
+    val selectedTags: List<String> = emptyList(),
 ) {
     val isEmpty: Boolean
         get() =
@@ -37,7 +39,8 @@ data class FilterBottomSheetState(
                 !matchPerfect &&
                 !matchHigh &&
                 !matchMedium &&
-                !matchLow
+                !matchLow &&
+                selectedTags.isEmpty()
 
     companion object {
         fun empty(): FilterBottomSheetState = FilterBottomSheetState()

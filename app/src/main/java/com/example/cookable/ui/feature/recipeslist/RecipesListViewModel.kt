@@ -37,9 +37,16 @@ class RecipesListViewModel : ViewModel() {
 
             allRecipes = repository.getRecipes()
 
+            val allTags =
+                allRecipes
+                    .flatMap { it.tags }
+                    .distinct()
+                    .sorted()
+
             _state.value =
                 _state.value.copy(
                     isLoading = false,
+                    availableTags = allTags,
                     recipes =
                         filterAndSortRecipes(
                             allRecipes,

@@ -50,6 +50,7 @@ import com.example.cookable.ui.theme.White
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterBottomSheet(
+    allTags: List<String>,
     state: FilterBottomSheetState,
     onStateChange: (FilterBottomSheetState) -> Unit,
     onApply: () -> Unit,
@@ -130,6 +131,32 @@ fun FilterBottomSheet(
                     modifier = Modifier.padding(start = 18.dp, end = 18.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
+                    FilterSection("Tags") {
+                        TagFilterInput(
+                            allTags = allTags,
+                            query = state.tagQuery,
+                            selectedTags = state.selectedTags,
+                            onQueryChange = {
+                                onStateChange(state.copy(tagQuery = it))
+                            },
+                            onTagSelected = { tag ->
+                                onStateChange(
+                                    state.copy(
+                                        selectedTags = state.selectedTags + tag,
+                                        tagQuery = "",
+                                    ),
+                                )
+                            },
+                            onTagRemoved = { tag ->
+                                onStateChange(
+                                    state.copy(
+                                        selectedTags = state.selectedTags - tag,
+                                    ),
+                                )
+                            },
+                        )
+                    }
+
                     FilterSection("Match level") {
                         CheckboxItem("Perfect", state.matchPerfect) {
                             onStateChange(state.copy(matchPerfect = it))

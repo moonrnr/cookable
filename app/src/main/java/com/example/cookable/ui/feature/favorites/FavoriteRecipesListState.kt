@@ -9,4 +9,5 @@ data class FavoriteRecipesListState(
     val filters: FilterBottomSheetState = FilterBottomSheetState(),
     val sortOption: SortOption = SortOption.MATCH,
     val isLoading: Boolean = false,
+    val availableTags: List<String> = emptyList(),
 )

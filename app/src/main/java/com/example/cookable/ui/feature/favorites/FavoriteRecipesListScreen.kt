@@ -124,6 +124,7 @@ fun FavoriteRecipesScreen(
 
         if (showFilterSheet) {
             FilterBottomSheet(
+                allTags = state.availableTags,
                 state = draftFilters,
                 onStateChange = { draftFilters = it },
                 onApply = {

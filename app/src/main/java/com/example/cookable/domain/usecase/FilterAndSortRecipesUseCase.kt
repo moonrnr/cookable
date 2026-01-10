@@ -70,6 +70,15 @@ class FilterAndSortRecipesUseCase {
             result = result.filter { it.matchLevel in matchLevels }
         }
 
+        if (filters.selectedTags.isNotEmpty()) {
+            result =
+                result.filter { recipe ->
+                    filters.selectedTags.all { tag ->
+                        recipe.tags.any { it.equals(tag, ignoreCase = true) }
+                    }
+                }
+        }
+
         return sortRecipesList(result, sort)
     }
 

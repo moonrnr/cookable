@@ -205,7 +205,8 @@ fun StartScreen(
                 }
             }
         }
-        if (state.canFindRecipes) {
+//        if (state.canFindRecipes) {
+        if (true) {
             Button(
                 onClick = { navController.navigate(Routes.RECIPES_LIST) },
                 colors =
