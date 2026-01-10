@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,13 +13,14 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.UnitType
+import com.example.cookable.ui.components.chip.SelectableChip
 import com.example.cookable.ui.theme.PrimaryGreen
-import com.example.cookable.ui.theme.PrimaryGreenLight
 
 @Composable
 fun SuggestedUnitsSection(
     units: List<UnitType>,
     onClick: (UnitType) -> Unit,
+    onLongClick: (UnitType) -> Unit,
 ) {
     if (units.isEmpty()) return
 
@@ -42,20 +40,10 @@ fun SuggestedUnitsSection(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             units.forEach { unit ->
-                AssistChip(
+                SelectableChip(
+                    text = unit.name.lowercase(),
                     onClick = { onClick(unit) },
-                    label = {
-                        Text(
-                            text = unit.name.lowercase(),
-                            color = PrimaryGreen,
-                            fontSize = 12.sp,
-                        )
-                    },
-                    colors =
-                        AssistChipDefaults.assistChipColors(
-                            containerColor = PrimaryGreenLight,
-                        ),
-                    shape = RoundedCornerShape(50),
+                    onLongClick = { onLongClick(unit) },
                 )
             }
         }

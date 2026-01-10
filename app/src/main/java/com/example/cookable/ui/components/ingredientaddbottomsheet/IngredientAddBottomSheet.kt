@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.ui.theme.Line
 import com.example.cookable.ui.theme.PrimaryGreen
+import com.example.cookable.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -113,6 +115,7 @@ fun IngredientAddBottomSheet(
                     suggestions = state.nameSuggestions,
                     onValueChange = viewModel::onNameChanged,
                     onSuggestionSelected = viewModel::onNameSuggestionClicked,
+                    onSuggestionLongPressed = viewModel::onNameSuggestionLongPressed,
                 )
 
                 Spacer(Modifier.height(12.dp))
@@ -121,10 +124,11 @@ fun IngredientAddBottomSheet(
                     value = state.amount,
                     onValueChange = viewModel::onAmountChanged,
                 )
-
+                Spacer(Modifier.height(6.dp))
                 SuggestedAmountsSection(
                     amounts = state.suggestedAmounts,
                     onClick = viewModel::onSuggestedAmountClicked,
+                    onLongClick = viewModel::onSuggestedAmountLongPressed,
                 )
 
                 Spacer(Modifier.height(12.dp))
@@ -133,10 +137,11 @@ fun IngredientAddBottomSheet(
                     selectedUnit = state.unit,
                     onUnitSelected = viewModel::onUnitChanged,
                 )
-
+                Spacer(Modifier.height(6.dp))
                 SuggestedUnitsSection(
                     units = state.suggestedUnits,
                     onClick = viewModel::onSuggestedUnitClicked,
+                    onLongClick = viewModel::onSuggestedUnitLongPressed,
                 )
 
                 Spacer(Modifier.height(20.dp))
@@ -199,5 +204,32 @@ fun IngredientAddBottomSheet(
                 }
             }
         }
+    }
+    state.deleteSuggestion?.let {
+        AlertDialog(
+            containerColor = White,
+            onDismissRequest = viewModel::cancelDeleteSuggestion,
+            title = {
+                Text("Remove suggestion")
+            },
+            text = {
+                Text("Do you want to remove this suggestion?")
+            },
+            confirmButton = {
+                Button(
+                    onClick = viewModel::confirmDeleteSuggestion,
+                    colors = ButtonDefaults.buttonColors(containerColor = PrimaryGreen),
+                ) {
+                    Text("Remove", color = Color.White)
+                }
+            },
+            dismissButton = {
+                OutlinedButton(
+                    onClick = viewModel::cancelDeleteSuggestion,
+                ) {
+                    Text("Cancel")
+                }
+            },
+        )
     }
 }

@@ -2,7 +2,7 @@ package com.example.cookable.ui.components.ingredientaddbottomsheet
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,6 +30,7 @@ fun IngredientNameInput(
     suggestions: List<String>,
     onValueChange: (String) -> Unit,
     onSuggestionSelected: (String) -> Unit,
+    onSuggestionLongPressed: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -82,9 +83,14 @@ fun IngredientNameInput(
                             modifier =
                                 Modifier
                                     .fillMaxWidth()
-                                    .clickable {
-                                        onSuggestionSelected(suggestion)
-                                    }.padding(horizontal = 12.dp, vertical = 10.dp),
+                                    .combinedClickable(
+                                        onClick = {
+                                            onSuggestionSelected(suggestion)
+                                        },
+                                        onLongClick = {
+                                            onSuggestionLongPressed(suggestion)
+                                        },
+                                    ).padding(horizontal = 12.dp, vertical = 10.dp),
                             fontSize = 14.sp,
                         )
 

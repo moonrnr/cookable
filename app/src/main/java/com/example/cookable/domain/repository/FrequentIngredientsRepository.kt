@@ -13,4 +13,16 @@ interface FrequentIngredientsRepository {
         amount: Double?,
         unit: UnitType?,
     )
+
+    suspend fun removeSuggestedAmount(
+        name: String,
+        amount: Double,
+    )
+
+    suspend fun removeSuggestedUnit(
+        name: String,
+        unit: UnitType,
+    )
+
+    suspend fun removeIngredient(name: String)
 }

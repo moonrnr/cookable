@@ -10,4 +10,19 @@ data class IngredientAddState(
     val suggestedAmounts: List<Double> = emptyList(),
     val suggestedUnits: List<UnitType> = emptyList(),
     val isSaveEnabled: Boolean = false,
+    val deleteSuggestion: DeleteSuggestion? = null,
 )
+
+sealed class DeleteSuggestion {
+    data class Amount(
+        val value: Double,
+    ) : DeleteSuggestion()
+
+    data class Unit(
+        val value: UnitType,
+    ) : DeleteSuggestion()
+
+    data class Ingredient(
+        val name: String,
+    ) : DeleteSuggestion()
+}

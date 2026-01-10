@@ -56,4 +56,37 @@ class FrequentIngredientsRepositoryImpl(
             )
         }
     }
+
+    override suspend fun removeSuggestedAmount(
+        name: String,
+        amount: Double,
+    ) {
+        val normalizedName = name.trim()
+        if (normalizedName.isBlank()) return
+
+        dao.deleteAmountSuggestion(
+            name = normalizedName,
+            amount = amount,
+        )
+    }
+
+    override suspend fun removeSuggestedUnit(
+        name: String,
+        unit: UnitType,
+    ) {
+        val normalizedName = name.trim()
+        if (normalizedName.isBlank()) return
+
+        dao.deleteUnitSuggestion(
+            name = normalizedName,
+            unit = unit,
+        )
+    }
+
+    override suspend fun removeIngredient(name: String) {
+        val normalizedName = name.trim()
+        if (normalizedName.isBlank()) return
+
+        dao.deleteIngredient(normalizedName)
+    }
 }

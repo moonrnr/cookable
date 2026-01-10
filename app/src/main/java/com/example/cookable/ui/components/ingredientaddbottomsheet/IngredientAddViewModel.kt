@@ -85,4 +85,70 @@ class IngredientAddViewModel(
             onSaved(ingredient)
         }
     }
+
+    fun onSuggestedAmountLongPressed(amount: Double) {
+        _state.update {
+            it.copy(deleteSuggestion = DeleteSuggestion.Amount(amount))
+        }
+    }
+
+    fun onSuggestedUnitLongPressed(unit: UnitType) {
+        _state.update {
+            it.copy(deleteSuggestion = DeleteSuggestion.Unit(unit))
+        }
+    }
+
+    fun cancelDeleteSuggestion() {
+        _state.update { it.copy(deleteSuggestion = null) }
+    }
+
+    fun confirmDeleteSuggestion() {
+        val delete = _state.value.deleteSuggestion ?: return
+        val ingredientName = _state.value.name
+
+        viewModelScope.launch {
+            when (delete) {
+                is DeleteSuggestion.Amount -> {
+                    repository.removeSuggestedAmount(ingredientName, delete.value)
+                }
+
+                is DeleteSuggestion.Unit -> {
+                    repository.removeSuggestedUnit(ingredientName, delete.value)
+                }
+
+                is DeleteSuggestion.Ingredient -> {
+                    repository.removeIngredient(delete.name)
+
+                    _state.update {
+                        it.copy(
+                            name = "",
+                            nameSuggestions = emptyList(),
+                            suggestedAmounts = emptyList(),
+                            suggestedUnits = emptyList(),
+                            unit = null,
+                            amount = "",
+                            deleteSuggestion = null,
+                        )
+                    }
+                    return@launch
+                }
+            }
+
+            val ingredient = repository.getFrequentIngredient(ingredientName)
+
+            _state.update {
+                it.copy(
+                    suggestedAmounts = ingredient?.suggestedAmounts.orEmpty(),
+                    suggestedUnits = ingredient?.suggestedUnits.orEmpty(),
+                    deleteSuggestion = null,
+                )
+            }
+        }
+    }
+
+    fun onNameSuggestionLongPressed(name: String) {
+        _state.update {
+            it.copy(deleteSuggestion = DeleteSuggestion.Ingredient(name))
+        }
+    }
 }
