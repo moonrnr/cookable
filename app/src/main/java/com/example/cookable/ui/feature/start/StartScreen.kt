@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -24,6 +25,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +44,7 @@ import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
 import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
+import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
@@ -62,6 +65,29 @@ fun StartScreen(
     var sheetIngredient by remember { mutableStateOf<Ingredient?>(null) }
     var editedIndex by remember { mutableStateOf<Int?>(null) }
     var showInfoDialog by remember { mutableStateOf(false) }
+
+    val listState = rememberLazyListState()
+
+    val isScrollable by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            val totalItems = layoutInfo.totalItemsCount
+            val visibleItems = layoutInfo.visibleItemsInfo
+
+            if (visibleItems.isEmpty()) return@derivedStateOf false
+
+            val lastVisibleIndex = visibleItems.last().index
+            lastVisibleIndex < totalItems - 1
+        }
+    }
+
+    val hasScrolled by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0 ||
+                listState.firstVisibleItemScrollOffset > 0
+        }
+    }
+    val showScrollHint = isScrollable && !hasScrolled
 
     Column(
         modifier =
@@ -153,6 +179,7 @@ fun StartScreen(
                 } else {
                     BoxWithConstraints {
                         LazyColumn(
+                            state = listState,
                             modifier =
                                 Modifier
                                     .heightIn(max = maxHeight * 0.7f),
@@ -169,6 +196,13 @@ fun StartScreen(
                                     onRemove = { viewModel.onRemoveIngredient(index) },
                                     onAcceptSuggestion = {},
                                 )
+                            }
+                        }
+                        Column(
+                            modifier = Modifier.align(Alignment.BottomCenter),
+                        ) {
+                            if (showScrollHint) {
+                                ArrowsDownwardsIcons()
                             }
                         }
                     }
