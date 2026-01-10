@@ -46,19 +46,21 @@ fun RecognizedIngredientsSummary(
             color = MaterialTheme.colorScheme.onSurface,
         )
 
-        Spacer(modifier = Modifier.width(16.dp))
+        if (incompleteCount != 0) {
+            Spacer(modifier = Modifier.width(16.dp))
 
-        Icon(
-            imageVector = Icons.Outlined.Warning,
-            contentDescription = null,
-            tint = PrimaryOrange,
-            modifier = Modifier.size(18.dp),
-        )
-        Spacer(modifier = Modifier.width(6.dp))
-        Text(
-            text = "$incompleteCount incomplete",
-            fontSize = 14.sp,
-            color = PrimaryOrange,
-        )
+            Icon(
+                imageVector = Icons.Outlined.Warning,
+                contentDescription = null,
+                tint = PrimaryOrange,
+                modifier = Modifier.size(18.dp),
+            )
+            Spacer(modifier = Modifier.width(6.dp))
+            Text(
+                text = "$incompleteCount incomplete",
+                fontSize = 14.sp,
+                color = PrimaryOrange,
+            )
+        }
     }
 }

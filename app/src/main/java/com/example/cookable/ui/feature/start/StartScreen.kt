@@ -42,9 +42,12 @@ import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
+import com.example.cookable.domain.repository.FrequentIngredientsRepositoryProvider
 import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
 import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
+import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddBottomSheet
+import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddViewModel
 import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
@@ -233,14 +236,16 @@ fun StartScreen(
                             contentColor = PrimaryGreen,
                         ),
                     shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                 ) {
                     Text("Add manually", fontWeight = FontWeight.Bold)
                 }
             }
         }
-//        if (state.canFindRecipes) {
-        if (true) {
+        if (state.canFindRecipes) {
             Button(
                 onClick = { navController.navigate(Routes.RECIPES_LIST) },
                 colors =
@@ -265,28 +270,51 @@ fun StartScreen(
 
         sheetIngredient?.let { ingredient ->
 
-            IngredientBottomSheet(
-                initialIngredient = ingredient,
-                onDismiss = {
-                    sheetIngredient = null
-                    editedIndex = null
-                },
-                onCancel = {
-                    sheetIngredient = null
-                    editedIndex = null
-                },
-                onSave = { result ->
-                    if (editedIndex == null) {
-                        viewModel.addIngredient(result)
-                    } else {
-                        viewModel.updateIngredient(editedIndex!!, result)
+            if (editedIndex == null) {
+                val ingredientAddViewModel =
+                    remember {
+                        IngredientAddViewModel(
+                            repository = FrequentIngredientsRepositoryProvider.get(),
+                        )
                     }
 
-                    sheetIngredient = null
-                    editedIndex = null
-                },
-                ingredientBottomSheetType = IngredientBottomSheetType.ADD,
-            )
+                IngredientAddBottomSheet(
+                    viewModel = ingredientAddViewModel,
+                    onSave = { result ->
+                        viewModel.addIngredient(result)
+
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                    onCancel = {
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                    onDismiss = {
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                )
+            } else {
+                IngredientBottomSheet(
+                    initialIngredient = ingredient,
+                    onDismiss = {
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                    onCancel = {
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                    onSave = { result ->
+                        viewModel.updateIngredient(editedIndex!!, result)
+
+                        sheetIngredient = null
+                        editedIndex = null
+                    },
+                    ingredientBottomSheetType = IngredientBottomSheetType.EDIT,
+                )
+            }
         }
     }
     AppHelp(

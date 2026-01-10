@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.cookable.core.util.mergeRecipesLists
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
+import com.example.cookable.domain.repository.FrequentIngredientsRepositoryProvider
 import com.example.cookable.domain.repository.RecipesRepositoryProvider
 import com.example.cookable.ui.feature.favorites.FavoriteRecipesScreen
 import com.example.cookable.ui.feature.imageprocessing.ImageProcessingScreen
@@ -35,6 +36,10 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
 
     SideEffect {
         FavoritesRepositoryProvider.init(context.applicationContext)
+    }
+
+    SideEffect {
+        FrequentIngredientsRepositoryProvider.init(context.applicationContext)
     }
 
     NavHost(
