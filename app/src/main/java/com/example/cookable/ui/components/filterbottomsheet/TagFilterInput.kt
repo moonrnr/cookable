@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,7 +21,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.ui.components.chip.Chip
+import com.example.cookable.ui.theme.Grey
 import com.example.cookable.ui.theme.Line
+import com.example.cookable.ui.theme.PrimaryGreen
 
 @Composable
 fun TagFilterInput(
@@ -42,13 +45,24 @@ fun TagFilterInput(
             }
         }
 
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+    Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
         OutlinedTextField(
             value = query,
             onValueChange = onQueryChange,
             placeholder = { Text("Type tag name…") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(14.dp),
+            colors =
+                OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = PrimaryGreen,
+                    unfocusedBorderColor = Line,
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    cursorColor = PrimaryGreen,
+                    focusedPlaceholderColor = Grey,
+                    unfocusedPlaceholderColor = Grey,
+                ),
         )
 
         if (filteredTags.isNotEmpty()) {

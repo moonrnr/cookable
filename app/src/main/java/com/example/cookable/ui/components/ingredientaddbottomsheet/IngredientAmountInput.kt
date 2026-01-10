@@ -37,10 +37,15 @@ fun IngredientAmountInput(
         OutlinedTextField(
             value = value,
             onValueChange = { newValue ->
-                if (
-                    newValue.isEmpty() ||
-                    newValue.matches(Regex("""\d*\.?\d*"""))
-                ) {
+                val parts = newValue.split(".")
+                val integerPart = parts.getOrNull(0).orEmpty()
+                val decimalPart = parts.getOrNull(1)
+                val isValid =
+                    integerPart.length <= 6 &&
+                        (decimalPart?.length ?: 0) <= 2 &&
+                        newValue.matches(Regex("""\d*\.?\d*"""))
+
+                if (newValue.isEmpty() || isValid) {
                     onValueChange(newValue)
                 }
             },

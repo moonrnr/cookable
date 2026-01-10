@@ -56,7 +56,7 @@ fun IngredientNameInput(
                     unfocusedPlaceholderColor = Grey,
                 ),
         )
-
+        Spacer(Modifier.height(2.dp))
         if (suggestions.isNotEmpty()) {
             Column(
                 modifier =
