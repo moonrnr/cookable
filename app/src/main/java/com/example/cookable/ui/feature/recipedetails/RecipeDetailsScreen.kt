@@ -30,6 +30,7 @@ import com.example.cookable.domain.model.Recipe
 import com.example.cookable.ui.components.chip.Chip
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
 import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
+import com.example.cookable.ui.components.ingredientslist.IngredientsList
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
 import com.example.cookable.ui.components.sectiontitle.SectionTitle
@@ -142,18 +143,13 @@ fun RecipeDetailsScreen(
                 }
 
                 stickyHeader {
-                    SectionTitle("Ingredients", modifier = Modifier.background(Background).fillMaxWidth())
+                    SectionTitle("Ingredients", modifier = Modifier.background(Background).fillMaxWidth().padding(bottom = 10.dp))
                 }
 
                 item {
-                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        recipe.ingredients.forEach { ingredient ->
-                            Text(
-                                text = "• ${ingredient.name}",
-                                fontSize = 14.sp,
-                            )
-                        }
-                    }
+                    println("TO RECIPES, recipes")
+                    println(recipe)
+                    IngredientsList(recipe.ingredients, recipe.missingIngredients)
                 }
 
                 item {
@@ -161,7 +157,7 @@ fun RecipeDetailsScreen(
                 }
 
                 stickyHeader {
-                    SectionTitle("Directions", modifier = Modifier.background(Background).fillMaxWidth())
+                    SectionTitle("Directions", modifier = Modifier.background(Background).fillMaxWidth().padding(bottom = 10.dp))
                 }
                 item {
                     Text(

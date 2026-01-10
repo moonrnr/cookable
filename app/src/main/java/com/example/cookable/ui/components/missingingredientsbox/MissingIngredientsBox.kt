@@ -2,13 +2,14 @@ package com.example.cookable.ui.components.missingingredientsbox
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.cookable.domain.model.RecipeIngredient
 import com.example.cookable.domain.model.Status
 import com.example.cookable.ui.components.statusbox.StatusBox
 
 @Composable
 fun MissingIngredientsBox(
     hasAllIngredients: Boolean,
-    missingIngredients: List<String>,
+    missingIngredients: List<RecipeIngredient>,
     modifier: Modifier = Modifier,
 ) {
     if (hasAllIngredients) {
@@ -19,12 +20,13 @@ fun MissingIngredientsBox(
         )
     } else {
         val missingText =
-            if (missingIngredients.size > 4) {
+            if (missingIngredients.size > 3) {
                 missingIngredients
                     .take(3)
-                    .joinToString(", ") + ", and more..."
+                    .joinToString(", ") { it.ingredientName }
+                    .plus(", and more...")
             } else {
-                missingIngredients.joinToString(", ")
+                missingIngredients.joinToString(", ") { it.ingredientName }
             }
 
         StatusBox(

@@ -1,9 +1,15 @@
 [
   {
     "id": 21,
+    "sectionType": "FAVORITES",
     "recipe_name": "Southern Fried Apples",
     "total_time": "20 mins",
-    "ingredients": "½ cup butter, ½ cup white sugar, 2 tablespoons ground cinnamon, 4 Granny Smith apples - peeled, cored, and sliced",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "½ cup butter" },
+      { "id": 2, "ingredient_name": "white sugar", "ingredient_name_code": "white_sugar", "display_name": "½ cup white sugar" },
+      { "id": 3, "ingredient_name": "ground cinnamon", "ingredient_name_code": "ground_cinnamon", "display_name": "2 tablespoons ground cinnamon" },
+      { "id": 4, "ingredient_name": "apples", "ingredient_name_code": "apples", "display_name": "4 apples - peeled, cored, and sliced" }
+    ],
     "directions": "Melt butter in a large skillet over medium heat. Add sugar and cinnamon; stir until sugar dissolves. Add apples and cook until softened, 5 to 8 minutes.",
     "cuisine_path": "/Side Dish/",
     "img_src": "https://www.allrecipes.com/thmb/j38-5Fxnr9NUifEj3gsaBBkd75k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/1049390-361cabad31114328ac20bcc3c35ffce4.jpg",
@@ -27,9 +33,22 @@
   },
   {
     "id": 22,
+    "sectionType": "FAVORITES",
     "recipe_name": "Apple Turnovers",
     "total_time": "55 mins",
-    "ingredients": "2 tablespoons lemon juice, 4 cups water, 4 Granny Smith apples, 2 tablespoons butter, 1 cup brown sugar, cinnamon, cornstarch, puff pastry, confectioners' sugar, milk, vanilla",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "lemon juice", "ingredient_name_code": "lemon_juice", "display_name": "2 tablespoons lemon juice" },
+      { "id": 2, "ingredient_name": "water", "ingredient_name_code": "water", "display_name": "4 cups water" },
+      { "id": 3, "ingredient_name": "granny smith apples", "ingredient_name_code": "granny_smith_apples", "display_name": "4 Granny Smith apples" },
+      { "id": 4, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "2 tablespoons butter" },
+      { "id": 5, "ingredient_name": "brown sugar", "ingredient_name_code": "brown_sugar", "display_name": "1 cup brown sugar" },
+      { "id": 6, "ingredient_name": "cinnamon", "ingredient_name_code": "cinnamon", "display_name": "cinnamon" },
+      { "id": 7, "ingredient_name": "cornstarch", "ingredient_name_code": "cornstarch", "display_name": "cornstarch" },
+      { "id": 8, "ingredient_name": "puff pastry", "ingredient_name_code": "puff_pastry", "display_name": "puff pastry" },
+      { "id": 9, "ingredient_name": "confectioners sugar", "ingredient_name_code": "confectioners_sugar", "display_name": "confectioners' sugar" },
+      { "id": 10, "ingredient_name": "milk", "ingredient_name_code": "milk", "display_name": "milk" },
+      { "id": 11, "ingredient_name": "vanilla", "ingredient_name_code": "vanilla", "display_name": "vanilla" }
+    ],
     "directions": "Prepare apple filling, fill puff pastry squares, bake until golden, glaze after cooling.",
     "cuisine_path": "/Desserts/Fruit Desserts/Apple Dessert Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/6EpK8eOrDHd4MMlY4u4aXTOPtHA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/59124-AppleTurnovers-mfs-2X3-1645-dea040eab9a84c7483c411988b92d134.jpg",
@@ -53,9 +72,17 @@
   },
   {
     "id": 23,
+    "sectionType": "FAVORITES",
     "recipe_name": "Sauteed Apples",
     "total_time": "20 mins",
-    "ingredients": "Butter, apples, water, cornstarch, brown sugar, cinnamon",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "Butter" },
+      { "id": 2, "ingredient_name": "apples", "ingredient_name_code": "apples", "display_name": "apples" },
+      { "id": 3, "ingredient_name": "water", "ingredient_name_code": "water", "display_name": "water" },
+      { "id": 4, "ingredient_name": "cornstarch", "ingredient_name_code": "cornstarch", "display_name": "cornstarch" },
+      { "id": 5, "ingredient_name": "brown sugar", "ingredient_name_code": "brown_sugar", "display_name": "brown sugar" },
+      { "id": 6, "ingredient_name": "cinnamon", "ingredient_name_code": "cinnamon", "display_name": "cinnamon" }
+    ],
     "directions": "Cook apples in butter, thicken with cornstarch mixture, sweeten and serve warm.",
     "cuisine_path": "/Side Dish/",
     "img_src": "https://www.allrecipes.com/thmb/pTjoToZum_x5Ki9khNk_SSe7MEs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21672-SauteedApples-ddmfs-1X1-0061-fe2952cf8a6148959bd0076742996deb.jpg",
@@ -79,9 +106,16 @@
   },
   {
     "id": 24,
+    "sectionType": "FAVORITES",
     "recipe_name": "Easy Apple Pie",
     "total_time": "1 hrs",
-    "ingredients": "Pie crust, sugar, cinnamon, apples, butter",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "pie crust", "ingredient_name_code": "pie_crust", "display_name": "Pie crust" },
+      { "id": 2, "ingredient_name": "sugar", "ingredient_name_code": "sugar", "display_name": "sugar" },
+      { "id": 3, "ingredient_name": "cinnamon", "ingredient_name_code": "cinnamon", "display_name": "cinnamon" },
+      { "id": 4, "ingredient_name": "apples", "ingredient_name_code": "apples", "display_name": "apples" },
+      { "id": 5, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "butter" }
+    ],
     "directions": "Fill pie crust with apples and cinnamon sugar, bake until golden.",
     "cuisine_path": "/Desserts/Pies/Apple Pie Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/aZyGZaTNLn-ewSEGDwwmEOwrRNg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/12324-EasyApplePie-ddmfs-1x1-0016-c0401f8117954ba9a03c62ebba7f16af.jpg",
@@ -105,9 +139,20 @@
   },
   {
     "id": 25,
+    "sectionType": "FAVORITES",
     "recipe_name": "Awesome Sausage, Apple and Cranberry Stuffing",
     "total_time": "1 hrs 30 mins",
-    "ingredients": "Bread, turkey sausage, onion, celery, herbs, apple, cranberries, butter, turkey stock",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "bread", "ingredient_name_code": "bread", "display_name": "Bread" },
+      { "id": 2, "ingredient_name": "turkey sausage", "ingredient_name_code": "turkey_sausage", "display_name": "turkey sausage" },
+      { "id": 3, "ingredient_name": "onion", "ingredient_name_code": "onion", "display_name": "onion" },
+      { "id": 4, "ingredient_name": "celery", "ingredient_name_code": "celery", "display_name": "celery" },
+      { "id": 5, "ingredient_name": "herbs", "ingredient_name_code": "herbs", "display_name": "herbs" },
+      { "id": 6, "ingredient_name": "apple", "ingredient_name_code": "apple", "display_name": "apple" },
+      { "id": 7, "ingredient_name": "cranberries", "ingredient_name_code": "cranberries", "display_name": "cranberries" },
+      { "id": 8, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "butter" },
+      { "id": 9, "ingredient_name": "turkey stock", "ingredient_name_code": "turkey_stock", "display_name": "turkey stock" }
+    ],
     "directions": "Toast bread, cook sausage mixture, combine and prepare stuffing.",
     "cuisine_path": "/Side Dish/Stuffing and Dressing Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/A16n6yykk6y6ofEi8akwV-6V9Ck=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/1x1-PASSANO_ALR0922_Faves_Stuffing_5279-7495521ab45c4b8880373657bedc0db5.jpg",
@@ -131,9 +176,17 @@
   },
   {
     "id": 26,
+    "sectionType": "FAVORITES",
     "recipe_name": "Banana Chocolate Chip Bread",
     "total_time": "1 hrs 35 mins",
-    "ingredients": "Flour, bananas, sugar, butter, eggs, chocolate chips",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "flour", "ingredient_name_code": "flour", "display_name": "Flour" },
+      { "id": 2, "ingredient_name": "bananas", "ingredient_name_code": "bananas", "display_name": "bananas" },
+      { "id": 3, "ingredient_name": "sugar", "ingredient_name_code": "sugar", "display_name": "sugar" },
+      { "id": 4, "ingredient_name": "butter", "ingredient_name_code": "butter", "display_name": "butter" },
+      { "id": 5, "ingredient_name": "eggs", "ingredient_name_code": "eggs", "display_name": "eggs" },
+      { "id": 6, "ingredient_name": "chocolate chips", "ingredient_name_code": "chocolate_chips", "display_name": "chocolate chips" }
+    ],
     "directions": "Prepare batter, bake until set, cool before slicing.",
     "cuisine_path": "/Quick Bread Recipes/Fruit Bread Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/pAg6CSU9hiqZSK-GQs4D4OqRoS4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/4516795-2000-3f64bc4313a54d489a48ecf3fb007882.jpg",

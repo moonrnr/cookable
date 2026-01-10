@@ -2,8 +2,9 @@ package com.example.cookable.domain.model
 
 data class Recipe(
     val id: String,
+    val sectionType: SectionType,
     val name: String,
-    val ingredients: List<Ingredient>,
+    val ingredients: List<RecipeIngredient>,
     val directions: String,
     val isFavorite: Boolean = false,
     val cuisineCategories: String,
@@ -11,7 +12,7 @@ data class Recipe(
     val totalTime: String,
     val matchPercentage: Int,
     val matchLevel: MatchLevel,
-    val missingIngredients: List<String>,
+    val missingIngredients: List<RecipeIngredient>,
     val missingIngredientsCount: Int,
     val hasAllIngredients: Boolean,
     val tags: List<String>,

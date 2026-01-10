@@ -1,9 +1,14 @@
 [
   {
     "id": 1,
+    "sectionType": "RECIPES_LIST",
     "recipe_name": "Watermelon Milkshake",
     "total_time": "10 mins",
-    "ingredients": "1 ½ cups diced watermelon, 2 ¼ cups milk, 2 teaspoons white sugar",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "watermelon", "ingredient_name_code": "watermelon", "display_name": "1½ cups diced watermelon" },
+      { "id": 2, "ingredient_name": "milk", "ingredient_name_code": "milk", "display_name": "2¼ cups milk" },
+      { "id": 3, "ingredient_name": "white sugar", "ingredient_name_code": "white_sugar", "display_name": "2 teaspoons white sugar" }
+    ],
     "directions": "Process the watermelon and milk together in a blender until smooth. Add the sugar and blend another 10 seconds to incorporate. Serve immediately.",
     "cuisine_path": "/Drinks Recipes/Smoothie Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/V6D_OFJ-7s5q6o8HgHa2DDEoO-E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/687260-4d95ba38deaa4581b073d186f2fd4be6.jpg",
@@ -27,26 +32,29 @@
   },
   {
     "id": 20,
+    "sectionType": "RECIPES_LIST",
     "recipe_name": "Precious Pineapple Cake",
     "total_time": "1 hrs 35 mins",
-    "ingredients": "½ cup margarine, softened, 3 large eggs, 1 (18.25 ounce) package yellow cake mix, 1 (20 ounce) can crushed pineapple with juice, ½ cup chopped pecans",
+    "ingredients": [
+      { "id": 1, "ingredient_name": "margarine", "ingredient_name_code": "margarine", "display_name": "½ cup margarine, softened" },
+      { "id": 2, "ingredient_name": "eggs", "ingredient_name_code": "eggs", "display_name": "3 large eggs" },
+      { "id": 3, "ingredient_name": "yellow cake mix", "ingredient_name_code": "yellow_cake_mix", "display_name": "1 package yellow cake mix (18.25 oz)" },
+      { "id": 4, "ingredient_name": "crushed pineapple", "ingredient_name_code": "crushed_pineapple", "display_name": "1 can crushed pineapple with juice (20 oz)" },
+      { "id": 5, "ingredient_name": "pecans", "ingredient_name_code": "pecans", "display_name": "½ cup chopped pecans" },
+      { "id": 6, "ingredient_name": "cream cheese", "ingredient_name_code": "cream_cheese", "display_name": "cream cheese (for frosting)" },
+      { "id": 7, "ingredient_name": "confectioners sugar", "ingredient_name_code": "confectioners_sugar", "display_name": "confectioners’ sugar (for frosting)" }
+    ],
+    "missing_ingredients": [
+      { "id": 6, "ingredient_name": "cream cheese", "ingredient_name_code": "cream_cheese", "display_name": "cream cheese (for frosting)" },
+      { "id": 7, "ingredient_name": "confectioners sugar", "ingredient_name_code": "confectioners_sugar", "display_name": "confectioners’ sugar (for frosting)" }
+    ],
+    "missing_ingredients_count": 2,
+    "has_all_ingredients": false,
     "directions": "Preheat the oven to 350 degrees F (175 degrees C). Grease and flour three 8-inch round pans.\nCream margarine in a large bowl until smooth. Blend in eggs. Add cake mix and pineapple with juice; mix until smooth. Stir in pecans. Pour batter into the prepared pans.\nBake in the preheated oven until a toothpick inserted into the center comes out clean, 20 to 30 minutes. Cool cakes in pans on wire racks for 5 minutes. Run a table knife around the edges to loosen. Invert carefully onto cooling racks. Let cool completely, about 1 hour.\nTo make frosting: Beat margarine and cream cheese in a medium bowl until smooth. Gradually blend in the confectioners' sugar. Mix in pecans.\nSpread frosting onto the cooled cake layers. Stack layers; frost top and sides.",
     "cuisine_path": "/Desserts/Cakes/Pineapple Cake Recipes/",
     "img_src": "https://www.allrecipes.com/thmb/oLtMySzpnU1PAYnVH1Qv4jXMcQs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/2232633-74c56aabd8784d3e8245cf7d9b2941bc.jpg",
     "match_percentage": 22,
     "match_level": "LOW",
-    "missing_ingredients": [
-      "parmesan",
-      "ketchup",
-      "walnuts",
-      "cinnamon",
-      "garlic",
-      "green beans",
-      "kale",
-      "spinach"
-    ],
-    "missing_ingredients_count": 8,
-    "has_all_ingredients": false,
     "tags": ["Cake", "Dessert"],
     "isVegetarian": true,
     "isVegan": false,
@@ -60,4 +68,5 @@
     "timeMinutes": 95,
     "isFavorite": true
   }
+
 ]

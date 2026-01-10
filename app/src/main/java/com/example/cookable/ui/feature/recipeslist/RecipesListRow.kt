@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
+import com.example.cookable.domain.model.SectionType
 import com.example.cookable.ui.components.chip.Chip
 import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
 import com.example.cookable.ui.components.matchbadge.MatchBadge
@@ -117,11 +118,12 @@ fun RecipesListItemRow(
                     Chip(text = tag)
                 }
             }
-
-            MissingIngredientsBox(
-                hasAllIngredients = recipe.hasAllIngredients,
-                missingIngredients = recipe.missingIngredients,
-            )
+            if (recipe.sectionType == SectionType.RECIPES_LIST) {
+                MissingIngredientsBox(
+                    hasAllIngredients = recipe.hasAllIngredients,
+                    missingIngredients = recipe.missingIngredients,
+                )
+            }
         }
     }
 }
