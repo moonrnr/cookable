@@ -167,6 +167,7 @@ fun StartScreen(
                                         editedIndex = index
                                     },
                                     onRemove = { viewModel.onRemoveIngredient(index) },
+                                    onAcceptSuggestion = {},
                                 )
                             }
                         }

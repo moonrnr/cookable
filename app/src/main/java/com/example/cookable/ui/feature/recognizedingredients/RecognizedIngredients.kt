@@ -193,6 +193,9 @@ fun RecognizedIngredients(
                                 suggestedUnit = ingredient.unitSuggestion,
                                 suggestedAmount = ingredient.amountSuggestion?.toString(),
                                 hasError = showErrors && ingredient.hasError,
+                                onAcceptSuggestion = {
+                                    viewModel.acceptSuggestion(index)
+                                },
                             )
                         }
                     }

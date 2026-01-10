@@ -37,6 +37,7 @@ fun IngredientRow(
     suggestedUnit: UnitType? = null,
     onClick: () -> Unit,
     onRemove: () -> Unit,
+    onAcceptSuggestion: (() -> Unit)? = null,
 ) {
     Row(
         modifier =
@@ -88,7 +89,11 @@ fun IngredientRow(
                 Box(
                     modifier =
                         Modifier
-                            .background(
+                            .clickable(
+                                enabled = onAcceptSuggestion != null,
+                            ) {
+                                onAcceptSuggestion?.invoke()
+                            }.background(
                                 color = PrimaryOrangeLight,
                                 shape = RoundedCornerShape(999.dp),
                             ).padding(horizontal = 12.dp, vertical = 6.dp),

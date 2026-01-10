@@ -118,4 +118,24 @@ class RecognizedIngredientsViewModel : ViewModel() {
                 if (i == index) updated else ingredient
             }
     }
+
+    fun acceptSuggestion(index: Int) {
+        _ingredients.value =
+            _ingredients.value.mapIndexed { i, ingredient ->
+                if (i == index &&
+                    ingredient.amountSuggestion != null &&
+                    ingredient.unitSuggestion != null
+                ) {
+                    ingredient.copy(
+                        amount = ingredient.amountSuggestion,
+                        unit = ingredient.unitSuggestion,
+                        amountSuggestion = null,
+                        unitSuggestion = null,
+                        hasError = false,
+                    )
+                } else {
+                    ingredient
+                }
+            }
+    }
 }
