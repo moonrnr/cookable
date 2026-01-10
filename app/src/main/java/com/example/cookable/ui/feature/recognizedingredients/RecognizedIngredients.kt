@@ -13,18 +13,26 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.outlined.KeyboardArrowDown
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +52,7 @@ import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottom
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.components.screentitle.ScreenTitle
+import com.example.cookable.ui.recognizedingredientssummary.RecognizedIngredientsSummary
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Card
@@ -64,6 +73,36 @@ fun RecognizedIngredients(
     var editedIngredientIndex by remember { mutableStateOf<Int?>(null) }
     val photoUri by scanViewModel.photoUri.collectAsState()
     val showErrors by viewModel.showErrors.collectAsState()
+    val completeCount =
+        ingredients.count {
+            it.unitSuggestion == null && it.amountSuggestion == null
+        }
+
+    val incompleteCount = ingredients.size - completeCount
+
+    val listState = rememberLazyListState()
+
+    val isScrollable by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            val totalItems = layoutInfo.totalItemsCount
+            val visibleItems = layoutInfo.visibleItemsInfo
+
+            if (visibleItems.isEmpty()) return@derivedStateOf false
+
+            val lastVisibleIndex = visibleItems.last().index
+            lastVisibleIndex < totalItems - 1
+        }
+    }
+
+    val hasScrolled by remember {
+        derivedStateOf {
+            listState.firstVisibleItemIndex > 0 ||
+                listState.firstVisibleItemScrollOffset > 0
+        }
+    }
+    val showScrollHint = isScrollable && !hasScrolled
+
     Column(
         modifier =
             Modifier
@@ -126,11 +165,19 @@ fun RecognizedIngredients(
                         )
                     }
                 }
+
+                RecognizedIngredientsSummary(
+                    completeCount = completeCount,
+                    incompleteCount = incompleteCount,
+                )
+                HorizontalDivider(color = Line)
+
                 BoxWithConstraints {
                     LazyColumn(
+                        state = listState,
                         modifier =
                             Modifier
-                                .heightIn(max = maxHeight * 0.75f),
+                                .heightIn(max = maxHeight * 0.78f),
                     ) {
                         itemsIndexed(ingredients) { index, ingredient ->
                             IngredientRow(
@@ -147,6 +194,33 @@ fun RecognizedIngredients(
                                 suggestedAmount = ingredient.amountSuggestion?.toString(),
                                 hasError = showErrors && ingredient.hasError,
                             )
+                        }
+                    }
+                    Column(
+                        modifier = Modifier.align(Alignment.BottomCenter),
+                    ) {
+                        if (showScrollHint) {
+                            Row(
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 6.dp),
+                                horizontalArrangement = Arrangement.Center,
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    tint = Line,
+                                    modifier = Modifier.size(30.dp),
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Icon(
+                                    imageVector = Icons.Filled.KeyboardArrowDown,
+                                    contentDescription = null,
+                                    tint = Line,
+                                    modifier = Modifier.size(30.dp),
+                                )
+                            }
                         }
                     }
                 }

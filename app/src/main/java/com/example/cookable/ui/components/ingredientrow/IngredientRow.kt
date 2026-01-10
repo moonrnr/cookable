@@ -23,8 +23,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.UnitType
-import com.example.cookable.ui.theme.PrimaryGreen
-import com.example.cookable.ui.theme.PrimaryGreenLight
+import com.example.cookable.ui.theme.PrimaryOrange
+import com.example.cookable.ui.theme.PrimaryOrangeLight
 import com.example.cookable.ui.theme.Red
 
 @Composable
@@ -47,14 +47,13 @@ fun IngredientRow(
                         Modifier.drawBehind {
                             val stroke = 12.dp.toPx()
                             val h = size.height
-
                             drawLine(Red, Offset(0f, 0f), Offset(0f, h), stroke)
                             drawLine(Red, Offset(size.width, 0f), Offset(size.width, h), stroke)
                         }
                     } else {
                         Modifier
                     },
-                ).padding(horizontal = 16.dp, vertical = 14.dp),
+                ).padding(horizontal = 16.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(
@@ -90,7 +89,7 @@ fun IngredientRow(
                     modifier =
                         Modifier
                             .background(
-                                color = PrimaryGreenLight,
+                                color = PrimaryOrangeLight,
                                 shape = RoundedCornerShape(999.dp),
                             ).padding(horizontal = 12.dp, vertical = 6.dp),
                 ) {
@@ -98,7 +97,7 @@ fun IngredientRow(
                         text = "suggested: $suggestedAmount ${suggestedUnit.shortLabel}",
                         fontSize = 12.sp,
                         fontStyle = FontStyle.Italic,
-                        color = PrimaryGreen,
+                        color = PrimaryOrange,
                     )
                 }
             }
