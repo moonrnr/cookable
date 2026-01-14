@@ -30,11 +30,11 @@ import com.example.cookable.domain.model.Recipe
 import com.example.cookable.ui.components.chip.Chip
 import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
 import com.example.cookable.ui.components.iconbuttons.favorite.AddToFavoriteIconButton
-import com.example.cookable.ui.components.ingredientslist.IngredientsList
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
 import com.example.cookable.ui.components.totaltimebadge.TotalTimeBadge
-import com.example.cookable.ui.feature.recipedetails.components.sectiontitle.SectionTitle
+import com.example.cookable.ui.feature.recipedetails.components.ingredients.IngredientsList
+import com.example.cookable.ui.feature.recipedetails.components.titles.SectionTitle
 import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Line

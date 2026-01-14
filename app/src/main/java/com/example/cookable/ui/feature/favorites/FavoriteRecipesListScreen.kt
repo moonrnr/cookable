@@ -25,15 +25,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.cookable.domain.model.SortState
 import com.example.cookable.ui.components.emptyfavoritesstate.EmptyFavoritesState
-import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
-import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
 import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
 import com.example.cookable.ui.components.recipesloader.RecipesLoader
 import com.example.cookable.ui.components.screentitle.ScreenTitle
-import com.example.cookable.ui.components.sortbottomsheet.SortBottomSheet
 import com.example.cookable.ui.components.sortfiltercontainer.SortFilterContainer
-import com.example.cookable.ui.feature.recipeslist.RecipesListItemRow
+import com.example.cookable.ui.feature.bottomsheets.filterbottomsheet.FilterBottomSheet
+import com.example.cookable.ui.feature.bottomsheets.filterbottomsheet.FilterBottomSheetState
+import com.example.cookable.ui.feature.bottomsheets.sortbottomsheet.SortBottomSheet
 import com.example.cookable.ui.feature.recipeslist.RecipesListType
+import com.example.cookable.ui.feature.recipeslist.components.row.RecipesListItemRow
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 

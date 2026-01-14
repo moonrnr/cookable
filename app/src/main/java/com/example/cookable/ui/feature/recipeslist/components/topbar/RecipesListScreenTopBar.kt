@@ -1,4 +1,4 @@
-package com.example.cookable.ui.feature.recognizedingredients.components.topbar
+package com.example.cookable.ui.feature.recipeslist.components.topbar
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,17 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
-import com.example.cookable.ui.components.ingredients.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.components.screentitle.ScreenTitle
-import com.example.cookable.ui.theme.PrimaryGreen
-import com.example.cookable.ui.theme.White
+import com.example.cookable.ui.components.sortfiltercontainer.SortFilterContainer
 
 @Composable
-fun RecognizedIngredientsTopbar(
-    ingredientsCount: Int,
-    onBack: () -> Unit,
+fun RecipesListScreenTopBar(
+    onBackClick: () -> Unit,
+    onSortClick: () -> Unit,
+    onFilterClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -34,16 +32,13 @@ fun RecognizedIngredientsTopbar(
                 ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        ArrowBackIconButton(onBack)
+        ArrowBackIconButton(onClick = onBackClick)
         Spacer(modifier = Modifier.width(8.dp))
-        ScreenTitle(text = "Recognized ingredients")
-        Spacer(modifier = Modifier.width(16.dp))
-        IngredientsCountBadge(
-            ingredientsCount = ingredientsCount,
-            backgroundColor = PrimaryGreen,
-            textColor = White,
-            isTextBold = true,
-            fontSize = 14.sp,
+        ScreenTitle(text = "Recipes")
+        Spacer(modifier = Modifier.width(30.dp))
+        SortFilterContainer(
+            onSortClick = onSortClick,
+            onFilterClick = onFilterClick,
         )
     }
 }

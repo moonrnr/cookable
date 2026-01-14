@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
-import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
-import com.example.cookable.ui.components.ingredientrow.IngredientRow
-import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
+import com.example.cookable.ui.components.ingredients.ingredientrow.IngredientRow
+import com.example.cookable.ui.components.ingredients.ingredientscountbadge.IngredientsCountBadge
+import com.example.cookable.ui.components.scrollcaption.ArrowsDownwardsIcons
 import com.example.cookable.ui.theme.Muted
 import com.example.cookable.ui.theme.PrimaryGreen
 import com.example.cookable.ui.theme.PrimaryGreenLight

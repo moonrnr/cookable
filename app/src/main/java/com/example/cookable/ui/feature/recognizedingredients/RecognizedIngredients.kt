@@ -18,11 +18,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
-import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
+import com.example.cookable.ui.feature.bottomsheets.ingredienteditbottomsheet.IngredientEditBottomSheet
 import com.example.cookable.ui.feature.recognizedingredients.components.actions.ConfirmButton
 import com.example.cookable.ui.feature.recognizedingredients.components.actions.RescanButton
+import com.example.cookable.ui.feature.recognizedingredients.components.list.RecognizedIngredientsList
 import com.example.cookable.ui.feature.recognizedingredients.components.modals.MissingDataModal
-import com.example.cookable.ui.feature.recognizedingredients.components.recognizedingredientslist.RecognizedIngredientsList
 import com.example.cookable.ui.feature.recognizedingredients.components.topbar.RecognizedIngredientsTopbar
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background

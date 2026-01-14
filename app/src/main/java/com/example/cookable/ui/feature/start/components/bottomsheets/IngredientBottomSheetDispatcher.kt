@@ -5,9 +5,9 @@ import androidx.compose.runtime.remember
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.repository.FrequentIngredientsRepositoryProvider
-import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddBottomSheet
-import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddBottomSheetViewModel
-import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
+import com.example.cookable.ui.feature.bottomsheets.ingredientaddbottomsheet.IngredientAddBottomSheet
+import com.example.cookable.ui.feature.bottomsheets.ingredientaddbottomsheet.IngredientAddBottomSheetViewModel
+import com.example.cookable.ui.feature.bottomsheets.ingredienteditbottomsheet.IngredientEditBottomSheet
 
 @Composable
 fun IngredientBottomSheetDispatcher(

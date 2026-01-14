@@ -24,7 +24,7 @@ import com.example.cookable.ui.feature.start.components.actions.ScanIngredientsB
 import com.example.cookable.ui.feature.start.components.apphelp.AppHelp
 import com.example.cookable.ui.feature.start.components.bottomsheets.IngredientBottomSheetDispatcher
 import com.example.cookable.ui.feature.start.components.ingredients.IngredientsList
-import com.example.cookable.ui.feature.start.components.topbar.StartTopBar
+import com.example.cookable.ui.feature.start.components.topbar.StartScreenTopBar
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 
@@ -69,7 +69,7 @@ fun StartScreen(
                 .background(Background)
                 .padding(top = 20.dp),
     ) {
-        StartTopBar(
+        StartScreenTopBar(
             onHelpClick = { showInfoDialog = true },
             onFavoritesClick = {
                 val hasIngredients = state.ingredients.isNotEmpty()

@@ -4,7 +4,7 @@ import com.example.cookable.domain.model.MatchLevel
 import com.example.cookable.domain.model.PreparationDifficulty
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
-import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
+import com.example.cookable.ui.feature.bottomsheets.filterbottomsheet.FilterBottomSheetState
 
 class FilterAndSortRecipesUseCase {
     private fun sortRecipesList(

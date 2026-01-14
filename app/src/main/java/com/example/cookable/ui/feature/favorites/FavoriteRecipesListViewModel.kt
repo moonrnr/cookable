@@ -6,7 +6,7 @@ import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
 import com.example.cookable.domain.usecase.FilterAndSortRecipesUseCase
-import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
+import com.example.cookable.ui.feature.bottomsheets.filterbottomsheet.FilterBottomSheetState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

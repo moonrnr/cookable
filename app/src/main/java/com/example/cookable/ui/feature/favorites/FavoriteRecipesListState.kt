@@ -2,7 +2,7 @@ package com.example.cookable.ui.feature.favorites
 
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SortOption
-import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
+import com.example.cookable.ui.feature.bottomsheets.filterbottomsheet.FilterBottomSheetState
 
 data class FavoriteRecipesListState(
     val recipes: List<Recipe> = emptyList(),
