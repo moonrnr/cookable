@@ -23,7 +23,7 @@ import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.feature.recognizedingredients.RecognizedIngredients
 import com.example.cookable.ui.feature.scan.ScanScreen
 import com.example.cookable.ui.feature.start.StartScreen
-import com.example.cookable.ui.feature.start.StartViewModel
+import com.example.cookable.ui.feature.start.StartScreenViewModel
 import com.example.cookable.ui.scan.ScanViewModel
 
 @Composable
@@ -49,11 +49,11 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         modifier = modifier,
     ) {
         composable(Routes.START) { backStackEntry ->
-            val startViewModel: StartViewModel = viewModel(backStackEntry)
+            val startScreenViewModel: StartScreenViewModel = viewModel(backStackEntry)
 
             StartScreen(
                 navController = navController,
-                viewModel = startViewModel,
+                viewModel = startScreenViewModel,
             )
         }
 
@@ -89,7 +89,7 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
                 remember(navController) {
                     navController.getBackStackEntry(Routes.START)
                 }
-            val startViewModel: StartViewModel =
+            val startScreenViewModel: StartScreenViewModel =
                 viewModel(startBackStackEntry)
 
             val scanBackStackEntry =
@@ -101,7 +101,7 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
 
             RecognizedIngredients(
                 onConfirm = { recognizedIngredients ->
-                    startViewModel.addIngredients(recognizedIngredients)
+                    startScreenViewModel.addIngredients(recognizedIngredients)
 
                     navController.popBackStack(Routes.START, false)
                 },

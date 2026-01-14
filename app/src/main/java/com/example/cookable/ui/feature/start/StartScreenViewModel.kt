@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class StartViewModel : ViewModel() {
-    private val _state = MutableStateFlow(StartState())
-    val state: StateFlow<StartState> = _state.asStateFlow()
+class StartScreenViewModel : ViewModel() {
+    private val _state = MutableStateFlow(StartScreenState())
+    val state: StateFlow<StartScreenState> = _state.asStateFlow()
 
     fun onRemoveIngredient(index: Int) {
         _state.value =

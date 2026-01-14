@@ -2,7 +2,7 @@ package com.example.cookable.ui.feature.start
 
 import com.example.cookable.domain.model.Ingredient
 
-data class StartState(
+data class StartScreenState(
     val ingredients: List<Ingredient> = emptyList(),
 ) {
     val canFindRecipes: Boolean
