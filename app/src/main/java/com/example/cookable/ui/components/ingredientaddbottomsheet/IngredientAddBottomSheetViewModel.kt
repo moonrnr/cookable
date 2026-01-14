@@ -22,6 +22,8 @@ class IngredientAddBottomSheetViewModel(
             it.copy(
                 name = value,
                 isSaveEnabled = value.isNotBlank(),
+                suggestedAmounts = emptyList(),
+                suggestedUnits = emptyList(),
             )
         }
 
