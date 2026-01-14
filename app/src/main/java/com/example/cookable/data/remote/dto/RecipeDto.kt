@@ -21,7 +21,7 @@ data class RecipeDto(
     val missing_ingredients_count: Int,
     val has_all_ingredients: Boolean,
     val tags: List<String>,
-    val isVegetarian: Boolean,
+    val is_vegetarian: Boolean,
     val isVegan: Boolean,
     val isGlutenFree: Boolean,
     val isKeto: Boolean,
