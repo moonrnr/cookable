@@ -1,6 +1,5 @@
 package com.example.cookable.ui.components.ingredienteditbottomsheet
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,8 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -28,7 +25,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -49,6 +45,8 @@ import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.domain.model.UnitType
+import com.example.cookable.ui.components.buttons.PrimaryButton
+import com.example.cookable.ui.components.buttons.SecondaryButton
 import com.example.cookable.ui.components.pill.Pill
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Grey
@@ -294,27 +292,15 @@ fun IngredientEditBottomSheet(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
-                    OutlinedButton(
+                    SecondaryButton(
+                        text = "Cancel",
                         onClick = onCancel,
                         modifier =
                             Modifier
-                                .weight(1f)
-                                .height(52.dp),
-                        shape = RoundedCornerShape(18.dp),
-                        colors =
-                            ButtonDefaults.outlinedButtonColors(
-                                contentColor = PrimaryGreen,
-                            ),
-                        border = BorderStroke(1.dp, Line),
-                    ) {
-                        Text(
-                            text = "Cancel",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-
-                    Button(
+                                .weight(1f),
+                    )
+                    PrimaryButton(
+                        text = "Save",
                         onClick = {
                             onSave(
                                 Ingredient(
@@ -324,31 +310,9 @@ fun IngredientEditBottomSheet(
                                 ),
                             )
                         },
-                        modifier =
-                            Modifier
-                                .weight(1f)
-                                .height(52.dp),
                         enabled = canSave,
-                        shape = RoundedCornerShape(18.dp),
-                        colors =
-                            ButtonDefaults.buttonColors(
-                                containerColor = PrimaryGreen,
-                                disabledContainerColor = Color(0xFFDADCE0),
-                                contentColor = Color.White,
-                                disabledContentColor = Color(0xFF9AA0A6),
-                            ),
-                        elevation =
-                            ButtonDefaults.buttonElevation(
-                                defaultElevation = 0.dp,
-                                pressedElevation = 0.dp,
-                            ),
-                    ) {
-                        Text(
-                            text = "Save",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.ExtraBold,
-                        )
-                    }
+                        modifier = Modifier.weight(1f),
+                    )
                 }
             }
         }

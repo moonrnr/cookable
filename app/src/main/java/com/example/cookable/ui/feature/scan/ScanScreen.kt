@@ -8,7 +8,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,12 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,14 +27,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import com.example.cookable.ui.components.buttons.PrimaryButton
+import com.example.cookable.ui.components.buttons.SecondaryButton
 import com.example.cookable.ui.scan.CameraPreview
 import com.example.cookable.ui.scan.ScanViewModel
-import com.example.cookable.ui.theme.Line
-import com.example.cookable.ui.theme.PrimaryGreen
 import java.io.File
 
 @Composable
@@ -112,27 +104,15 @@ fun ScanScreen(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            OutlinedButton(
+            SecondaryButton(
+                text = "Cancel",
                 onClick = onCancel,
                 modifier =
                     Modifier
-                        .weight(1f)
-                        .height(52.dp),
-                shape = RoundedCornerShape(18.dp),
-                colors =
-                    ButtonDefaults.outlinedButtonColors(
-                        contentColor = PrimaryGreen,
-                    ),
-                border = BorderStroke(1.dp, Line),
-            ) {
-                Text(
-                    text = "Cancel",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-            }
-
-            Button(
+                        .weight(1f),
+            )
+            PrimaryButton(
+                text = "Scan",
                 onClick = {
                     takePhoto(
                         context = context,
@@ -142,28 +122,8 @@ fun ScanScreen(
                         onScan()
                     }
                 },
-                modifier =
-                    Modifier
-                        .weight(1f)
-                        .height(52.dp),
-                shape = RoundedCornerShape(18.dp),
-                colors =
-                    ButtonDefaults.buttonColors(
-                        containerColor = PrimaryGreen,
-                        contentColor = Color.White,
-                    ),
-                elevation =
-                    ButtonDefaults.buttonElevation(
-                        defaultElevation = 0.dp,
-                        pressedElevation = 0.dp,
-                    ),
-            ) {
-                Text(
-                    text = "Scan",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                )
-            }
+                modifier = Modifier.weight(1f),
+            )
         }
     }
 }

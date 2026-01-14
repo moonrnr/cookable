@@ -1,6 +1,5 @@
 package com.example.cookable.ui.components.ingredientaddbottomsheet
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,6 +35,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.cookable.domain.model.Ingredient
+import com.example.cookable.ui.components.buttons.PrimaryButton
+import com.example.cookable.ui.components.buttons.SecondaryButton
 import com.example.cookable.ui.theme.Line
 import com.example.cookable.ui.theme.PrimaryGreen
 import com.example.cookable.ui.theme.White
@@ -150,57 +151,23 @@ fun IngredientAddBottomSheet(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
-                    OutlinedButton(
+                    SecondaryButton(
+                        text = "Cancel",
                         onClick = onCancel,
                         modifier =
                             Modifier
-                                .weight(1f)
-                                .height(52.dp),
-                        shape = RoundedCornerShape(18.dp),
-                        colors =
-                            ButtonDefaults.outlinedButtonColors(
-                                contentColor = PrimaryGreen,
-                            ),
-                        border = BorderStroke(1.dp, Line),
-                    ) {
-                        Text(
-                            text = "Cancel",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-
-                    Button(
+                                .weight(1f),
+                    )
+                    PrimaryButton(
+                        text = "Save",
                         onClick = {
                             viewModel.onSaveClicked { ingredient ->
                                 onSave(ingredient)
                             }
                         },
-                        modifier =
-                            Modifier
-                                .weight(1f)
-                                .height(52.dp),
                         enabled = state.isSaveEnabled,
-                        shape = RoundedCornerShape(18.dp),
-                        colors =
-                            ButtonDefaults.buttonColors(
-                                containerColor = PrimaryGreen,
-                                disabledContainerColor = Color(0xFFDADCE0),
-                                contentColor = Color.White,
-                                disabledContentColor = Color(0xFF9AA0A6),
-                            ),
-                        elevation =
-                            ButtonDefaults.buttonElevation(
-                                defaultElevation = 0.dp,
-                                pressedElevation = 0.dp,
-                            ),
-                    ) {
-                        Text(
-                            text = "Save",
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.ExtraBold,
-                        )
-                    }
+                        modifier = Modifier.weight(1f),
+                    )
                 }
             }
         }
