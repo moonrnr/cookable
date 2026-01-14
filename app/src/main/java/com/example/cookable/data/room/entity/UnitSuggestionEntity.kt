@@ -1,4 +1,5 @@
 package com.example.cookable.data.room.entity
+
 import androidx.room.Entity
 import androidx.room.Index
 import com.example.cookable.domain.model.UnitType
