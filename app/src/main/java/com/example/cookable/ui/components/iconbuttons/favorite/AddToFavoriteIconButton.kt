@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.iconbutton.favoriteiconbutton
+package com.example.cookable.ui.components.iconbuttons.favorite
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.example.cookable.ui.theme.PrimaryGreen
 
 @Composable
-fun FavoriteIconButton(
+fun AddToFavoriteIconButton(
     isFavorite: Boolean,
     isSmall: Boolean,
     onClick: () -> Unit,

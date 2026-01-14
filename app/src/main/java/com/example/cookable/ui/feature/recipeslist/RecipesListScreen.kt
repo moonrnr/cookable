@@ -26,7 +26,7 @@ import com.example.cookable.domain.model.SortState
 import com.example.cookable.ui.components.emptyfiltersstate.EmptyFiltersState
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheet
 import com.example.cookable.ui.components.filterbottomsheet.FilterBottomSheetState
-import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
+import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
 import com.example.cookable.ui.components.recipesloader.RecipesLoader
 import com.example.cookable.ui.components.screentitle.ScreenTitle
 import com.example.cookable.ui.components.sortbottomsheet.SortBottomSheet

@@ -25,7 +25,7 @@ import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.domain.model.SectionType
 import com.example.cookable.ui.components.chip.Chip
-import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
+import com.example.cookable.ui.components.iconbuttons.favorite.AddToFavoriteIconButton
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
 import com.example.cookable.ui.components.totaltimebadge.TotalTimeBadge
@@ -95,7 +95,7 @@ fun RecipesListItemRow(
 
                 Spacer(Modifier.weight(1f))
 
-                FavoriteIconButton(isFavorite = recipe.isFavorite, isSmall = true, onClick = onToggleFavorite)
+                AddToFavoriteIconButton(isFavorite = recipe.isFavorite, isSmall = true, onClick = onToggleFavorite)
             }
         }
 

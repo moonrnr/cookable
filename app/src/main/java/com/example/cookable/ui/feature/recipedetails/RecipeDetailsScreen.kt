@@ -28,8 +28,8 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.cookable.domain.model.Recipe
 import com.example.cookable.ui.components.chip.Chip
-import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
-import com.example.cookable.ui.components.iconbutton.favoriteiconbutton.FavoriteIconButton
+import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
+import com.example.cookable.ui.components.iconbuttons.favorite.AddToFavoriteIconButton
 import com.example.cookable.ui.components.ingredientslist.IngredientsList
 import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
@@ -85,7 +85,7 @@ fun RecipeDetailsScreen(
                             ),
                 )
 
-                FavoriteIconButton(isFavorite = isFavorite, isSmall = false, onClick = { viewModel.toggleFavorite(recipe) })
+                AddToFavoriteIconButton(isFavorite = isFavorite, isSmall = false, onClick = { viewModel.toggleFavorite(recipe) })
             }
 
             Row(

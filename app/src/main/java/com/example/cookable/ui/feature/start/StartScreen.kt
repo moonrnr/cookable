@@ -14,13 +14,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Help
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -50,6 +45,8 @@ import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAdd
 import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
+import com.example.cookable.ui.feature.start.components.iconbuttons.FavoriteIconButton
+import com.example.cookable.ui.feature.start.components.iconbuttons.HelpIconButton
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Muted
@@ -109,19 +106,15 @@ fun StartScreen(
             AppLogo()
 
             Row {
-                IconButton(onClick = { showInfoDialog = true }) {
-                    Icon(Icons.Filled.Help, contentDescription = null, tint = Color(0xFF2E7D32))
-                }
-                IconButton(
-                    onClick = {
-                        val hasIngredients = state.ingredients.isNotEmpty()
-                        FavoritesRepositoryProvider.instance
-                            .setFilterByIngredients(hasIngredients)
-                        navController.navigate(Routes.FAVORITE_RECIPES_LIST)
-                    },
-                ) {
-                    Icon(Icons.Filled.Favorite, contentDescription = null, tint = Color(0xFF2E7D32))
-                }
+                HelpIconButton(
+                    onClick = { showInfoDialog = true },
+                )
+                FavoriteIconButton(onClick = {
+                    val hasIngredients = state.ingredients.isNotEmpty()
+                    FavoritesRepositoryProvider.instance
+                        .setFilterByIngredients(hasIngredients)
+                    navController.navigate(Routes.FAVORITE_RECIPES_LIST)
+                })
             }
         }
 

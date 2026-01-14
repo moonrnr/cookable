@@ -43,7 +43,7 @@ import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
-import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
+import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
 import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
