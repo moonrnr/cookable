@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.ingredientbottomsheet
+package com.example.cookable.ui.components.ingredienteditbottomsheet
 
 import androidx.lifecycle.ViewModel
 import com.example.cookable.domain.model.UnitType
@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class IngredientViewModel : ViewModel() {
-    private val _state = MutableStateFlow(IngredientState())
-    val state: StateFlow<IngredientState> = _state.asStateFlow()
+class IngredientEditBottomSheetViewModel : ViewModel() {
+    private val _state = MutableStateFlow(IngredientEditBottomSheetState())
+    val state: StateFlow<IngredientEditBottomSheetState> = _state.asStateFlow()
 
     fun onNameChange(value: String) {
         _state.value = _state.value.copy(name = value)
@@ -34,6 +34,6 @@ class IngredientViewModel : ViewModel() {
     }
 
     fun reset() {
-        _state.value = IngredientState()
+        _state.value = IngredientEditBottomSheetState()
     }
 }

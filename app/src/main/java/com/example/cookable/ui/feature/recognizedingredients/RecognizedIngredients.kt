@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -45,7 +44,7 @@ import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
 import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
 import com.example.cookable.ui.components.iconbutton.arrowbackiconbutton.ArrowBackIconButton
-import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
+import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.components.screentitle.ScreenTitle
@@ -288,7 +287,7 @@ fun RecognizedIngredients(
     }
 
     editedIngredientIndex?.let { index ->
-        IngredientBottomSheet(
+        IngredientEditBottomSheet(
             initialIngredient = ingredients[index],
             onSave = { updatedIngredient ->
                 viewModel.update(index, updatedIngredient)

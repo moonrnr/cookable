@@ -43,7 +43,7 @@ import com.example.cookable.ui.theme.White
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun IngredientAddBottomSheet(
-    viewModel: IngredientAddViewModel,
+    viewModel: IngredientAddBottomSheetViewModel,
     onSave: (Ingredient) -> Unit,
     onCancel: () -> Unit,
     onDismiss: () -> Unit,

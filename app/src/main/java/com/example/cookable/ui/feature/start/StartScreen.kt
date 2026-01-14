@@ -1,6 +1,5 @@
 package com.example.cookable.ui.feature.start
 
-import android.R.attr.maxHeight
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -47,8 +46,8 @@ import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.components.applogo.AppLogo
 import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
 import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddBottomSheet
-import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddViewModel
-import com.example.cookable.ui.components.ingredientbottomsheet.IngredientBottomSheet
+import com.example.cookable.ui.components.ingredientaddbottomsheet.IngredientAddBottomSheetViewModel
+import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
 import com.example.cookable.ui.components.ingredientrow.IngredientRow
 import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
 import com.example.cookable.ui.navigation.Routes
@@ -271,15 +270,15 @@ fun StartScreen(
         sheetIngredient?.let { ingredient ->
 
             if (editedIndex == null) {
-                val ingredientAddViewModel =
+                val ingredientAddBottomSheetViewModel =
                     remember {
-                        IngredientAddViewModel(
+                        IngredientAddBottomSheetViewModel(
                             repository = FrequentIngredientsRepositoryProvider.get(),
                         )
                     }
 
                 IngredientAddBottomSheet(
-                    viewModel = ingredientAddViewModel,
+                    viewModel = ingredientAddBottomSheetViewModel,
                     onSave = { result ->
                         viewModel.addIngredient(result)
 
@@ -296,7 +295,7 @@ fun StartScreen(
                     },
                 )
             } else {
-                IngredientBottomSheet(
+                IngredientEditBottomSheet(
                     initialIngredient = ingredient,
                     onDismiss = {
                         sheetIngredient = null

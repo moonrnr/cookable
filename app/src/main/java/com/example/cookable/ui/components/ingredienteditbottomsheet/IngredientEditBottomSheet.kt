@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.ingredientbottomsheet
+package com.example.cookable.ui.components.ingredienteditbottomsheet
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -57,7 +57,7 @@ import com.example.cookable.ui.theme.PrimaryGreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IngredientBottomSheet(
+fun IngredientEditBottomSheet(
     initialIngredient: Ingredient = Ingredient(name = "", amount = null, unit = null),
     onSave: (Ingredient) -> Unit,
     onCancel: () -> Unit,

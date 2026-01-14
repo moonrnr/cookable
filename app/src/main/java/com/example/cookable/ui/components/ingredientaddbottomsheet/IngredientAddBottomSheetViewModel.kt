@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class IngredientAddViewModel(
+class IngredientAddBottomSheetViewModel(
     private val repository: FrequentIngredientsRepository,
 ) : ViewModel() {
     private val _state = MutableStateFlow(IngredientAddState())

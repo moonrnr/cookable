@@ -1,8 +1,8 @@
-package com.example.cookable.ui.components.ingredientbottomsheet
+package com.example.cookable.ui.components.ingredienteditbottomsheet
 
 import com.example.cookable.domain.model.UnitType
 
-data class IngredientState(
+data class IngredientEditBottomSheetState(
     val name: String = "",
     val amount: String = "",
     val unit: UnitType? = null,
