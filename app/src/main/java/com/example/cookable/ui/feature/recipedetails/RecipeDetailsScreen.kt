@@ -35,6 +35,7 @@ import com.example.cookable.ui.components.matchbadge.MatchBadge
 import com.example.cookable.ui.components.missingingredientsbox.MissingIngredientsBox
 import com.example.cookable.ui.components.sectiontitle.SectionTitle
 import com.example.cookable.ui.components.totaltimebadge.TotalTimeBadge
+import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.theme.Background
 import com.example.cookable.ui.theme.Line
 import com.example.cookable.ui.theme.White
@@ -43,6 +44,7 @@ import com.example.cookable.ui.theme.White
 fun RecipeDetailsScreen(
     recipe: Recipe,
     navController: NavController,
+    listType: RecipesListType,
     viewModel: RecipeDetailsViewModel = viewModel(),
 ) {
     val scrollState = rememberScrollState()
@@ -131,15 +133,17 @@ fun RecipeDetailsScreen(
                 modifier = Modifier.fillMaxSize().padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                item {
-                    MissingIngredientsBox(
-                        hasAllIngredients = recipe.hasAllIngredients,
-                        missingIngredients = recipe.missingIngredients,
-                    )
-                }
+                if (listType == RecipesListType.ALL_RECIPES) {
+                    item {
+                        MissingIngredientsBox(
+                            hasAllIngredients = recipe.hasAllIngredients,
+                            missingIngredients = recipe.missingIngredients,
+                        )
+                    }
 
-                item {
-                    HorizontalDivider(color = Line)
+                    item {
+                        HorizontalDivider(color = Line)
+                    }
                 }
 
                 stickyHeader {

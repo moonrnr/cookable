@@ -57,6 +57,18 @@ class FavoriteRecipesListViewModel : ViewModel() {
     }
 
     fun toggleFavorite(recipe: Recipe) {
+        allFavorites = allFavorites.filterNot { it.id == recipe.id }
+
+        _state.value =
+            _state.value.copy(
+                recipes =
+                    filterAndSortRecipes(
+                        allFavorites,
+                        _state.value.filters,
+                        _state.value.sortOption,
+                    ),
+            )
+
         repository.toggleFavorite(recipe)
     }
 

@@ -101,7 +101,7 @@ fun FavoriteRecipesScreen(
                         recipesListType = RecipesListType.FAVORITES,
                         onClick = {
                             navController.navigate(
-                                "${Routes.RECIPE_DETAILS}/${recipe.id}",
+                                "${Routes.RECIPE_DETAILS}/${recipe.id}/${RecipesListType.FAVORITES.name}",
                             )
                         },
                         onToggleFavorite = {

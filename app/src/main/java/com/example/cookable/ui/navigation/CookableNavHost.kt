@@ -19,6 +19,7 @@ import com.example.cookable.ui.feature.favorites.FavoriteRecipesScreen
 import com.example.cookable.ui.feature.imageprocessing.ImageProcessingScreen
 import com.example.cookable.ui.feature.recipedetails.RecipeDetailsScreen
 import com.example.cookable.ui.feature.recipeslist.RecipesListScreen
+import com.example.cookable.ui.feature.recipeslist.RecipesListType
 import com.example.cookable.ui.feature.recognizedingredients.RecognizedIngredients
 import com.example.cookable.ui.feature.scan.ScanScreen
 import com.example.cookable.ui.feature.start.StartScreen
@@ -123,12 +124,20 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
         }
 
         composable(
-            route = "${Routes.RECIPE_DETAILS}/{recipeId}",
+            route = "${Routes.RECIPE_DETAILS}/{recipeId}/{listType}",
             arguments =
                 listOf(
                     navArgument("recipeId") { type = NavType.StringType },
+                    navArgument("listType") { type = NavType.StringType },
                 ),
         ) { backStackEntry ->
+
+            val listType =
+                backStackEntry.arguments
+                    ?.getString("listType")
+                    ?.let { RecipesListType.valueOf(it) }
+                    ?: RecipesListType.ALL_RECIPES
+
             val recipeId =
                 backStackEntry.arguments?.getString("recipeId")
                     ?: return@composable
@@ -149,6 +158,7 @@ fun CookableNavHost(modifier: Modifier = Modifier) {
             RecipeDetailsScreen(
                 recipe = recipe,
                 navController = navController,
+                listType = listType,
             )
         }
 

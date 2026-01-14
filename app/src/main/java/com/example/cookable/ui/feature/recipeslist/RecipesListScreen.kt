@@ -100,7 +100,9 @@ fun RecipesListScreen(
                             recipe = recipe.copy(isFavorite = isFavorite),
                             recipesListType = RecipesListType.ALL_RECIPES,
                             onClick = {
-                                navController.navigate("${Routes.RECIPE_DETAILS}/${recipe.id}")
+                                navController.navigate(
+                                    "${Routes.RECIPE_DETAILS}/${recipe.id}/${RecipesListType.ALL_RECIPES.name}",
+                                )
                             },
                             onToggleFavorite = {
                                 viewModel.toggleFavorite(recipe)
