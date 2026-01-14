@@ -31,7 +31,7 @@ import com.example.cookable.ui.theme.PrimaryGreen
 import com.example.cookable.ui.theme.PrimaryGreenLight
 
 @Composable
-fun IngredientsCard(
+fun IngredientsList(
     ingredients: List<Ingredient>,
     listState: LazyListState,
     showScrollHint: Boolean,

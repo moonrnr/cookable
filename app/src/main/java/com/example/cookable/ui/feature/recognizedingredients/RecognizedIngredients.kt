@@ -1,30 +1,11 @@
 package com.example.cookable.ui.feature.recognizedingredients
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
@@ -32,29 +13,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.cookable.core.extensions.formatAmount
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.model.IngredientBottomSheetType
-import com.example.cookable.ui.components.arrowsdownwardsicons.ArrowsDownwardsIcons
-import com.example.cookable.ui.components.iconbuttons.arrows.ArrowBackIconButton
 import com.example.cookable.ui.components.ingredienteditbottomsheet.IngredientEditBottomSheet
-import com.example.cookable.ui.components.ingredientrow.IngredientRow
-import com.example.cookable.ui.components.ingredientscountbadge.IngredientsCountBadge
-import com.example.cookable.ui.components.screentitle.ScreenTitle
-import com.example.cookable.ui.recognizedingredientssummary.RecognizedIngredientsSummary
+import com.example.cookable.ui.feature.recognizedingredients.components.actions.ConfirmButton
+import com.example.cookable.ui.feature.recognizedingredients.components.actions.RescanButton
+import com.example.cookable.ui.feature.recognizedingredients.components.modals.MissingDataModal
+import com.example.cookable.ui.feature.recognizedingredients.components.recognizedingredientslist.RecognizedIngredientsList
+import com.example.cookable.ui.feature.recognizedingredients.components.topbar.RecognizedIngredientsTopbar
 import com.example.cookable.ui.scan.ScanViewModel
 import com.example.cookable.ui.theme.Background
-import com.example.cookable.ui.theme.Card
-import com.example.cookable.ui.theme.Line
-import com.example.cookable.ui.theme.PrimaryGreen
-import com.example.cookable.ui.theme.White
 
 @Composable
 fun RecognizedIngredients(
@@ -105,30 +76,10 @@ fun RecognizedIngredients(
                 .fillMaxSize()
                 .background(Background),
     ) {
-        Row(
-            modifier =
-                Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        start = 12.dp,
-                        end = 20.dp,
-                        top = 12.dp,
-                        bottom = 10.dp,
-                    ),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            ArrowBackIconButton(onBack)
-            Spacer(modifier = Modifier.width(8.dp))
-            ScreenTitle(text = "Recognized ingredients")
-            Spacer(modifier = Modifier.width(16.dp))
-            IngredientsCountBadge(
-                ingredientsCount = ingredients.size,
-                backgroundColor = PrimaryGreen,
-                textColor = White,
-                isTextBold = true,
-                fontSize = 14.sp,
-            )
-        }
+        RecognizedIngredientsTopbar(
+            ingredientsCount = ingredients.size,
+            onBack = onBack,
+        )
 
         Column(
             modifier =
@@ -137,76 +88,21 @@ fun RecognizedIngredients(
                     .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            Column(
-                modifier =
-                    Modifier
-                        .fillMaxWidth()
-                        .shadow(10.dp, RoundedCornerShape(18.dp))
-                        .background(Card, RoundedCornerShape(18.dp)),
-            ) {
-                Box(
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .height(140.dp)
-                            .background(Line),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    photoUri?.let { uri ->
-                        coil.compose.AsyncImage(
-                            model = uri,
-                            contentDescription = "Scanned image",
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = androidx.compose.ui.layout.ContentScale.Crop,
-                        )
-                    }
-                }
-
-                RecognizedIngredientsSummary(
-                    completeCount = completeCount,
-                    incompleteCount = incompleteCount,
-                )
-                HorizontalDivider(color = Line)
-
-                BoxWithConstraints {
-                    LazyColumn(
-                        state = listState,
-                        modifier =
-                            Modifier
-                                .heightIn(max = maxHeight * 0.78f),
-                    ) {
-                        itemsIndexed(ingredients) { index, ingredient ->
-                            IngredientRow(
-                                name = ingredient.name,
-                                amount = ingredient.amount?.formatAmount() ?: "",
-                                unit = ingredient.unit,
-                                onClick = {
-                                    editedIngredientIndex = index
-                                },
-                                onRemove = {
-                                    viewModel.remove(index)
-                                },
-                                suggestedUnit = ingredient.unitSuggestion,
-                                suggestedAmount = ingredient.amountSuggestion?.toString(),
-                                hasError = showErrors && ingredient.hasError,
-                                onAcceptSuggestion = {
-                                    viewModel.acceptSuggestion(index)
-                                },
-                            )
-                        }
-                    }
-                    Column(
-                        modifier = Modifier.align(Alignment.BottomCenter),
-                    ) {
-                        if (showScrollHint) {
-                            ArrowsDownwardsIcons()
-                        }
-                    }
-                }
-            }
+            RecognizedIngredientsList(
+                ingredients = ingredients,
+                photoUri = photoUri,
+                listState = listState,
+                showScrollHint = showScrollHint,
+                completeCount = completeCount,
+                incompleteCount = incompleteCount,
+                showErrors = showErrors,
+                onIngredientClick = { editedIngredientIndex = it },
+                onRemoveIngredient = viewModel::remove,
+                onAcceptSuggestion = viewModel::acceptSuggestion,
+            )
 
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Button(
+                ConfirmButton(
                     onClick = {
                         if (viewModel.validateAndMarkErrors()) {
                             onConfirm(ingredients)
@@ -214,75 +110,17 @@ fun RecognizedIngredients(
                             showErrorDialog = true
                         }
                     },
-                    colors =
-                        ButtonDefaults.buttonColors(
-                            containerColor = PrimaryGreen,
-                            contentColor = White,
-                        ),
-                    shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
-                ) {
-                    Text("Confirm", fontWeight = FontWeight.Bold)
-                }
-
-                OutlinedButton(
+                )
+                RescanButton(
                     onClick = onRescan,
-                    shape = RoundedCornerShape(16.dp),
-                    modifier = Modifier.fillMaxWidth().height(50.dp),
-                    colors =
-                        ButtonDefaults.outlinedButtonColors(
-                            contentColor = PrimaryGreen,
-                        ),
-                    border = BorderStroke(1.dp, Line),
-                ) {
-                    Text(
-                        text = "Rescan",
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
+                )
             }
         }
     }
 
     if (showErrorDialog) {
-        AlertDialog(
-            onDismissRequest = { showErrorDialog = false },
-            containerColor = Background,
-            shape = RoundedCornerShape(24.dp),
-            title = {
-                Text(
-                    text = "Missing data",
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-            },
-            text = {
-                Text(
-                    text = "Some ingredients are missing amount or unit. Please complete them.",
-                    color = MaterialTheme.colorScheme.onBackground,
-                )
-            },
-            confirmButton = {
-                OutlinedButton(
-                    onClick = { showErrorDialog = false },
-                    modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .height(48.dp),
-                    shape = RoundedCornerShape(18.dp),
-                    colors =
-                        ButtonDefaults.outlinedButtonColors(
-                            contentColor = PrimaryGreen,
-                        ),
-                    border = BorderStroke(1.dp, Line),
-                ) {
-                    Text(
-                        text = "OK",
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-            },
+        MissingDataModal(
+            onDismiss = { showErrorDialog = false },
         )
     }
 

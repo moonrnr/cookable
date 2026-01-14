@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.cookable.ui.components.applogo.AppLogo
+import com.example.cookable.ui.feature.start.components.applogo.AppLogo
 import com.example.cookable.ui.feature.start.components.iconbuttons.FavoriteIconButton
 import com.example.cookable.ui.feature.start.components.iconbuttons.HelpIconButton
 

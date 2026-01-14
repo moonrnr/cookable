@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.sectiontitle
+package com.example.cookable.ui.feature.recipedetails.components.sectiontitle
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.applogo
+package com.example.cookable.ui.feature.start.components.applogo
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

@@ -18,12 +18,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.cookable.domain.model.Ingredient
 import com.example.cookable.domain.repository.FavoritesRepositoryProvider
-import com.example.cookable.ui.components.apphelp.AppHelp
 import com.example.cookable.ui.feature.start.components.actions.AddManuallyButton
 import com.example.cookable.ui.feature.start.components.actions.FindRecipesButton
 import com.example.cookable.ui.feature.start.components.actions.ScanIngredientsButton
+import com.example.cookable.ui.feature.start.components.apphelp.AppHelp
 import com.example.cookable.ui.feature.start.components.bottomsheets.IngredientBottomSheetDispatcher
-import com.example.cookable.ui.feature.start.components.ingredients.IngredientsCard
+import com.example.cookable.ui.feature.start.components.ingredients.IngredientsList
 import com.example.cookable.ui.feature.start.components.topbar.StartTopBar
 import com.example.cookable.ui.navigation.Routes
 import com.example.cookable.ui.theme.Background
@@ -86,7 +86,7 @@ fun StartScreen(
                     .padding(horizontal = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            IngredientsCard(
+            IngredientsList(
                 ingredients = state.ingredients,
                 listState = listState,
                 showScrollHint = showScrollHint,

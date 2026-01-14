@@ -1,4 +1,4 @@
-package com.example.cookable.ui.components.apphelp
+package com.example.cookable.ui.feature.start.components.apphelp
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
